@@ -45,7 +45,7 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 * [Github](https://deweylab.github.io/RSEM/)
 * [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)
 
-**Normalization**
+**Gene filtering, standardization, and normalization**
 
 *edgeR* - R package used for analyzing transcriptomic sequence data. Primarily using it to create a `DGEList` object type in R which will be used by `limma` package functions downstream. Also using it for the `cpm` function which converts within sample counts into a `count per million (cpm)`. 
 
