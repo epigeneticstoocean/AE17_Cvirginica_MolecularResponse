@@ -85,42 +85,6 @@ Select gene annotation file (.gtf, should includ entire path)
 /shared_lab/20180226_RNAseq_2017OAExp/RNA/references/gene_annotation/KM_CV_genome.gtf 
 ```
 
-Bash code for bash script `STAR_genomeCreate.sh`:
-```
-!#/bin/bash
-
-# Prompts user to input a path where the files created will be stored and the name of the new folder
-echo "Please put in the base directory:"
-read base
-echo "Please put in the output folder name:"
-read output
-
-echo "Outputs saving to : " $base$output
-
-if [ -d "$base$output" ]; then
-        echo "Directory Already Exists, please rerun with unique output directory"
-        exit 1
-else
-    	echo "Directory Created"
-        mkdir "$base$output"
-fi
-
-# User selects the genome file
-echo "Select genome file (.fna format, should include entire path)"
-read genome
-
-#User selects the gene annotation file (in the gtf format)
-echo "Select gene annotation file (.gtf, should includ entire path)"
-read gene_annotation
-
-# Run actual indexing step
-STAR --runThreadN 32 \
---runMode genomeGenerate \
---genomeDir $base$output \
---genomeFastaFiles $genome \
---sjdbGTFfile $gene_annotation
-```
-
 Output code if run successfully:
 ```
 Jul 15 12:23:09 ..... started STAR run
@@ -152,145 +116,69 @@ STAR maps trimmed reads to the index created in the previous steps.
 
 **Input**: 
 
-* Sample Reads
+* Sample Reads (trimmed and QCed)
     * Stored as `.fq.gz` format
-    * Folder Name: `/shared_lab/20180226_RNAseq_2017OAExp/RNA/rawfiles`
     * Forward Read Example : `P1_17005.R1.fq.gz`
     * Reverse Read Example : `P1_17005.R2.fq.gz`
-    * This are fastq files that contains reads that have been trimmed and undergone basic quality control following the dDocent pipeline and trimmomatic.
-
 * Index Folder (from previous step)
-    * Folder path: `/shared_lab/20180226_RNAseq_2017OAExp/RNA/references/mapping_indexes/STAR_gnomon`
 
-**Output**:
-* Base Directory for STAR output files: `/shared_lab/20180226_RNAseq_2017OAExp/RNA/STAR_files/final_data`
-        * First pass results : `/m2`
-        * Second pass results : `/m3`
+### **Step 2.1** : Start STAR mapping 1st Pass
 
-### Coding and Scripts
-
-**Step 2.1** : Create TMUX session (Optional: do this once you've ssh'ed into the cluster not before):
-* This will take a long time to run, so it will be goo
+* Full Script : [`STAR_1Pass_all.sh`]()
 
 Command Line:
 ```
-tmux new-session -s NAME_SESSION_HERE
-```
-
----
-
-**Step 2.2** : Start STAR mapping 1st Pass
-
-Command Line:
-```
-downey-wall.a@comp5[references]# STAR_1Pass_all.sh 
+downey-wall.a@comp5[references]# ./STAR_1Pass_all.sh 
 Please put in raw file directory:
-/shared_lab/20180226_RNAseq_2017OAExp/RNA/rawfiles
+/pathway/to/trimmedRNASeqFiles
 Please put in name of new folder for output
-run_20190715
+NAME_outputFile
 ```
----
 
-**Step 2.3** :  Move output files from 1st pass and Create `m3` folder for 2nd Pass
+### **Step 2.3** :  Move output files from 1st pass and Create `m3` folder for 2nd Pass
+
+Command Line:
 ```
 cd /pathway/to/output/folder
 mkdir m2
 mkdir m3
 mv *m2_* m2 
 ```
-* This step is need because the second pass script is currently not super flexible to user input. In the future this step  will be removed.
 
----
+### **Step 2.4** : Start STAR mapping 2nd Pass
 
-**Step 2.4** : Start STAR mapping 2nd Pass
+* Full Script : [`STAR_2Pass_all.sh`]()
 
 Command Line:
 ```
-downey-wall.a@comp5[references]# STAR_1Pass_all.sh
+downey-wall.a@comp5[references]# STAR_2Pass_all.sh
 Please put in raw file directory:
 /shared_lab/20180226_RNAseq_2017OAExp/RNA/rawfiles
 ```
 
-Dettach TMUX session to prevent accidental pipe breaking, using hot keys. 
-`Ctrl` + `Shift` + `B` + `D`
+**STAR options under the hood**
 
-**BASH Scripts**
-
-Bash code for bash script for first pass : `STAR_1Pass_all.sh`:
+Core function STAR 1st pass:
 ```
-#!/bin/bash
-
-echo "Please put in raw file directory:"
-read raw
-echo "Please put in name of new folder for output"
-read output
-
-base="/shared_lab/20180226_RNAseq_2017OAExp/RNA/STAR_files/"
-
-echo "Outputs saving to : " $base$output
-
-if [ -d "$base$output" ]; then
-    echo "Directory Already Exists, please use another name"
-else
-    echo "Directory Created"
-    mkdir "$base$output"
-fi
-
-echo "Processing the following samples: "
-echo ls $raw/*.R1.*
-
-# This will loop through each sample in the raw folder directory
-for i in $( ls $raw/*.R1.* ); do
-        for j in $( ls $raw/*.R2.* ); do
-                file1=$( echo $i | rev | cut -d'/' -f 1 | rev | cut -d'.' -f 1)
-                file2=$( echo $j | rev | cut -d'/' -f 1 | rev | cut -d'.' -f 1)
-
-                if [ "$file1" == "$file2" ]
-                then
-                    	echo $i and $j
-                        echo RNA"$file1"_m2
-                        echo yes these files match
-                        /shared_lab/scripts/STAR --runThreadN 10 \
-                        --genomeDir /shared_lab/20180226_RNAseq_2017OAExp/RNA/references/RSEM_gnomon \
-                        --outFilterMatchNminOverLread 0.17 --outFilterScoreMinOverLread 0.17 \
-                        --readFilesIn $i $j \
-                        --outSAMmapqUnique 40 \
-                        --outSAMtype BAM Unsorted SortedByCoordinate \
-                        --outFileNamePrefix $base$output/"$file1"_m2_ \
-                        --readFilesCommand zcat
-                fi
-        done
-done
+/shared_lab/scripts/STAR --runThreadN 10 \
+--genomeDir /shared_lab/20180226_RNAseq_2017OAExp/RNA/references/RSEM_gnomon \
+--outFilterMatchNminOverLread 0.17 --outFilterScoreMinOverLread 0.17 \
+--readFilesIn $i $j \
+--outSAMmapqUnique 40 \
+--outSAMtype BAM Unsorted SortedByCoordinate \
+--outFileNamePrefix $base$output/"$file1"_m2_ \
+--readFilesCommand zcat
 ```
 
-Bash Code for the 2nd Pass, `STAR_2Pass_all.sh`:
+Core function STAR 2nd pass:
 ```
-#!/bin/bash
-
-echo "Please put in raw file directory:"
-read raw
-
-for i in $( ls $raw/*.R1.* ); do
-        for j in $( ls $raw/*.R2.* ); do
-                file1=$( echo $i | rev | cut -d'/' -f 1 | rev | cut -d'.' -f 1)
-                file2=$( echo $j | rev | cut -d'/' -f 1 | rev | cut -d'.' -f 1)
-                if [ "$file1" == "$file2" ]
-                then
-                    	m2_files=$( ls /shared_lab/20180226_RNAseq_2017OAExp/RNA/STAR_files/run_20190715/m2/*m2_SJ.out.tab)
-                        echo $i and $j
-                        echo RNA"$file1"_m3
-                        echo yes these files match
-                        echo $m2_files
-                        /shared_lab/scripts/STAR --runThreadN 19 \
-                        --genomeDir /shared_lab/20180226_RNAseq_2017OAExp/RNA/references/star_ref2 \
-                        --readFilesIn $i $j \
-                        --outSAMmapqUnique 40 \
-                        --outSAMtype BAM Unsorted SortedByCoordinate \
-                        --quantMode TranscriptomeSAM GeneCounts --limitSjdbInsertNsj 1500000 \
-                        --outFileNamePrefix /shared_lab/20180226_RNAseq_2017OAExp/RNA/STAR_files/run_20190715/m3/"$file1"_m3_ \
-                        --readFilesCommand zcat \
-                        --sjdbFileChrStartEnd $m2_files
-                fi
-        done
-done
+/shared_lab/scripts/STAR --runThreadN 19 \
+--genomeDir /shared_lab/20180226_RNAseq_2017OAExp/RNA/references/star_ref2 \
+--readFilesIn $i $j \
+--outSAMmapqUnique 40 \
+--outSAMtype BAM Unsorted SortedByCoordinate \
+--quantMode TranscriptomeSAM GeneCounts --limitSjdbInsertNsj 1500000 \
+--outFileNamePrefix /shared_lab/20180226_RNAseq_2017OAExp/RNA/STAR_files/run_20190715/m3/"$file1"_m3_ \
+--readFilesCommand zcat \
+--sjdbFileChrStartEnd $m2_files
 ```
