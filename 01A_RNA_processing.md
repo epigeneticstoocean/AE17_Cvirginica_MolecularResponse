@@ -100,7 +100,7 @@ gffread my.gff -T -o my.gtf
 
 ### Step 2.2 - Create STAR index using oyster gene annotation file
 
-* Script : [`STAR_genomeCreate.sh`]()
+* Script : [`STAR_genomeCreate.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/02_STAR_genomeCreate.sh)
 
 Command line code:
 ```
@@ -138,7 +138,7 @@ Jul 15 12:30:12 ..... finished successfully
 
 --- 
 
-## Step 2 - Mapping with STAR <a name="three"></a>
+## Step 3 - Mapping with STAR <a name="three"></a>
 
 ### Overview
 STAR maps trimmed reads to the index created in the previous steps. 
@@ -155,9 +155,9 @@ STAR maps trimmed reads to the index created in the previous steps.
     * Reverse Read Example : `P1_17005.R2.fq.gz`
 * Index Folder (from previous step)
 
-### **Step 2.1** : Start STAR mapping 1st Pass
+### **Step 3.1** : Start STAR mapping 1st Pass
 
-* Full Script : [`STAR_1Pass_all.sh`]()
+* Full Script : [`STAR_1Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/03A_STAR_1Pass_all.sh)
 
 Command Line:
 ```
@@ -168,7 +168,7 @@ Please put in name of new folder for output
 NAME_outputFile
 ```
 
-### **Step 2.3** :  Move output files from 1st pass and Create `m3` folder for 2nd Pass
+### **Step 3.3** :  Move output files from 1st pass and Create `m3` folder for 2nd Pass
 
 Command Line:
 ```
@@ -178,9 +178,9 @@ mkdir m3
 mv *m2_* m2 
 ```
 
-### **Step 2.4** : Start STAR mapping 2nd Pass
+### **Step 3.4** : Start STAR mapping 2nd Pass
 
-* Full Script : [`STAR_2Pass_all.sh`]()
+* Full Script : [`STAR_2Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/03B_STAR_2Pass_all.sh)
 
 Command Line:
 ```
@@ -189,45 +189,62 @@ Please put in raw file directory:
 /shared_lab/20180226_RNAseq_2017OAExp/RNA/rawfiles
 ```
 
-**STAR options under the hood**
+**STAR command**
 
 Core function STAR 1st pass:
 ```
 /shared_lab/scripts/STAR --runThreadN 10 \
---genomeDir /shared_lab/20180226_RNAseq_2017OAExp/RNA/references/RSEM_gnomon \
+--genomeDir /path/toStarReferenceIndex \
 --outFilterMatchNminOverLread 0.17 --outFilterScoreMinOverLread 0.17 \
---readFilesIn $i $j \
+--readFilesIn/path/toForwardStrand /path/toReverseStrand \
 --outSAMmapqUnique 40 \
 --outSAMtype BAM Unsorted SortedByCoordinate \
---outFileNamePrefix $base$output/"$file1"_m2_ \
+--outFileNamePrefix /path/toOutput \
 --readFilesCommand zcat
 ```
 
 Core function STAR 2nd pass:
 ```
 /shared_lab/scripts/STAR --runThreadN 19 \
---genomeDir /shared_lab/20180226_RNAseq_2017OAExp/RNA/references/star_ref2 \
---readFilesIn $i $j \
+--genomeDir /path/toStarReferenceIndex \
+--readFilesIn /path/toForwardStrand /path/toReverseStrand \
 --outSAMmapqUnique 40 \
 --outSAMtype BAM Unsorted SortedByCoordinate \
 --quantMode TranscriptomeSAM GeneCounts --limitSjdbInsertNsj 1500000 \
---outFileNamePrefix /shared_lab/20180226_RNAseq_2017OAExp/RNA/STAR_files/run_20190715/m3/"$file1"_m3_ \
+--outFileNamePrefix /path/toOutput \
 --readFilesCommand zcat \
---sjdbFileChrStartEnd $m2_files
+--sjdbFileChrStartEnd /path/toSpliceJunctionFolder
 ```
 
 ## Step 4 - Running RSEM  <name a = "four"></a>
 
-* Full Script : []()
+**Creating Index folder for RSEM**
 
-Core function RSEM:
+* Full Script : [`RSEM_createRefFromStar.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/04A_RSEM_createRefFromStar.sh)
+
+Core function `rsem-prepare-reference`: 
+```
+rsem-prepare-reference \
+--gtf /path/toGeneAnnotation.gtf \
+--star \
+-p 8 \
+/path/toRefGenome_GCF_002022765.2_C_virginica-3.0_genomic.fna \
+/path/toOuput
+```
+
+**Performing RSEM Transcript Quantification**
+
+* Full Script : [`RSEM_calcExp.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/04B_RSEM_calcExp_All.sh)
+
+Core function `rsem-calculate-expression`:
+
 ```
 rsem-calculate-expression --star --paired-end \
 --star-gzipped-read-file \
 -p 20 \
-/path/to/ForwardStrand \
-/path/to/ReverseStrand \
-/path/to/RSEM_reference \
-/path/to/outputFolder
+/path/toForwardStrand \
+/path/toReverseStrand \
+/path/toRSEM_reference \
+/path/toOutputFolder
 ```
 ## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <name a = "five"></a>
