@@ -9,7 +9,7 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 1. [Data](#data)
 2. [Brief Description and Literature on Required Tools and Scripts](#description)
-3. [Step 1 - Trimming, adapter removal, and QC](#two)
+3. [Step 1 - Trimming, adapter removal, and QC](#one)
 4. [Step 2 - Creating STAR index](#two)
 5. [Step 3 - Mapping with STAR](#three)
 6. [Step 4 - Running RSEM](#four)
@@ -24,6 +24,17 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 * Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
 
 ## Brief Description and Literature on Required Tools and primary R packages <a name="description"></a>
+
+**Trimming and Quality Control**
+
+*dDocent (wrapper for trimming and QC steps)* - 
+
+* [Website](https://www.ddocent.com/)
+* [Publication](https://peerj.com/articles/431/)
+
+*trimmomatic* - 
+
+*fastQC* - 
 
 **File Conversion**
 
@@ -57,7 +68,16 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 ---
 
-## Step 1 - Creating STAR index <a name="two"></a>
+## Step 1 - Trimming and Adapter Removal <a name = "one"></a>
+
+
+Command Line:
+```
+./dDocent RNA.config
+```
+---
+
+## Step 2 - Creating STAR index <a name="two"></a>
 
 ### Overview 
 STAR performing the mapping in two primary stages. First, you need to create an index which the actuals reads are mapped too. We are creating this index using the available genome on NCBI, `.fna` file, and annotating it with a gene anotations file, `.gtf` format. 
@@ -70,14 +90,14 @@ STAR performing the mapping in two primary stages. First, you need to create an 
 * [Reference genome: GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
 * [Gene annotations](https://drive.google.com/drive/u/0/folders/1KBAm4L5K2ZQ5dUOUfryk0BaB7fcA1RuL)
 
-### Step 1.1 - File conversion
+### Step 2.1 - File conversion
 
 Command line code for converting from `.gff` to `.gtf`:
 ```
 gffread my.gff -T -o my.gtf
 ```
 
-### Step 1.2 - Create STAR index using oyster gene annotation file
+### Step 2.2 - Create STAR index using oyster gene annotation file
 
 * Script : [`STAR_genomeCreate.sh`]()
 
