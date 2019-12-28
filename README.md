@@ -9,4 +9,7 @@
 * [*DNA Methylation Analysis*]()
   
 **Folders**
-* (*/data*)[https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data] : Contains processed data files for analysis (raw sequence data available on NCBI).
+* [*/data*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data) : Contains processed data files for analysis (raw sequence data available on NCBI).
+* [*/src*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01B_DNAm_processing.md) : Scripts file.
+
+
