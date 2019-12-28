@@ -218,5 +218,16 @@ Core function STAR 2nd pass:
 
 ## Step 4 - Running RSEM  <name a = "four"></a>
 
+* Full Script : []()
 
+Core function RSEM:
+```
+rsem-calculate-expression --star --paired-end \
+--star-gzipped-read-file \
+-p 20 \
+/path/to/ForwardStrand \
+/path/to/ReverseStrand \
+/path/to/RSEM_reference \
+/path/to/outputFolder
+```
 ## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <name a = "five"></a>
