@@ -27,14 +27,15 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 **Trimming and Quality Control**
 
-*dDocent (wrapper for trimming and QC steps)* - 
+*dDocent (wrapper for trimming and QC steps)* -  dDocent pipeline uses Trimmomatic trimming tool to remove adapter and low quality sequences from the ends of reads. Within the dDocent code, it is specified to be paired-end (which is automatically recognized based on our file naming scheme), removes adapters based on thresholds for how well the adapter sequences align to reads (2:30:10; see Trimmomatic manual for more details), removes leading bases with phred quality score less than 20, removes trailing bases with phred quality score less than 20, scans the reads at a 5bp window and cuts when the average quality of the five bases is less than 10, and makes sure all reads are a minimum length after this cutting (greater than the shortest read/2).
 
 * [Website](https://www.ddocent.com/)
 * [Publication](https://peerj.com/articles/431/)
 
-*trimmomatic* - 
+*Trimmomatic* - a  flexible read trimming tool for Illumina NGS data. Used by dDocent to trim raw RNAseq fragments and remove adapters.
 
-*fastQC* - 
+* [Github](https://github.com/timflutre/trimmomatic)
+* [Publication](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4103590/)
 
 **File Conversion**
 
