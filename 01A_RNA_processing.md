@@ -28,8 +28,8 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 * [Github](https://deweylab.github.io/RSEM/)
 * [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)
 
-[**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)
-[**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq)
+[**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
+[**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq)  
 
 ## Step 1 - Creating STAR index <a name="two"></a>
 
