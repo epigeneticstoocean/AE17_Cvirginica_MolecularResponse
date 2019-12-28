@@ -7,10 +7,16 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 ## Table of Contents
 
-1. [Brief Description and Literature on Required Tools and Scripts](#one)
-2. [Step 1 - Creating STAR index](#two)
-3. [Step 2 - Mapping with STAR](#three)
-4. [Step 3 - Running RSEM](#four)
+1. [Brief Description and Literature on Required Tools and Scripts](#zero)
+2. [Brief Description and Literature on Required Tools and Scripts](#one)
+3. [Step 1 - Creating STAR index](#two)
+4. [Step 2 - Mapping with STAR](#three)
+5. [Step 3 - Running RSEM](#four)
+
+## Data <a name="zero"></a>
+
+[**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
+[**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq)  
 
 ## Brief Description and Literature on Required Tools and Scripts <a name="one"></a>
 
@@ -27,9 +33,6 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 * [Github](https://deweylab.github.io/RSEM/)
 * [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)
-
-[**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
-[**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq)  
 
 ## Step 1 - Creating STAR index <a name="two"></a>
 
