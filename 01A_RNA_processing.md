@@ -7,21 +7,23 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 ## Table of Contents
 
-1. [Data](#zero)
-2. [Brief Description and Literature on Required Tools and Scripts](#one)
-3. [Step 1 - Creating STAR index](#two)
-4. [Step 2 - Mapping with STAR](#three)
-5. [Step 3 - Running RSEM](#four)
+1. [Data](#data)
+2. [Brief Description and Literature on Required Tools and Scripts](#description)
+3. [Step 1 - Trimming, adapter removal, and QC](#two)
+4. [Step 2 - Creating STAR index](#two)
+5. [Step 3 - Mapping with STAR](#three)
+6. [Step 4 - Running RSEM](#four)
+7. [Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom)](#five)
 
 ---
 
-## Data <a name="zero"></a>
+## Data <a name="data"></a>
 
 * [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
 * [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq)
 * Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
 
-## Brief Description and Literature on Required Tools and Scripts <a name="one"></a>
+## Brief Description and Literature on Required Tools and primary R packages <a name="description"></a>
 
 **File Conversion**
 
@@ -42,6 +44,16 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 * [Github](https://deweylab.github.io/RSEM/)
 * [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)
+
+**Normalization**
+
+*edgeR* - R package used for analyzing transcriptomic sequence data. Primarily using it to create a `DGEList` object type in R which will be used by `limma` package functions downstream. Also using it for the `cpm` function which converts within sample counts into a `count per million (cpm)`. 
+
+* [Manual](https://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)
+
+*limma* - R package used for analyzing transcriptomic sequence data. Here we are using limma for `TMM` standardization approach to account for variable library sizes among samples, to transform our counts into `log2-cpm` using the `voom` function, account for random tank effects. Also used to perform differential expression analysis with planned contrasts in RNAseq_Analysis workflow.
+
+* [Manual](https://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf)
 
 ---
 
@@ -182,3 +194,8 @@ Core function STAR 2nd pass:
 --readFilesCommand zcat \
 --sjdbFileChrStartEnd $m2_files
 ```
+
+## Step 4 - Running RSEM  <name a = "four"></a>
+
+
+## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <name a = "five"></a>
