@@ -1,0 +1,138 @@
+General_ID,Location,mRNA,CV_GeneCode,CV_Gene_name,OA_sensitivity,Num_Species,Species_List,Mantle_Tissue,Reference,meanExpression,CvE_D9,CvE_D80,C_D9vD80,Diff
+Calbindin,LOC111136252,,CB,calbindin-32-like,Yes,,Pinctada Fucata,Yes,1,4.240,-0.001,0.263,0.012,0.012
+Calcineurin-binding protein,LOC111126382,XM_022470985.1,CNBP,calcineurin-binding protein cabin-1-like,Unknown,,P. martensii,Yes,10,,,,,
+Calmodulin,LOC111121912,,CM,calmodulin-A-like,Yes,,Pinctada Fucata,Yes,"1,10,12",4.353,0.037,0.155,0.202,0.202
+Calmodulin,LOC111122108,,CM,"calcium/calmodulin-dependent protein kinase type II delta chain-like, transcript variant X4",Yes,,Pinctada Fucata,Yes,"1,10,12",7.456,0.078,-0.003,0.019,0.019
+Calmodulin,LOC111125333,,CM,calmodulin-regulated spectrin-associated protein 1-like,Yes,,Pinctada Fucata,Yes,"1,10,12",5.562,0.039,-0.040,-0.072,-0.072
+Calmodulin,LOC111126455,,CM,"calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1A-like, transcript variant X13",Yes,,Pinctada Fucata,Yes,"1,10,12",6.561,0.105,0.093,0.308,0.308
+Calmodulin,LOC111127966,,CM,calmodulin-regulated spectrin-associated protein 1-like,Yes,,Pinctada Fucata,Yes,"1,10,12",5.565,0.219,-0.031,-0.105,-0.105
+Calmodulin,LOC111128214,,CM,calmodulin-like protein 12,Yes,,Pinctada Fucata,Yes,"1,10,12",1.372,0.310,-0.470,-0.422,-0.422
+Calmodulin,LOC111129023,,CM,"calmodulin-like, transcript variant X3",Yes,,Pinctada Fucata,Yes,"1,10,12",2.415,0.276,-0.080,-0.147,-0.147
+Calmodulin,LOC111129433,,CM,,Yes,,Pinctada Fucata,Yes,"1,10,12",2.645,,,,
+Calmodulin,LOC111129434,,CM,"calmodulin-like, transcript variant X2",Yes,,Pinctada Fucata,Yes,"1,10,12",3.081,0.294,1.953,1.127,1.127
+Calmodulin,LOC111129435,,CM,"calmodulin-like, transcript variant X2",Yes,,Pinctada Fucata,Yes,"1,10,12",-0.834,3.075,-2.613,-3.631,-3.631
+Calmodulin,LOC111129443,,CM,"calmodulin, transcript variant X1",Yes,,Pinctada Fucata,Yes,"1,10,12",9.618,0.029,-0.126,-0.087,-0.087
+Calmodulin,LOC111129444,,CM,"calmodulin, transcript variant X2",Yes,,Pinctada Fucata,Yes,"1,10,12",4.282,0.315,-0.306,0.573,0.573
+Calmodulin,LOC111129445,,CM,calmodulin-like,Yes,,Pinctada Fucata,Yes,"1,10,12",2.593,2.195,-3.051,-3.713,-3.713
+Calmodulin,LOC111129447,,CM,calmodulin-like,Yes,,Pinctada Fucata,Yes,"1,10,12",0.855,3.267,5.504,1.959,1.959
+Calmodulin,LOC111129448,,CM,,Yes,,Pinctada Fucata,Yes,"1,10,12",0.855,,,,
+Calmodulin,LOC111129449,,CM,,Yes,,Pinctada Fucata,Yes,"1,10,12",0.855,,,,
+Calmodulin,LOC111129452,,CM,calmodulin-like protein 12,Yes,,Pinctada Fucata,Yes,"1,10,12",0.275,-1.510,-0.389,0.137,0.137
+Calmodulin,LOC111129799,,CM,calmodulin-like protein 12,Yes,,Pinctada Fucata,Yes,"1,10,12",2.473,0.012,0.129,0.343,0.343
+Calmodulin,LOC111130847,,CM,"calmodulin-lysine N-methyltransferase-like, transcript variant X3",Unknown,,Pinctada Fucata,Yes,1,1.874,0.538,0.799,0.712,0.712
+Calmodulin,LOC111133239,,CM,"calcium/calmodulin-dependent protein kinase kinase 1-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,"1,10,12",4.612,-0.243,-0.161,0.012,0.012
+Calmodulin,LOC111135195,,CM,"calcium/calmodulin-dependent protein kinase kinase 1-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,"1,10,12",5.682,-0.305,-0.308,0.116,0.116
+Calmodulin,LOC111135253,,CM,"calmodulin-binding transcription activator 1-like, transcript variant X5",Yes,,Pinctada Fucata,Yes,"1,10,12",5.640,0.132,-0.030,-0.219,-0.219
+Calnexin,LOC111125459,,CR,calnexin-like,Yes,,C. virgnica,Yes,12,,,,,
+Calponin,LOC111099692,,CN,"leucine-rich repeat and calponin homology domain-containing protein 2-like, transcript variant X4",Yes,,Pinctada Fucata,Yes,"1,10",6.819,0.174,-0.038,-0.050,-0.050
+Calponin,LOC111108212,,CN,,Yes,,Pinctada Fucata,Yes,"1,10",4.840,,,,
+Calponin,LOC111109302,,CN,,Yes,,Pinctada Fucata,Yes,"1,10",0.315,,,,
+Calponin,LOC111115451,,CN,,Yes,,Pinctada Fucata,Yes,"1,10",3.916,,,,
+Calreticulin,LOC111121532,,CR,calreticulin-like,Yes,,C. virgnica,Yes,12,,,,,
+Caltractin,LOC111122110,,CT, Caltractin-like,Yes,,C. virgnica,Yes,12,,,,,
+Caltractin,LOC111125421,,CT, Caltractin-like (transcript discrepancy),Yes,,C. virgnica,Yes,12,,,,,
+Caltractin,LOC111133785,,CT, Caltractin-like,Yes,,C. virgnica,Yes,12,,,,,
+Caltractin,LOC111136013,,CT, Caltractin-like (transcript discrepancy),Yes,,C. virgnica,Yes,12,,,,,
+Carbonic Anhydrase,LOC111112162,,CA,,Yes,,B. elegans,Whole,"4,10",2.911,,,,
+Carbonic Anhydrase,LOC111113402,,CA,,Yes,,B. elegans,Whole,"4,10",3.384,,,,
+Carbonic Anhydrase,LOC111114059,,CA,,Yes,,B. elegans,Whole,"4,10",3.384,,,,
+Carbonic Anhydrase,LOC111117514,,CA,carbonic anhydrase 1-like,Yes,,B. elegans,Whole,"4,10",0.774,1.262,-0.891,0.267,0.267
+Carbonic Anhydrase,LOC111120606,,CA,carbonic anhydrase-like,Yes,,B. elegans,Whole,"4,10",1.631,0.648,-0.743,-0.347,-0.347
+Carbonic Anhydrase,LOC111120607,,CA,carbonic anhydrase-like,Yes,,B. elegans,Whole,"4,10",3.013,0.316,-0.475,0.297,0.297
+Carbonic Anhydrase,LOC111122701,,CA,putative carbonic anhydrase-like protein 1,Yes,,B. elegans,Whole,"4,10",3.129,0.349,-0.014,0.175,0.175
+Carbonic Anhydrase,LOC111123083,,CA,"putative carbonic anhydrase-like protein 2, transcript variant X2",Yes,,B. elegans,Whole,"4,10",3.083,0.081,-0.021,-0.180,-0.180
+Carbonic Anhydrase,LOC111127093,,CA,carbonic anhydrase-related protein 10-like,Yes,,B. elegans,Whole,"4,10",0.155,0.132,-0.009,0.473,0.473
+Carbonic Anhydrase,LOC111127254,,CA,carbonic anhydrase-related protein 10-like,Yes,,B. elegans,Whole,"4,10",0.315,-0.310,-0.014,0.159,0.159
+Carbonic Anhydrase,LOC111130106,,CA,carbonic anhydrase 2-like,Yes,,B. elegans,Whole,"4,10",1.135,-0.054,-0.138,0.004,0.004
+Carbonic Anhydrase,LOC111130107,,CA,"carbonic anhydrase 2-like, transcript variant X6",Yes,,B. elegans,Whole,"4,10",5.333,0.398,0.334,0.357,0.357
+Carbonic Anhydrase,LOC111133036,,CA,"carbonic anhydrase-related protein-like, transcript variant X2",Yes,,B. elegans,Whole,"4,10",2.714,0.501,0.528,0.917,0.917
+Carbonic Anhydrase,LOC111133247,,CA,carbonic anhydrase 2-like,Yes,,B. elegans,Whole,"4,10",4.727,0.273,-0.175,-0.343,-0.343
+Carbonic Anhydrase,LOC111133640,,CA,,Yes,,B. elegans,Whole,"4,10",4.727,,,,
+Carbonic Anhydrase,LOC111134104,,CA,carbonic anhydrase 2-like,Yes,,B. elegans,Whole,"4,10",4.137,-0.382,0.341,-0.340,-0.340
+Carbonic Anhydrase,LOC111134699,,CA,,Yes,,B. elegans,Whole,"4,10",4.898,,,,
+Carbonic Anhydrase,LOC111134700,,CA,"carbonic anhydrase 2-like, transcript variant X2",Yes,,B. elegans,Whole,"4,10",1.769,1.083,-0.111,-0.720,-0.720
+Carbonic Anhydrase,LOC111137424,,CA,carbonic anhydrase 1-like,Yes,,B. elegans,Whole,"4,10",0.899,1.762,1.396,-0.053,-0.053
+Carbonic Anhydrase,LOC11125708,,CA,,Yes,,B. elegans,Whole,"4,10",3.064,,,,
+EF Hand ,LOC111103305,,EFH,"EF-hand calcium-binding domain-containing protein 6-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,1,4.496,0.273,-0.199,-0.066,-0.066
+EF Hand ,LOC111104008,,EFH,"EF-hand calcium-binding domain-containing protein 6-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,1,3.658,0.190,0.065,-0.141,-0.141
+EF Hand ,LOC111110006,,EFH,EF-hand calcium-binding domain-containing protein 12-like,Yes,,Pinctada Fucata,Yes,1,2.911,0.205,-0.158,-0.182,-0.182
+EF Hand ,LOC111112418,,EFH,,Yes,,Pinctada Fucata,Yes,1,2.911,,,,
+EF Hand ,LOC111112623,,EFH,EF-hand calcium-binding domain-containing protein 1-like,Yes,,Pinctada Fucata,Yes,1,3.224,-0.138,0.095,0.232,0.232
+EF Hand ,LOC111118097,,EFH,EF-hand calcium-binding domain-containing protein 1-like,Yes,,Pinctada Fucata,Yes,1,2.074,-1.003,-0.446,-1.518,-1.518
+EF Hand ,LOC111118098,,EFH,EF-hand calcium-binding domain-containing protein 1-like,Yes,,Pinctada Fucata,Yes,1,3.388,-1.224,-0.306,-1.292,-1.292
+EF Hand ,LOC111118977,,EFH,zinc finger ZZ-type and EF-hand domain-containing protein 1-like,Yes,,Pinctada Fucata,Yes,1,7.087,0.034,0.170,-0.081,-0.081
+EF Hand ,LOC111119562,,EFH,"EF-hand calcium-binding domain-containing protein 7-like, transcript variant X4",Yes,,Pinctada Fucata,Yes,1,3.275,-0.083,-0.089,0.234,0.234
+EF Hand ,LOC111119770,,EFH,"EF-hand calcium-binding domain-containing protein 6-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,1,5.003,0.291,-0.130,-0.239,-0.239
+EF Hand ,LOC111126847,,EFH,EF-hand domain-containing family member B-like,Yes,,Pinctada Fucata,Yes,1,3.392,0.043,-0.187,-0.131,-0.131
+EF Hand ,LOC111129187,,EFH,EF-hand calcium-binding domain-containing protein 11-like,Yes,,Pinctada Fucata,Yes,1,2.645,0.053,-0.086,-0.276,-0.276
+EF Hand ,LOC111130486,,EFH,ankyrin repeat and EF-hand domain-containing protein 1-like,Yes,,Pinctada Fucata,Yes,1,2.971,0.261,-0.171,-0.377,-0.377
+EF Hand ,LOC111131218,,EFH,EF-hand calcium-binding domain-containing protein 2-like,Yes,,Pinctada Fucata,Yes,1,0.104,-0.287,-0.026,0.568,0.568
+EF Hand ,LOC111133892,,EFH,N-terminal EF-hand calcium-binding protein 1-like,Yes,,Pinctada Fucata,Yes,1,6.369,-0.105,-0.001,-0.051,-0.051
+EF Hand ,LOC111135064,,EFH,EF-hand domain-containing family member C2-like,Yes,,Pinctada Fucata,Yes,1,5.075,0.068,-0.228,-0.126,-0.126
+EF Hand ,LOC111135878,,EFH,"ras and EF-hand domain-containing protein homolog, transcript variant X2",Yes,,Pinctada Fucata,Yes,1,5.323,0.468,0.116,-0.093,-0.093
+EF Hand ,LOC111136156,,EFH,EF-hand calcium-binding domain-containing protein 5-like,Yes,,Pinctada Fucata,Yes,1,3.807,0.099,-0.081,-0.115,-0.115
+EF Hand ,LOC111136641,,EFH,"EF-hand calcium-binding domain-containing protein 6-like, transcript variant X4",Yes,,Pinctada Fucata,Yes,1,3.775,-0.267,0.061,0.110,0.110
+EF Hand ,LOC111137150,,EFH,EF-hand domain-containing protein D2-like,Yes,,Pinctada Fucata,Yes,1,7.453,-0.207,0.017,0.255,0.255
+Epidermal Growth Factor,LOC111134661,,EGF,EGF-like domain-containing protein 2,Yes,,Pinctada Fucata,Yes,1,4.898,-0.397,-0.500,-0.909,-0.909
+Lysine-rich matrix protein,LOC111119664,,LCMP,splicing regulatory glutamine/lysine-rich protein 1-like,Yes,,Pinctada Fucata,Yes,"1,10",7.373,0.066,0.045,-0.072,-0.072
+Lysine-rich matrix protein,LOC111128150,,LCMP,"aspartate, glycine, lysine and serine-rich protein-like, transcript variant X2",Yes,,Pinctada Fucata,Yes,"1,10",4.425,1.899,0.252,-0.375,-0.375
+Lysine-rich matrix protein,LOC111128244,,LCMP,"aspartate, glycine, lysine and serine-rich protein-like, transcript variant X11",Yes,,Pinctada Fucata,Yes,"1,10",4.749,2.104,0.709,-0.035,-0.035
+Lysine-rich matrix protein,LOC111138384,,LCMP,"leucine-, glutamate- and lysine-rich protein 1-like, transcript variant X2",Yes,,Pinctada Fucata,Yes,"1,10",3.064,0.094,-0.398,-0.289,-0.289
+Mantle Protein,LOC111115595,,MAP,mantle protein-like,Yes,,Pinctada Fucata,Yes,1,8.139,0.414,0.583,0.650,0.650
+Mantle Protein,LOC111115840,,MAP,mantle protein-like,Yes,,Pinctada Fucata,Yes,1,6.449,0.602,-0.590,0.461,0.461
+Matrix Protein,LOC111099458,XM_022430739.1,MP,"serine/arginine repetitive matrix protein 2-like, transcript variant X2",Yes,,Pinctada Fucata,Yes,1,5.285,0.216,0.299,-0.517,-0.517
+Matrix Protein,LOC111103115,XM_022436150.1,MP,"SWI/SNF-related matrix-associated actin-dependent regulator of chromatin subfamily E member 1-like, transcript variant X7",Yes,,Pinctada Fucata,Yes,1,6.173,-0.076,-0.074,0.123,0.123
+Matrix Protein,LOC111113040,XM_022450984.1,MP,"SWI/SNF-related matrix-associated actin-dependent regulator of chromatin subfamily A-like protein 1, transcript variant X1",Yes,,Pinctada Fucata,Yes,1,3.384,0.466,0.152,-0.252,-0.252
+Matrix Protein,LOC111114820,XM_022453300.1,MP,"SWI/SNF-related matrix-associated actin-dependent regulator of chromatin subfamily D member 1-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,1,5.121,0.027,0.016,0.475,0.475
+Matrix Protein,LOC111114842,XM_022453343.1,MP,"SWI/SNF-related matrix-associated actin-dependent regulator of chromatin subfamily D member 1-like, transcript variant X4",Yes,,Pinctada Fucata,Yes,1,5.196,-0.044,-0.063,-0.214,-0.214
+Matrix Protein,LOC111114977,XM_022453522.1,MP,"serine/arginine repetitive matrix protein 2-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,1,3.916,-0.172,-0.126,0.175,0.175
+Matrix Protein,LOC111120584,XM_022461392.1,MP,"serine/arginine repetitive matrix protein 2-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,1,4.486,0.460,0.764,0.384,0.384
+Matrix Protein,LOC111132362,XM_022480166.1,MP,serine/arginine repetitive matrix protein 2-like,Yes,,Pinctada Fucata,Yes,1,5.984,-0.060,-0.016,0.178,0.178
+Matrix Protein,LOC111132990,XM_022480994.1,MP,"serine/arginine repetitive matrix protein 2-like, transcript variant X6",Yes,,Pinctada Fucata,Yes,1,8.111,0.007,0.151,0.090,0.090
+Matrix Protein,"LOC111135329
+",,MP,,Yes,,Pinctada Fucata,Yes,1,5.640,,,,
+Matrix Protein,LOC111137937,,MP,"cartilage matrix protein-like, transcript variant X1",Yes,,Pinctada Fucata,Yes,1,6.126,1.066,-0.993,-1.220,-1.220
+Nacrein,LOC111104068,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",3.658,,,,
+Nacrein,LOC111104447,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111104833,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111104844,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111105097,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111105098,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111105106,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111105218,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111105623,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111107350,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111107361,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111107957,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111108028,,NA,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Nacrein,LOC111136431,,NA,nacrein-like protein,Yes,,Pinctada Fucata,Yes,"1,10",5.855,0.483,1.205,-0.027,-0.027
+PiF,LOC111105131,,PIF,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+PiF,LOC111108062,,PIF,protein PIF-like,Yes,,Pinctada Fucata,Yes,"1,10",4.840,-0.366,0.096,0.110,0.110
+PiF,LOC111109234,,PIF,protein PIF-like,Yes,,Pinctada Fucata,Yes,"1,10",0.315,0.711,-0.128,0.338,0.338
+PiF,LOC111113502,,PIF,,Yes,,Pinctada Fucata,Yes,"1,10",3.384,,,,
+PiF,LOC111114745,,PIF,,Yes,,Pinctada Fucata,Yes,"1,10",3.384,,,,
+PiF,LOC111116492,,PIF,,Yes,,Pinctada Fucata,Yes,"1,10",6.449,,,,
+PiF,LOC111121428,,PIF,,Yes,,Pinctada Fucata,Yes,"1,10",3.013,,,,
+Prisilkin-39,LOC111117223,,PR39,,No,,Pinctada Fucata,Yes,1,6.449,,,,
+Prisilkin-39,LOC111117881,,PR39,"prisilkin-39-like, transcript variant X2",No,,Pinctada Fucata,Yes,1,-0.213,1.916,0.802,-0.444,-0.444
+Prisilkin-39,LOC111126084,,PR39,,No,,Pinctada Fucata,Yes,1,5.562,,,,
+Prisilkin-39,LOC111128147,,PR39,,No,,Pinctada Fucata,Yes,1,5.565,,,,
+Prismalin-14,LOC111117488,,PR14,prismalin-14-like,Yes,,Pinctada Fucata,Yes,"1,10",6.504,-0.173,-0.226,-0.119,-0.119
+Regucalcin,LOC111120853,,RC,Regucalcin-like,Unknown,,P. martensii,Yes,10,,,,,
+Regucalcin,LOC111121418,,RC,Regucalcin-like,Unknown,,P. martensii,Yes,10,,,,,
+Regucalcin,LOC111121420,,RC,Regucalcin-like,Unknown,,P. martensii,Yes,10,,,,,
+Shell Matrix Protein,LOC111104993,XM_022439171.1,SMP,,Yes,,Pinctada Fucata,Yes,"1,10",5.848,,,,
+Shell Matrix Protein,LOC111124700,XM_022467823.1,SMP,,Yes,,Pinctada Fucata,Yes,"1,10",7.047,,,,
+Shell Matrix Protein,LOC111126747,XM_022471586.1,SMP,,Yes,,Pinctada Fucata,Yes,"1,10",8.593,,,,
+Shell Matrix Protein,LOC111131210,XM_022478630.1,SMP,,Yes,,Pinctada Fucata,Yes,"1,10",2.533,,,,
+Shematrin,LOC111099455,,SH,,Yes,,Pinctada Fucata,Yes,"1,10",#N/A,,,,
+Shematrin,LOC111128707,,SH,,Yes,,Pinctada Fucata,Yes,"1,10",4.749,,,,
+Shematrin,LOC111130135,,SH,,Yes,,Pinctada Fucata,Yes,"1,10",5.333,,,,
+Shematrin,LOC111130982,,SH,shematrin-like protein 2,Yes,,Pinctada Fucata,Yes,"1,10",2.533,1.954,-0.029,1.517,1.517
+Shematrin,LOC111132639,,SH,,Yes,,Pinctada Fucata,Yes,"1,10",5.984,,,,
+Shematrin,LOC111132660,,SH,,Yes,,Pinctada Fucata,Yes,"1,10",5.984,,,,
+Silk Gland Protein,LOC111104442,,SGP,silk gland factor 3-like,Unknown,,C. virginica,Yes,1,5.848,-0.336,-0.292,0.044,0.044
+Vascular endothelial Growth Factor,LOC111126735,,VEGF,"vascular endothelial growth factor C-like, transcript variant X1",Unknown,,C. gigas,Yes,"2,3",8.593,-0.336,0.624,0.824,0.824
+Vascular endothelial Growth factor receptor,LOC111124011,,VEGFR,"vascular endothelial growth factor receptor 1-like, transcript variant X1",Unknown,,C. gigas,Yes,"2,3",7.047,-0.029,0.125,0.132,0.132
+Vascular endothelial Growth factor receptor,LOC111130384,,VEGFR,"zwei Ig domain protein zig-8-like, transcript variant X4",Unknown,,C. gigas,Yes,"2,3",5.342,-0.013,0.008,0.164,0.164
+Vascular endothelial Growth factor receptor,LOC111132819,,VEGFR,"vascular endothelial growth factor receptor 2-like, transcript variant X4",Unknown,,C. gigas,Yes,"2,3",6.859,-0.387,0.375,0.480,0.480
