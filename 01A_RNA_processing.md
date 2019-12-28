@@ -13,12 +13,21 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 4. [Step 2 - Mapping with STAR](#three)
 5. [Step 3 - Running RSEM](#four)
 
+---
+
 ## Data <a name="zero"></a>
 
-[**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
-[**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq)  
+* [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
+* [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq)
+* Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
 
 ## Brief Description and Literature on Required Tools and Scripts <a name="one"></a>
+
+**File Conversion**
+
+**gffread** - program to add in the conversion between different gene annotation file structures. Used here to convert from the `.gff` file format provided by NCBI to `.gtf` (preferred by STAR mapper).
+
+* [Github](https://github.com/gpertea/gffread) : converts a `.gff` file format to `.gtf`
 
 **Mapping**
 
@@ -34,6 +43,8 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 * [Github](https://deweylab.github.io/RSEM/)
 * [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)
 
+---
+
 ## Step 1 - Creating STAR index <a name="two"></a>
 
 ### Overview 
@@ -44,20 +55,21 @@ STAR performing the mapping in two primary stages. First, you need to create an 
 * Indexing should be relatively quick on a cluster (<10min)
 
 **Inputs**
-* Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
-* Gene annotations: created by Kevin Johnson during the frogger workshop [LINK](https://drive.google.com/drive/u/0/folders/1KBAm4L5K2ZQ5dUOUfryk0BaB7fcA1RuL), which I converted from a `.gff` file formate to `.gtf` using [`gffread`](https://github.com/gpertea/gffread).
+* [Reference genome: GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
+* [Gene annotations](https://drive.google.com/drive/u/0/folders/1KBAm4L5K2ZQ5dUOUfryk0BaB7fcA1RuL)
 
-**Outputs**
-* Reference Star Folder: `/shared_lab/20180226_RNAseq_2017OAExp/RNA/references/mapping_indexes/STAR_gnomon`
-
-### Coding and Scripts
+### Step 1.1 - File conversion
 
 Command line code for converting from `.gff` to `.gtf`:
 ```
 gffread my.gff -T -o my.gtf
 ```
 
-Command line code for creating STAR index for oyster:
+### Step 1.2 - Create STAR index using oyster gene annotation file
+
+* Script : [`STAR_genomeCreate.sh`]()
+
+Command line code:
 ```
 downey-wall.a@comp5[references]# STAR_genomeCreate.sh 
 /shared_lab/20180226_RNAseq_2017OAExp/RNA/scripts/STAR_scripts/STAR_genomeCreate.sh: line 1: !#/bin/bash: No such file or directory
