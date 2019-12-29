@@ -6,7 +6,7 @@
 * [*RNAseq Data Processing*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01A_RNA_processing.md)
 * [*MBD-BSseq Data Processing*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01B_DNAm_processing.md)
 * [*Phenotype Analysis*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/02A_phenotypeAnalysis.md)
-* [*Sequence Data (RNAseq and MBD-BSseq Analysis)*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/02B_sequenceAnalysis)
+* [*Sequence Data (RNAseq and MBD-BSseq) Analysis*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/02B_sequenceAnalysis)
   
 **Folders**
 * [*/data*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data) : Contains processed data files for analysis (raw sequence data available on NCBI).
