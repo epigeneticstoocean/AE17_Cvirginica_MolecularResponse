@@ -16,7 +16,6 @@
 
 * [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/)  
 * [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/)
-* Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
 
 ## Brief Description and Literature on Required Tools and Scripts <a name="description"></a>
 ## Analysis 1 - Extra-pallial fluid all timepoints <a name="one"></a>
