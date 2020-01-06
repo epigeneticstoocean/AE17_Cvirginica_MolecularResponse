@@ -35,5 +35,5 @@ Linear regression was also used to examine the relationship between pHEPF and ca
 
 * [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/Phenotype/Calcification.R)
 
-![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/figures/Figure2.pdf)
+![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/figures/Figure2.jpg)
 
