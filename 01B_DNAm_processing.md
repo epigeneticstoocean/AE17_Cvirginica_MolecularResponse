@@ -39,7 +39,7 @@ This pipeline takes advantage of a genome mapper Bismark, which is capable of al
 
 Remove reads with poor mapping quality and also cut off 10bp from both the 5' and 3' regions of either strand. This will remove any adapter sequence to improve downstream mapping. This trimming follows the recommendations of bismark when the library prep was down with the pico zymo kit.
 
-* Full Script : []()
+* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/01_seq_quality_trim.sh)
 
 Bash script for quality trimming:
 
@@ -109,18 +109,18 @@ coverage2cytosine path/toMethylationExtractorOutput \
 -o path/Output 
 ```
 
-* [Script that performing mapping,depublication,sorting,and methylation calls for all samples]()
-* [Script for creating full cytosine reports]()
+* [Script that performing mapping,depublication,sorting,and methylation calls for all samples](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/02_bismarkMappingFull.sh)
+* [Script for creating full cytosine reports](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/03_cytosineReport.sh)
 
 ## Step 4 - Raw Matrices <a name = "four"></a>
 
 Use custom r script to create a matrix for methylated and unmethylated cytosines, as well as a metaData sheet for storing information about each locus.
 
-*[Custom Script]()
+* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/04_countMatrixFromCytoSummary.R)
 
 ## Step 5  - Filtering and Summaries <a name = "five"></a>
 
 Use custom r script to filter complete dataset as well as annotated and summarize by feature.
   
-*[Custom Script]()
+* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/04B_CountMatrixSummary.R)
 
