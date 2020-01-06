@@ -11,17 +11,17 @@ This pipeline takes advantage of a genome mapper Bismark, which is capable of al
 1. [Data](#data)
 2. [Brief Description and Literature on Required Tools and Scripts](#description)
 3. [Step 1 - Trimming, adapter removal, and QC](#one)
-4. [Step 2 - Creating STAR index](#two)
-5. [Step 3 - Mapping with STAR](#three)
-6. [Step 4 - Running RSEM](#four)
-7. [Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom)](#five)
+4. [Step 2 - Create bisulfite treated reference genome](#two)
+4. [Step 3 - Mapping with Bismark and Bowtie2](#three)
+5. [Step 4 - Raw Matrices](#four)
+6. [Step 5 - Filtering and Summaries](#five)
 
 ---
 
 ## Data <a name="data"></a>
 
 * [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
-* [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/MBDBS_seq)
+* [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/)
 * Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
 
 ## Brief Description and Literature on Required Tools and primary R packages <a name="description"></a>
@@ -32,36 +32,6 @@ This pipeline takes advantage of a genome mapper Bismark, which is capable of al
 
 * [Github](https://github.com/timflutre/trimmomatic)
 * [Publication](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4103590/)
-
-**File Conversion**
-
-**gffread** - program to add in the conversion between different gene annotation file structures. Used here to convert from the `.gff` file format provided by NCBI to `.gtf` (preferred by STAR mapper).
-
-* [Github](https://github.com/gpertea/gffread) : converts a `.gff` file format to `.gtf`
-
-**Mapping**
-
-*STAR* - fast RNA-seq aligner than can make to a reference genome and identify identify canonical as well as novel splice junctions. It will output mapped reads as `.sam` or `.bam` files, and with the `--quantMode` it can also create a tab delimited read count output (similar to HT-Seq). In addition, mapped reads can be ouputed as a `.bam` file with transcript coordinates. This can be used downstream by the transcript quantification program RSEM. 
-
-* [Github](https://github.com/alexdobin/STAR)  
-* [Publication](https://academic.oup.com/bioinformatics/article/29/1/15/272537)
-
-**Transcript Quantification**
-
-*RSEM* - Transcript quantifier, that can estimate counts at either the transcript (isoform) or gene level. It has a direct workflow with `STAR`, which enables a single line command for both mapping and quantification. Alternatively, it can take`STAR` outputs (specifically `.bam` files with transcript coordinates), and then perform the estimation.
-
-* [Github](https://deweylab.github.io/RSEM/)
-* [Publication](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)
-
-**Gene filtering, standardization, and normalization**
-
-*edgeR* - R package used for analyzing transcriptomic sequence data. Primarily using it to create a `DGEList` object type in R which will be used by `limma` package functions downstream. Also using it for the `cpm` function which converts within sample counts into a `count per million (cpm)`. 
-
-* [Manual](https://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)
-
-*limma* - R package used for analyzing transcriptomic sequence data. Here we are using limma for `TMM` standardization approach to account for variable library sizes among samples, to transform our counts into `log2-cpm` using the `voom` function, account for random tank effects. Also used to perform differential expression analysis with planned contrasts in RNAseq_Analysis workflow.
-
-* [Manual](https://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf)
 
 ---
 
@@ -86,7 +56,7 @@ trim_galore --paired --clip_r1 10  --clip_r2 10 \
 ```
 ---
 
-## Step 2 - Create Reference for Bowtie <a name = "two"></a>
+## Step 2 - Create bisulfite treated reference genome <a name = "two"></a>
 
 Only need to do this once for all samples (takes a couple of minutes). 
 
@@ -97,4 +67,60 @@ bismark_genome_preparation --bowtie2 --genomic_composition --parallel 10 --verbo
 
 ---
 
-Step
+## Step 3 - Mapping with Bismark and Bowtie2 <a name = "three"></a>
+
+The trimmed reads were mapped to the bisulfite treated reference genome (created in the previous step) in order to determine the raw counts of methylated to unmethylated cytosines at each locus. This step was saved as several outputs including a sorted .bam file and a compressed .txt file with each row as a unique CpG.
+
+**Core functions for single samples**
+
+Running `bismark` to perform mapping:
+```
+bismark --non_directional -p 2\
+--score_min L,0,-0.8 \
+path/toBisulfiteTreatedRefGenomeFolder \
+-1 path/toTopTrimmedFile \
+-2 path/toBottomTrimmedFile \
+-o $output
+```
+
+Running `deduplicate_bismark` to remove depuplicate mappings:
+```
+deduplicate_bismark -p --bam \
+path/toBamFile \
+--output_dir $output
+```
+
+Using `samtools` to sort deduplicated bam files:
+```
+samtools sort path/toDeduplicated.bam \
+-o path/toOutputSortedDeduplicated.bam
+```
+
+Using `bismark_methylation_extractor` to extract methylation calls:
+```
+bismark_methylation_extractor -p --bedGraph --scaffolds --counts path/toSortedDeduplicated.bam --multicore 20
+```
+
+Creating cytosine report (separate script) with `coverage2cytosine`:
+```
+coverage2cytosine path/toMethylationExtractorOutput \
+--genome_folder path/toGenome \
+--dir path/Direcotory \
+-o path/Output 
+```
+
+* [Script that performing mapping,depublication,sorting,and methylation calls for all samples]()
+* [Script for creating full cytosine reports]()
+
+## Step 4 - Raw Matrices <a name = "four"></a>
+
+Use custom r script to create a matrix for methylated and unmethylated cytosines, as well as a metaData sheet for storing information about each locus.
+
+*[Custom Script]()
+
+## Step 5  - Filtering and Summaries <a name = "five"></a>
+
+Use custom r script to filter complete dataset as well as annotated and summarize by feature.
+  
+*[Custom Script]()
+
