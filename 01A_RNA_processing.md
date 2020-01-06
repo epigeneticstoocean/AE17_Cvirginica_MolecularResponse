@@ -248,3 +248,8 @@ rsem-calculate-expression --star --paired-end \
 /path/toOutputFolder
 ```
 ## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <name a = "five"></a>
+
+**Description**
+Takes raw rsem count estimation matrix and filters out genes that have low coverage (<1 cpm in at least 5 individuals in at least one trt/time combination), and performs normalization and transformation steps using `EdgeR` and `limma` packages.
+
+* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/05_filtering_CreatingDGEListObj.R)
