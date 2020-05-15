@@ -7,10 +7,14 @@ library(car)
 library(lme4)
 library(lmerTest)
 library(factoextra)
+library(multcomp)
+library(multcompView)
+library(cowplot)
 library("RColorBrewer")
 pal <- brewer.pal(n = 12, name = 'Paired')
 col_perm <- c(pal[1:2],pal[5:6],pal[12])
 # Located in src Analysis/Phenotype folder, will need to set full working directory or setwd()
+setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/src/Analyses/Phenotype/")
 source("basicR_functions.R")
 
 #### Data ####
@@ -19,6 +23,9 @@ pheno <- readRDS("AE17_summaryPhenotype_exposure.RData") # just exposure timepoi
 pheno2 <- readRDS("AE17_summaryPhenotype_alltimepoints.RData") # acclimation and exposure timepoints
 # Remove 81 which we know has wonky EPF values (for consistency these are also ultimately removed from the calcification estimates as well)
 pheno_red <- pheno[pheno$timepoint != 81,]
+
+epf_exp <- pheno_red[!is.na(pheno_red$EPF_pH),]
+epf_exp <-epf_exp[as.numeric(epf_exp$timepoint) > 0,]
 
 #### Analysis ####
 
@@ -72,8 +79,7 @@ agg_mod_matrix <- aggregate(mod_matrix~group,FUN=mean)
 rownames(agg_mod_matrix) <- agg_mod_matrix$group
 agg_mod_matrix <- agg_mod_matrix[,-1]
 lc2 <- as.matrix(agg_mod_matrix)
-(epfAllTP_posthoc_Co
-  rrection <- summary(glht(epfAllTP_red,linfct=lc2),adjusted(type = "fdr")))
+(epfAllTP_posthoc_Correction <- summary(glht(epfAllTP_red,linfct=lc2),adjusted(type = "fdr")))
 
 #### Figure ####
 
@@ -249,3 +255,33 @@ text(x=23,
 text(x=10,
      y=0.75,label="***",
      cex = 2,col=col_perm[4], xpd = NA)
+
+treat_means_ctrl[c(3,6),]
+treat_SE_ctrl[c(3,6),]
+treat_means_oa_2800[c(3,6),]
+treat_SE_oa_2800[c(3,6),]
+
+
+mol_exp <- epf_exp[epf_exp$timepoint_fac == 9 | epf_exp$timepoint_fac == 79,]
+mol_exp <- mol_exp[mol_exp$pCO2_fac != 900,]
+mol_exp$Timepoint <- as.character(mol_exp$timepoint_fac)
+mol_exp$Timepoint[mol_exp$Timepoint == "79"] <- 99
+library(ggplot2)
+P1 <- ggplot(mol_exp,aes(x=Timepoint,y=EPF_envAdj,group=interaction(Timepoint,pCO2_fac),fill=pCO2_fac)) + 
+  geom_hline(yintercept = 0) +
+  geom_boxplot() +
+  theme_cowplot() + 
+  labs(y = "EPF pH - Environment pH (NBS)",x = "",fill="Treatment",
+       title="") +
+  scale_x_discrete(labels=c("Short Exposure\n (Day 9)","Long Exposure\n (Day 80)")) +
+  scale_fill_manual(values=c(col_perm[2],col_perm[4]))
+
+P2 <- ggplot(mol_exp,aes(x=Timepoint,y=EPF_pH,group=interaction(Timepoint,pCO2_fac),fill=pCO2_fac)) + 
+  geom_boxplot() +
+  theme_cowplot() + 
+  labs(y = "EPF pH",x = "",fill="Treatment",
+       title="") +
+  scale_x_discrete(labels=c("Short Exposure\n (Day 9)","Long Exposure\n (Day 80)")) +
+  scale_fill_manual(values=c(col_perm[2],col_perm[4]))
+
+plot_grid(P1,P2,labels=c("A","B"))

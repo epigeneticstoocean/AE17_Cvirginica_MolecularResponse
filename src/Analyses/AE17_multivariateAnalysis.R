@@ -17,11 +17,23 @@ pal <- brewer.pal(n = 12, name = 'Paired')
 col_perm <- c(pal[1:2],pal[5:6],pal[12])
 
 #### DATA ####
-## Meta Data for the Model
-model<-readRDS("meta/metadata_20190811.RData")
-### Gene Matrix ###
-gc_qualityweights<-readRDS("Transcriptomic/gene_postVoomAndNormalization_DGEListObj.RData")
+## path
+inputDir <- "~/Github/AE17_Cvirginica_MolecularResponse/"
 
+setwd(inputDir)
+## Meta Data for the Model
+model<-readRDS("data/meta/metadata_20190811.RData")
+model_dnam<-model[model$ID != "17099",]
+#### Gene Matrix ####
+gc_qualityweights<-readRDS("data/Analysis/RNA_gene_postVoomAndNormalization_DGEListObj.RData")
+#### DNA Methylation ####
+library(data.table)
+meth_all_meth <- fread("data/MBDBS_seq/methylKitObj_all_cov5Filtered_united_MethylCCounts.csv")
+meth_all_total <- fread("data/MBDBS_seq/methylKitObj_all_cov5Filtered_united_totalCounts.csv")
+
+meth_beta <- meth_all_meth/meth_all_total
+beta <- as.matrix(meth_beta)
+class(beta) <- "numeric"
 #### Analysis ####
 
 #### GE PERMANOVA ####
@@ -181,18 +193,6 @@ points(pca$x[,2]~pca$x[,1],col=model$colors,pch=model$pch,cex=2.5)
 
 ordispider(pca,model$SFV,col = color_comb,lwd=2.5)
 
-# text(x = -10 ,
-#      y = 75,
-#      paste0("P_Treatment = ",round(out_gc$aov.tab$`Pr(>F)`[1],5),"*"),
-#      pos = 4,cex = 1.5) 
-# text(x = -10 ,
-#      y = 65, 
-#      paste0("P_Time = ",round(out_gc$aov.tab$`Pr(>F)`[2],5),"*"),
-#      pos=4,cex=1.5) 
-# text(x = -10,
-#      y = 55, 
-#      paste0("P_Interaction = ",round(out_gc$aov.tab$`Pr(>F)`[5],3)),
-#      pos=4,cex=1.5) 
 text(x=let_ge_pca[1],y=let_ge_pca[2],labels = "A",cex=2)
 
 ## DNAm PCA 
@@ -220,12 +220,6 @@ ordispider(pca,model_dnam$SFV,col = color_comb,lwd=2.5)
 mtext(paste0("PC1 (",round(eigs[1] / sum(eigs)*100,1),"% Variance Explained)"), side=1, line=2.8, cex=1)
 mtext(paste0("PC2 (",round(eigs[2] / sum(eigs)*100,1),"% Variance Explained)"), side=2, line=2.2, cex=1)
 
-# text(x = -5 ,y = -30, 
-#      paste0("P_Treatment = ",round(out_dnam$aov.tab$`Pr(>F)`[1],3),"*"),pos = 4)
-# text(x = -5 ,y = -35, 
-#      paste0("P_Time = ",round(out_dnam$aov.tab$`Pr(>F)`[2],5),""),pos=4)
-# text(x = -5 ,y = -40, 
-#      paste0("P_Interaction = ",round(out_dnam$aov.tab$`Pr(>F)`[5],3)),pos=4)
 text(x=let_dnam_pca[1],y=let_dnam_pca[2],labels = "B",cex=2)
 
 ## Single legend PCA

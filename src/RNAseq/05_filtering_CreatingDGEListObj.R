@@ -1,14 +1,13 @@
 #### Filtering and Storing Expression Matrices ####
 
 ## Packages 
-library(matrixStats,quietly = TRUE)
 library(edgeR,quietly = TRUE)
 library(limma,quietly = TRUE)
-library(fdrtool,quietly = TRUE)
-library(dplyr,quietly = TRUE)
 
-####Data#####
-wd <- "~/AE17_Cvirginica_MolecularResponse/data"
+#### Data#####
+## Set working directory
+wd <- "~/Github/AE17_Cvirginica_MolecularResponse/data"
+outputDir <- "~/Github/AE17_Cvirginica_MolecularResponse/data/Analysis"
 # This should be set to the path for the local version of the `2017OAExp_Oysters` github repo.
 ## RSEM counts 
 # Gene matrix
@@ -23,7 +22,7 @@ rm(RSEM_t)
 ## Transcript File  
 # Transcript file
 tran <- readRDS(paste0(wd,"/references/STAR_gnomon_tximportGeneFile.RData"))
-# Gene File
+# Genes in File
 gene <- tran[!duplicated(tran$GENEID),]
 ## Meta Data  
 meta <- readRDS(paste0(wd,"/meta/metadata_20190811.RData"))
@@ -75,8 +74,6 @@ sum(keep_D80.400)
 
 keep_gene_a2 <- rowSums(cbind(keep_D9.2800,keep_D9.400,
                               keep_D80.2800,keep_D80.400)) >= 1
-paste0(sum(keep_gene_a2)," of ",summary_df$Num_Features[1]," genes kept after filtering (",
-       round(sum(keep_gene_a2)/summary_df$Num_Features[1]*100,2),"% remaining).")
 
 # Filter 
 geneC_a2 <- geneC_all[keep_gene_a2, ]
@@ -107,7 +104,7 @@ table <- rbind(table,
 #print(table)
 
 #### Save initial DGEList objects####
-#saveRDS(dge_gene_a2,paste0(wd,"/gene_preNormalization_DGEListObj.RData"))
+saveRDS(dge_gene_a2,paste0(outputDir,"/RNA_gene_preNormalization_DGEListObj.RData"))
 
 #### Normalization with edgeR ####
 # Calculate normalization factors for scaling raw lib. size
@@ -128,9 +125,9 @@ contr_mat <- makeContrasts(
   levels=design
 )
 
-## Transform and create observational level weights  
+#### Transform and create observational level weights ####
 ## Gene Features 
 dge_gene_a2_o1_voom <- voomWithQualityWeights(dge_gene_a2_norm,design,plot = FALSE)
 # Saving the final transformation of the data (after individual weights)
-#saveRDS(dge_gene_a2_o1_voom,paste0(wd,"/gene_postVoomAndNormalization_DGEListObj.RData"))
+saveRDS(dge_gene_a2_o1_voom,paste0(outputDir,"/RNA_gene_postVoomAndNormalization_DGEListObj.RData"))
 
