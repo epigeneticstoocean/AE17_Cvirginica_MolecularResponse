@@ -1,0 +1,1432 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="Fig4_final.svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2176">
+      <stop
+         style="stop-color:#a6cee3;stop-opacity:1"
+         offset="0"
+         id="stop2172" />
+      <stop
+         style="stop-color:#1f78b4;stop-opacity:1"
+         offset="1"
+         id="stop2174" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2168">
+      <stop
+         style="stop-color:#e31a1c;stop-opacity:1"
+         offset="0"
+         id="stop2164" />
+      <stop
+         style="stop-color:#fb9a99;stop-opacity:1"
+         offset="1"
+         id="stop2166" />
+    </linearGradient>
+    <clipPath
+       id="clipPath84"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path82"
+         d="M 0,0 H 615.75 V 653.25 H 0 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath114"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path112"
+         d="M 0,326.63 H 615.75 V 653.26 H 0 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath124"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path122"
+         d="M 50.42,367.95 H 525.39 V 624.29 H 50.42 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath490"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path488"
+         d="M 0,0 H 615.75 V 326.63 H 0 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath500"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path498"
+         d="M 53.42,41.32 H 525.39 V 297.66 H 53.42 Z" />
+    </clipPath>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2168"
+       id="linearGradient2170"
+       x1="103.67142"
+       y1="167.70996"
+       x2="131.90999"
+       y2="167.70996"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2176"
+       id="linearGradient2178"
+       x1="82.871318"
+       y1="167.81952"
+       x2="97.60998"
+       y2="167.81952"
+       gradientUnits="userSpaceOnUse" />
+    <clipPath
+       id="clipPath2257"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path2255"
+         d="M 0,0 H 675.75 V 633 H 0 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath2287"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path2285"
+         d="M 0,316.5 H 675.75 V 633 H 0 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath2297"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path2295"
+         d="M 50.42,357.82 H 585.39 V 604.04 H 50.42 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath2663"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path2661"
+         d="M 0,0 H 675.75 V 316.5 H 0 Z" />
+    </clipPath>
+    <clipPath
+       id="clipPath2673"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         inkscape:connector-curvature="0"
+         id="path2671"
+         d="M 53.42,41.32 H 585.39 V 287.54 H 53.42 Z" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.1188992"
+     inkscape:cx="428.6933"
+     inkscape:cy="598.58077"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4319"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600">
+      <rect
+         y="44.689148"
+         x="11.113974"
+         height="170.49307"
+         width="183.49879"
+         id="rect3910"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         id="g3889">
+        <path
+           style="fill:url(#linearGradient2170);fill-opacity:1;stroke:#000000;stroke-width:0.40520605px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 131.70739,163.88124 h -15.31486 v -3.82871 l -12.33693,7.65742 12.33693,7.65743 v -3.82871 h 15.31486 z"
+           id="path8890"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccccccc" />
+        <path
+           style="fill:url(#linearGradient2178);fill-opacity:1;stroke:#000000;stroke-width:0.21149068px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 82.977063,165.82119 h 7.993341 v -1.99834 l 6.439059,3.99667 -6.439059,3.99667 v -1.99833 h -7.993341 z"
+           id="path8890-3"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccccccc" />
+        <g
+           transform="matrix(0.2714341,0,0,-0.2714341,11.030853,216.2915)"
+           inkscape:label="Fig4_final"
+           id="g2245">
+          <g
+             id="g2247" />
+          <g
+             id="g2249" />
+          <g
+             id="g2251">
+            <g
+               clip-path="url(#clipPath2257)"
+               id="g2253" />
+          </g>
+          <g
+             id="g2259" />
+          <g
+             id="g2261" />
+          <g
+             id="g2263" />
+          <g
+             id="g2265" />
+          <g
+             id="g2267" />
+          <g
+             id="g2269" />
+          <g
+             id="g2271" />
+          <g
+             id="g2273" />
+          <g
+             id="g2275" />
+          <g
+             id="g2277" />
+          <g
+             id="g2279" />
+          <g
+             id="g2281">
+            <g
+               clip-path="url(#clipPath2287)"
+               id="g2283" />
+          </g>
+          <g
+             id="g2289" />
+          <g
+             id="g2291">
+            <g
+               clip-path="url(#clipPath2297)"
+               id="g2293">
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2299"
+                 style="fill:#1f78b4;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 86.03,431.85 h 9.25 v 9.24 h -9.25 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2301"
+                 style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 378.33,555.48 h 9.24 v 9.25 h -9.24 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2303"
+                 style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 278.57,475.25 6.23,-10.78 h -12.45 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2305"
+                 style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 386.86,376.77 h 9.25 v 9.24 h -9.25 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2307"
+                 style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 329.61,582.54 h 9.24 v 9.24 h -9.24 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2309"
+                 style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 453.89,497.4 6.23,-10.78 h -12.45 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2311"
+                 style="fill:#1f78b4;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 342.73,476.83 h 9.24 v 9.25 h -9.24 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2313"
+                 style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 370.73,408.27 6.23,-10.78 h -12.45 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2315"
+                 style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 332.96,517.55 6.23,-10.79 h -12.45 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2317"
+                 style="fill:#1f78b4;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 266.64,501.67 h 9.24 v 9.24 h -9.24 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2319"
+                 style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 406.76,465.92 6.23,-10.78 h -12.45 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2321"
+                 style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="M 561.07,496.68 567.3,485.9 H 554.85 Z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2323"
+                 style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="M 264.77,470.04 271,459.25 h -12.45 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2325"
+                 style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 385.65,376.2 6.23,-10.78 h -12.45 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2327"
+                 style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 74.74,499.64 6.22,-10.79 H 68.51 Z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2329"
+                 style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 291.36,468.57 h 9.24 v 9.25 h -9.24 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2331"
+                 style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 272.19,550.25 h 9.24 v 9.24 h -9.24 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2333"
+                 style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 351.42,513.7 h 9.24 v 9.24 h -9.24 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2335"
+                 style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 269.22,551.4 6.23,-10.78 H 263 Z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2337"
+                 style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 433.34,479.99 6.23,-10.78 h -12.45 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2339"
+                 style="fill:#1f78b4;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 135.78,450.32 h 9.25 v 9.25 h -9.25 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2341"
+                 style="fill:#1f78b4;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 235.3,420.35 h 9.25 v 9.24 h -9.25 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2343"
+                 style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="m 310.58,600.04 6.23,-10.78 h -12.45 z" />
+            </g>
+          </g>
+          <g
+             id="g2345" />
+          <g
+             id="g2347" />
+          <g
+             id="g2349" />
+          <g
+             id="g2351" />
+          <g
+             id="g2353" />
+          <g
+             id="g2355" />
+          <g
+             id="g2357" />
+          <g
+             id="g2359" />
+          <g
+             id="g2361" />
+          <g
+             id="g2363" />
+          <g
+             id="g2365" />
+          <g
+             id="g2367" />
+          <g
+             id="g2369">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2371"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="M 50.42,357.82 V 604.04" />
+          </g>
+          <g
+             id="g2373" />
+          <g
+             id="g2375" />
+          <g
+             id="g2377">
+            <text
+               id="text2381"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,23.59,414.68)">
+              <tspan
+                 id="tspan2379"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 7.0079999 13.68">−40</tspan>
+            </text>
+            <text
+               id="text2385"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,37.27,479.66)">
+              <tspan
+                 id="tspan2383"
+                 y="0"
+                 x="0">0</tspan>
+            </text>
+            <text
+               id="text2389"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,30.6,544.64)">
+              <tspan
+                 id="tspan2387"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 6.6719999">40</tspan>
+            </text>
+          </g>
+          <g
+             id="g2391" />
+          <g
+             id="g2393">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2395"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 46.93,418.99 h 3.49" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2397"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 46.93,483.97 h 3.49" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2399"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 46.93,548.95 h 3.49" />
+          </g>
+          <g
+             id="g2401" />
+          <g
+             id="g2403" />
+          <g
+             id="g2405" />
+          <g
+             id="g2407" />
+          <g
+             id="g2409" />
+          <g
+             id="g2411" />
+          <g
+             id="g2413">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2415"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="M 50.42,357.82 H 585.39" />
+          </g>
+          <g
+             id="g2417" />
+          <g
+             id="g2419" />
+          <g
+             id="g2421">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2423"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 176.1,354.34 v 3.48" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2425"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 316.06,354.34 v 3.48" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2427"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 456.02,354.34 v 3.48" />
+          </g>
+          <g
+             id="g2429" />
+          <g
+             id="g2431">
+            <text
+               id="text2435"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,165.93,342.73)">
+              <tspan
+                 id="tspan2433"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 7.0079999 13.68">−50</tspan>
+            </text>
+            <text
+               id="text2439"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,312.72,342.73)">
+              <tspan
+                 id="tspan2437"
+                 y="0"
+                 x="0">0</tspan>
+            </text>
+            <text
+               id="text2443"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,449.35,342.73)">
+              <tspan
+                 id="tspan2441"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 6.6719999">50</tspan>
+            </text>
+          </g>
+          <g
+             id="g2445" />
+          <g
+             id="g2447" />
+          <g
+             id="g2449" />
+          <g
+             id="g2451" />
+          <g
+             id="g2453" />
+          <g
+             id="g2455">
+            <text
+               id="text2459"
+               style="font-variant:normal;font-weight:normal;font-size:14px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,281.73,326.55)">
+              <tspan
+                 id="tspan2457"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 9.3380003 19.445999 27.23 31.122 35.784 43.568001 47.459999 55.243999 67.690002">PC1 (6.9%)</tspan>
+            </text>
+          </g>
+          <g
+             id="g2461" />
+          <g
+             id="g2463">
+            <text
+               id="text2467"
+               style="font-variant:normal;font-weight:normal;font-size:14px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(0,1,1,0,17.03,444.76)">
+              <tspan
+                 id="tspan2465"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 9.3380003 19.445999 27.23 31.122 35.784 43.568001 47.459999 55.243999 67.690002">PC2 (5.7%)</tspan>
+            </text>
+          </g>
+          <g
+             id="g2469" />
+          <g
+             id="g2471" />
+          <g
+             id="g2473" />
+          <g
+             id="g2475" />
+          <g
+             id="g2477" />
+          <g
+             id="g2479" />
+          <g
+             id="g2481" />
+          <g
+             id="g2483" />
+          <g
+             id="g2485" />
+          <g
+             id="g2487" />
+          <g
+             id="g2489" />
+          <g
+             id="g2491" />
+          <g
+             id="g2493" />
+          <g
+             id="g2495" />
+          <g
+             id="g2497" />
+          <g
+             id="g2499" />
+          <g
+             id="g2501">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2503"
+               style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               d="m 602.39,502.58 h 9.24 v 9.25 h -9.24 z" />
+          </g>
+          <g
+             id="g2505" />
+          <g
+             id="g2507" />
+          <g
+             id="g2509" />
+          <g
+             id="g2511">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2513"
+               style="fill:#1f78b4;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               d="m 602.39,478.37 h 9.24 v 9.24 h -9.24 z" />
+          </g>
+          <g
+             id="g2515" />
+          <g
+             id="g2517" />
+          <g
+             id="g2519" />
+          <g
+             id="g2521">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2523"
+               style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               d="m 607.01,465.96 6.22,-10.78 h -12.45 z" />
+          </g>
+          <g
+             id="g2525" />
+          <g
+             id="g2527" />
+          <g
+             id="g2529" />
+          <g
+             id="g2531">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2533"
+               style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               d="m 607.01,441.75 6.22,-10.79 h -12.45 z" />
+          </g>
+          <g
+             id="g2535" />
+          <g
+             id="g2537" />
+          <g
+             id="g2539" />
+          <g
+             id="g2541">
+            <text
+               id="text2545"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,621.65,509.38)">
+              <tspan
+                 id="tspan2543"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.0039997 18 24.672001 27.336 34.007999 40.68">Ambient</tspan>
+            </text>
+            <text
+               id="text2549"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,638.33,496.42)">
+              <tspan
+                 id="tspan2547"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.6639996">D9</tspan>
+            </text>
+          </g>
+          <g
+             id="g2551" />
+          <g
+             id="g2553" />
+          <g
+             id="g2555" />
+          <g
+             id="g2557" />
+          <g
+             id="g2559">
+            <text
+               id="text2563"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,621.65,485.16)">
+              <tspan
+                 id="tspan2561"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.0039997 18 24.672001 27.336 34.007999 40.68">Ambient</tspan>
+            </text>
+            <text
+               id="text2567"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,638.33,472.2)">
+              <tspan
+                 id="tspan2565"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.6639996 15.336">D80</tspan>
+            </text>
+          </g>
+          <g
+             id="g2569" />
+          <g
+             id="g2571" />
+          <g
+             id="g2573" />
+          <g
+             id="g2575" />
+          <g
+             id="g2577">
+            <text
+               id="text2581"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,621.65,460.95)">
+              <tspan
+                 id="tspan2579"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 9.0959997 17.1 20.436001 27.108 33.779999 40.452">OA 2800</tspan>
+            </text>
+            <text
+               id="text2585"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,638.33,447.99)">
+              <tspan
+                 id="tspan2583"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.6639996">D9</tspan>
+            </text>
+          </g>
+          <g
+             id="g2587" />
+          <g
+             id="g2589" />
+          <g
+             id="g2591" />
+          <g
+             id="g2593" />
+          <g
+             id="g2595">
+            <text
+               id="text2599"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,621.65,436.73)">
+              <tspan
+                 id="tspan2597"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 9.0959997 17.1 20.436001 27.108 33.779999 40.452">OA 2800</tspan>
+            </text>
+            <text
+               id="text2603"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,638.33,423.77)">
+              <tspan
+                 id="tspan2601"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.6639996 15.336">D80</tspan>
+            </text>
+          </g>
+          <g
+             id="g2605" />
+          <g
+             id="g2607" />
+          <g
+             id="g2609" />
+          <g
+             id="g2611" />
+          <g
+             id="g2613" />
+          <g
+             id="g2615" />
+          <g
+             id="g2617" />
+          <g
+             id="g2619" />
+          <g
+             id="g2621" />
+          <g
+             id="g2623" />
+          <g
+             id="g2625" />
+          <g
+             id="g2627" />
+          <g
+             id="g2629" />
+          <g
+             id="g2631" />
+          <g
+             id="g2633">
+            <text
+               id="text2637"
+               style="font-variant:normal;font-weight:bold;font-size:14px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,5.05,617.92)">
+              <tspan
+                 id="tspan2635"
+                 y="0"
+                 x="0">A</tspan>
+            </text>
+          </g>
+          <g
+             id="g2639" />
+          <g
+             id="g2641" />
+          <g
+             id="g2643" />
+          <g
+             id="g2645" />
+          <g
+             id="g2647" />
+          <g
+             id="g2649" />
+          <g
+             id="g2651" />
+          <g
+             id="g2653" />
+          <g
+             id="g2655" />
+          <g
+             id="g2657">
+            <g
+               clip-path="url(#clipPath2663)"
+               id="g2659" />
+          </g>
+          <g
+             id="g2665" />
+          <g
+             id="g2667">
+            <g
+               clip-path="url(#clipPath2673)"
+               id="g2669">
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2675"
+                 style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.07000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 d="m 77.6,52.6 0.95,0.01 0.94,0.01 h 0.95 l 0.95,0.01 0.94,0.01 0.95,0.01 0.95,0.01 h 0.94 l 0.95,0.01 0.94,0.02 0.95,0.01 0.95,0.01 0.94,0.01 0.95,0.01 0.95,0.02 0.94,0.01 0.95,0.02 0.95,0.02 0.94,0.01 0.95,0.02 0.95,0.02 0.94,0.02 0.95,0.03 0.94,0.02 0.95,0.02 0.95,0.03 0.94,0.03 0.95,0.02 0.95,0.04 0.94,0.03 0.95,0.03 0.95,0.04 0.94,0.03 0.95,0.04 0.94,0.04 0.95,0.05 0.95,0.04 0.94,0.05 0.95,0.05 0.95,0.05 0.94,0.05 0.95,0.06 0.95,0.06 0.94,0.06 0.95,0.07 0.94,0.07 0.95,0.07 0.95,0.07 0.94,0.08 0.95,0.08 0.95,0.09 0.94,0.09 0.95,0.09 0.95,0.1 0.94,0.1 0.95,0.1 0.95,0.11 0.94,0.11 0.95,0.12 0.94,0.13 0.95,0.12 0.95,0.14 0.94,0.13 0.95,0.14 0.95,0.15 0.94,0.16 0.95,0.16 0.95,0.16 0.94,0.17 0.95,0.18 0.94,0.18 0.95,0.19 0.95,0.2 0.94,0.2 0.95,0.21 0.95,0.22 0.94,0.22 0.95,0.23 0.95,0.24 0.94,0.24 0.95,0.25 0.95,0.26 0.94,0.27 0.95,0.28 0.94,0.28 0.95,0.29 0.95,0.3 0.94,0.31 0.95,0.31 0.95,0.33 0.94,0.33 0.95,0.34 0.95,0.35 0.94,0.36 0.95,0.37 0.94,0.38 0.95,0.38 0.95,0.4 0.94,0.4 0.95,0.41 0.95,0.42 0.94,0.43 0.95,0.44 0.95,0.45 0.94,0.45 0.95,0.47 0.94,0.47 0.95,0.48 0.95,0.5 0.94,0.49 0.95,0.51 0.95,0.52 0.94,0.52 0.95,0.54 0.95,0.54 0.94,0.55 0.95,0.56 0.95,0.56 0.94,0.57 0.95,0.58 0.94,0.58 0.95,0.6 0.95,0.6 0.94,0.6 0.95,0.62 0.95,0.62 0.94,0.62 0.95,0.63 0.95,0.63 0.94,0.65 0.95,0.64 0.94,0.65 0.95,0.65 0.95,0.66 0.94,0.66 0.95,0.66 0.95,0.67 0.94,0.67 0.95,0.67 0.95,0.67 0.94,0.68 0.95,0.67 0.95,0.67 0.94,0.68 0.95,0.68 0.94,0.67 0.95,0.68 0.95,0.67 0.94,0.67 0.95,0.68 0.95,0.66 0.94,0.67 0.95,0.66 0.95,0.66 0.94,0.65 0.95,0.65 0.94,0.65 0.95,0.64 0.95,0.63 0.94,0.63 0.95,0.62 0.95,0.62 0.94,0.61 0.95,0.6 0.95,0.6 0.94,0.58 0.95,0.58 0.94,0.57 0.95,0.56 0.95,0.55 0.94,0.54 0.95,0.53 0.95,0.52 0.94,0.5 0.95,0.5 0.95,0.49 0.94,0.47 0.95,0.46 0.95,0.45 0.94,0.44 0.95,0.43 0.94,0.41 0.95,0.39 0.95,0.39 0.94,0.37 0.95,0.36 0.95,0.34 0.94,0.33 0.95,0.31 0.95,0.3 0.94,0.28 0.95,0.27 0.94,0.26 0.95,0.23 0.95,0.23 0.94,0.2 0.95,0.2 0.95,0.17 0.94,0.16 0.95,0.14 0.95,0.13 0.94,0.11 0.95,0.09 0.95,0.08 0.94,0.06 0.95,0.05 0.94,0.02 0.95,0.01 h 0.95 l 0.94,-0.02 0.95,-0.04 0.95,-0.05 0.94,-0.08 0.95,-0.08 0.95,-0.11 0.94,-0.12 0.95,-0.13 0.94,-0.16 0.95,-0.17 0.95,-0.18 0.94,-0.21 0.95,-0.22 0.95,-0.23 0.94,-0.25 0.95,-0.26 0.95,-0.28 0.94,-0.3 0.95,-0.31 0.95,-0.33 0.94,-0.34 0.95,-0.35 0.94,-0.37 0.95,-0.38 0.95,-0.4 0.94,-0.41 0.95,-0.42 0.95,-0.44 0.94,-0.45 0.95,-0.46 0.95,-0.47 0.94,-0.49 0.95,-0.5 0.94,-0.51 0.95,-0.52 0.95,-0.53 0.94,-0.54 0.95,-0.55 0.95,-0.56 0.94,-0.58 0.95,-0.57 0.95,-0.59 0.94,-0.6 0.95,-0.61 0.94,-0.61 0.95,-0.62 0.95,-0.62 0.94,-0.64 0.95,-0.64 0.95,-0.64 0.94,-0.65 0.95,-0.66 0.95,-0.65 0.94,-0.67 0.95,-0.66 0.95,-0.67 0.94,-0.68 0.95,-0.67 0.94,-0.68 0.95,-0.68 0.95,-0.68 0.94,-0.68 0.95,-0.68 0.95,-0.68 0.94,-0.68 0.95,-0.68 0.95,-0.68 0.94,-0.68 0.95,-0.67 0.94,-0.67 0.95,-0.68 0.95,-0.66 0.94,-0.67 0.95,-0.66 0.95,-0.65 0.94,-0.66 0.95,-0.65 0.95,-0.64 0.94,-0.64 0.95,-0.63 0.95,-0.63 0.94,-0.62 0.95,-0.62 0.94,-0.6 0.95,-0.61 0.95,-0.59 0.94,-0.59 0.95,-0.58 0.95,-0.58 0.94,-0.57 0.95,-0.55 0.95,-0.55 0.94,-0.55 0.95,-0.53 0.94,-0.52 0.95,-0.53 0.95,-0.5 0.94,-0.5 0.95,-0.5 0.95,-0.47 0.94,-0.48 0.95,-0.47 0.95,-0.45 0.94,-0.45 0.95,-0.44 0.94,-0.43 0.95,-0.42 0.95,-0.41 0.94,-0.4 0.95,-0.4 0.95,-0.38 0.94,-0.38 0.95,-0.36 0.95,-0.36 0.94,-0.35 0.95,-0.34 0.95,-0.33 0.94,-0.33 0.95,-0.31 0.94,-0.31 0.95,-0.29 0.95,-0.29 0.94,-0.29 0.95,-0.27 0.95,-0.26 0.94,-0.27 0.95,-0.24 0.95,-0.25 0.94,-0.24 0.95,-0.22 0.94,-0.22 0.95,-0.22 0.95,-0.2 0.94,-0.21 0.95,-0.19 0.95,-0.19 0.94,-0.18 0.95,-0.17 0.95,-0.17 0.94,-0.17 0.95,-0.15 0.95,-0.16 0.94,-0.14 0.95,-0.14 0.94,-0.14 0.95,-0.13 0.95,-0.13 0.94,-0.12 0.95,-0.12 0.95,-0.11 0.94,-0.11 0.95,-0.1 0.95,-0.1 0.94,-0.09 0.95,-0.09 0.94,-0.09 0.95,-0.09 0.95,-0.08 0.94,-0.07 0.95,-0.08 0.95,-0.07 0.94,-0.06 0.95,-0.07 0.95,-0.06 0.94,-0.06 0.95,-0.06 0.94,-0.05 0.95,-0.05 0.95,-0.05 0.94,-0.05 0.95,-0.04 0.95,-0.04 0.94,-0.04 0.95,-0.04 0.95,-0.04 0.94,-0.03 0.95,-0.03 0.95,-0.04 0.94,-0.03 0.95,-0.02 0.94,-0.03 0.95,-0.03 0.95,-0.02 0.94,-0.02 0.95,-0.02 0.95,-0.02 0.94,-0.02 0.95,-0.02 0.95,-0.02 0.94,-0.02 0.95,-0.01 0.94,-0.02 0.95,-0.01 0.95,-0.01 0.94,-0.02 0.95,-0.01 0.95,-0.01 0.94,-0.01 0.95,-0.01 0.95,-0.01 0.94,-0.01 h 0.95 l 0.95,-0.01 0.94,-0.01 0.95,-0.01 h 0.94 l 0.95,-0.01 h 0.95 l 0.94,-0.01 h 0.95 l 0.95,-0.01 h 0.94 l 0.95,-0.01 h 0.95 0.94 l 0.95,-0.01 h 0.94 0.95 l 0.95,-0.01 h 0.94 0.95 0.95 l 0.94,-0.01 h 0.95 0.95 0.94 0.95 0.94 l 0.95,-0.01 h 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 l 0.95,-0.01 h 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 v 0 h -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 H 99.37 98.42 97.48 96.53 95.58 94.64 93.69 92.74 91.8 90.85 89.9 88.96 88.01 87.06 86.12 85.17 84.23 83.28 82.33 81.39 80.44 79.49 78.55 77.6 Z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2677"
+                 style="fill:#1f78b4;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.07000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 d="m 77.6,52.52 h 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 l 0.95,0.01 h 0.95 0.94 l 0.95,0.01 0.95,0.01 0.94,0.01 0.95,0.01 0.94,0.01 0.95,0.02 0.95,0.02 0.94,0.03 0.95,0.04 0.95,0.04 0.94,0.05 0.95,0.06 0.95,0.08 0.94,0.09 0.95,0.11 0.94,0.14 0.95,0.16 0.95,0.19 0.94,0.22 0.95,0.26 0.95,0.32 0.94,0.37 0.95,0.42 0.95,0.49 0.94,0.55 0.95,0.63 0.95,0.74 0.94,0.85 0.95,0.95 0.94,1.07 0.95,1.19 0.95,1.31 0.94,1.44 0.95,1.65 0.95,1.82 0.94,1.98 0.95,2.14 0.95,2.3 0.94,2.48 0.95,2.65 0.94,2.9 0.95,3.08 0.95,3.23 0.94,3.39 0.95,3.54 0.95,3.66 0.94,3.82 0.95,3.98 0.95,4.05 0.94,4.13 0.95,4.16 0.94,4.18 0.95,4.18 0.95,4.18 0.94,4.13 0.95,4.04 0.95,3.93 0.94,3.78 0.95,3.63 0.95,3.44 0.94,3.22 0.95,2.96 0.95,2.71 0.94,2.43 0.95,2.13 0.94,1.84 0.95,1.51 0.95,1.13 0.94,0.78 0.95,0.44 0.95,0.09 0.94,-0.25 0.95,-0.59 0.95,-0.94 0.94,-1.33 0.95,-1.65 0.94,-1.96 0.95,-2.25 0.95,-2.54 0.94,-2.8 0.95,-3.05 0.95,-3.3 0.94,-3.49 0.95,-3.66 0.95,-3.81 0.94,-3.93 0.95,-4.05 0.95,-4.1 0.94,-4.13 0.95,-4.15 0.94,-4.14 0.95,-4.12 0.95,-4.07 0.94,-4.01 0.95,-3.85 0.95,-3.73 0.94,-3.61 0.95,-3.48 0.95,-3.33 0.94,-3.18 0.95,-3.01 0.94,-2.76 0.95,-2.6 0.95,-2.43 0.94,-2.26 0.95,-2.1 0.95,-1.94 0.94,-1.77 0.95,-1.56 0.95,-1.42 0.94,-1.29 0.95,-1.17 0.94,-1.05 0.95,-0.94 0.95,-0.81 0.94,-0.7 0.95,-0.62 0.95,-0.55 0.94,-0.48 0.95,-0.42 0.95,-0.36 0.94,-0.31 0.95,-0.25 0.95,-0.22 0.94,-0.18 0.95,-0.16 0.94,-0.14 0.95,-0.11 0.95,-0.09 0.94,-0.07 0.95,-0.06 0.95,-0.05 0.94,-0.05 0.95,-0.03 0.95,-0.03 0.94,-0.02 0.95,-0.02 0.94,-0.01 0.95,-0.01 0.95,-0.01 0.94,-0.01 0.95,-0.01 h 0.95 0.94 L 406,52.52 h 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 v 0 h -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2679"
+                 style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.07000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 d="m 77.6,52.52 h 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 l 0.94,0.01 h 0.95 0.95 0.94 l 0.95,0.01 h 0.95 l 0.94,0.01 0.95,0.01 h 0.95 l 0.94,0.01 0.95,0.01 0.95,0.02 0.94,0.01 0.95,0.02 0.94,0.02 0.95,0.02 0.95,0.03 0.94,0.03 0.95,0.03 0.95,0.05 0.94,0.04 0.95,0.06 0.95,0.06 0.94,0.07 0.95,0.08 0.94,0.09 0.95,0.11 0.95,0.11 0.94,0.13 0.95,0.15 0.95,0.17 0.94,0.19 0.95,0.2 0.95,0.23 0.94,0.25 0.95,0.28 0.95,0.32 0.94,0.34 0.95,0.37 0.94,0.4 0.95,0.46 0.95,0.49 0.94,0.53 0.95,0.57 0.95,0.61 0.94,0.68 0.95,0.73 0.95,0.78 0.94,0.82 0.95,0.88 0.94,0.94 0.95,1.01 0.95,1.07 0.94,1.12 0.95,1.17 0.95,1.23 0.94,1.33 0.95,1.37 0.95,1.43 0.94,1.48 0.95,1.53 0.94,1.61 0.95,1.67 0.95,1.72 0.94,1.75 0.95,1.8 0.95,1.86 0.94,1.91 0.95,1.94 0.95,1.97 0.94,2 0.95,2.02 0.95,2.07 0.94,2.09 0.95,2.09 0.94,2.11 0.95,2.1 0.95,2.13 0.94,2.13 0.95,2.12 0.95,2.1 0.94,2.09 0.95,2.08 0.95,2.06 0.94,2.03 0.95,1.99 0.94,1.96 0.95,1.92 0.95,1.87 0.94,1.81 0.95,1.77 0.95,1.69 0.94,1.64 0.95,1.56 0.95,1.47 0.94,1.39 0.95,1.31 0.95,1.22 0.94,1.11 0.95,1 0.94,0.9 0.95,0.78 0.95,0.68 0.94,0.56 0.95,0.4 0.95,0.29 0.94,0.17 0.95,0.04 0.95,-0.08 0.94,-0.24 0.95,-0.37 0.94,-0.5 0.95,-0.62 0.95,-0.75 0.94,-0.88 0.95,-1.02 0.95,-1.13 0.94,-1.25 0.95,-1.35 0.95,-1.47 0.94,-1.58 0.95,-1.67 0.94,-1.77 0.95,-1.85 0.95,-1.92 0.94,-2.01 0.95,-2.07 0.95,-2.13 0.94,-2.18 0.95,-2.23 0.95,-2.27 0.94,-2.29 0.95,-2.32 0.95,-2.34 0.94,-2.35 0.95,-2.36 0.94,-2.33 0.95,-2.32 0.95,-2.32 0.94,-2.29 0.95,-2.28 0.95,-2.22 0.94,-2.18 0.95,-2.14 0.95,-2.09 0.94,-2.06 0.95,-1.99 0.94,-1.9 0.95,-1.86 0.95,-1.79 0.94,-1.74 0.95,-1.68 0.95,-1.57 0.94,-1.51 0.95,-1.44 0.95,-1.39 0.94,-1.32 0.95,-1.22 0.95,-1.15 0.94,-1.1 0.95,-1.03 0.94,-0.97 0.95,-0.91 0.95,-0.82 0.94,-0.78 0.95,-0.72 0.95,-0.68 0.94,-0.63 0.95,-0.56 0.95,-0.51 0.94,-0.48 0.95,-0.44 0.94,-0.41 0.95,-0.36 0.95,-0.32 0.94,-0.3 0.95,-0.27 0.95,-0.24 0.94,-0.22 0.95,-0.19 0.95,-0.17 0.94,-0.16 0.95,-0.14 0.94,-0.12 0.95,-0.11 0.95,-0.09 0.94,-0.09 0.95,-0.07 0.95,-0.07 0.94,-0.05 0.95,-0.05 0.95,-0.05 0.94,-0.03 0.95,-0.04 0.95,-0.03 0.94,-0.02 0.95,-0.02 0.94,-0.02 0.95,-0.01 0.95,-0.02 0.94,-0.01 0.95,-0.01 h 0.95 l 0.94,-0.01 0.95,-0.01 h 0.95 0.94 l 0.95,-0.01 h 0.94 0.95 0.95 l 0.94,-0.01 h 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 v 0 h -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 z" />
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path2681"
+                 style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.07000005;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+                 d="m 77.6,52.52 h 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 l 0.94,0.01 0.95,0.03 0.95,0.07 0.94,0.16 0.95,0.36 0.94,0.74 0.95,1.42 0.95,2.69 0.94,4.72 0.95,7.42 0.95,10.68 0.94,13.98 0.95,16.55 0.95,17.59 0.94,16.63 0.95,13.98 0.95,10.9 0.94,9.46 0.95,11.22 0.94,15.5 0.95,19.13 0.95,18.93 0.94,13.73 0.95,4.45 0.95,-6.84 0.94,-17.69 0.95,-26.04 0.95,-30.42 0.94,-30.15 0.95,-24.64 0.94,-12.94 0.95,2.37 0.95,12.65 0.94,14.9 0.95,11.6 0.95,5.36 0.94,-2.06 0.95,-8.99 0.95,-14.1 0.94,-16.7 0.95,-16.81 0.95,-14.99 0.94,-12.08 0.95,-8.88 0.94,-5.99 0.95,-3.72 0.95,-2.12 0.94,-1.12 0.95,-0.55 0.95,-0.24 0.94,-0.1 0.95,-0.04 0.95,-0.02 h 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 0.95 0.94 0.95 v 0 h -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.94 -0.95 -0.95 -0.94 -0.95 -0.95 -0.94 z" />
+            </g>
+          </g>
+          <g
+             id="g2683" />
+          <g
+             id="g2685" />
+          <g
+             id="g2687" />
+          <g
+             id="g2689" />
+          <g
+             id="g2691" />
+          <g
+             id="g2693" />
+          <g
+             id="g2695" />
+          <g
+             id="g2697" />
+          <g
+             id="g2699" />
+          <g
+             id="g2701" />
+          <g
+             id="g2703" />
+          <g
+             id="g2705" />
+          <g
+             id="g2707">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2709"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="M 53.42,41.32 V 287.54" />
+          </g>
+          <g
+             id="g2711" />
+          <g
+             id="g2713" />
+          <g
+             id="g2715">
+            <text
+               id="text2719"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,23.59,64.04)">
+              <tspan
+                 id="tspan2717"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 6.6719999 10.008 16.68">0.01</tspan>
+            </text>
+            <text
+               id="text2723"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,23.59,98.26)">
+              <tspan
+                 id="tspan2721"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 6.6719999 10.008 16.68">0.10</tspan>
+            </text>
+            <text
+               id="text2727"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,23.59,118.99)">
+              <tspan
+                 id="tspan2725"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 6.6719999 10.008 16.68">0.20</tspan>
+            </text>
+            <text
+               id="text2731"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,23.59,189.77)">
+              <tspan
+                 id="tspan2729"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 6.6719999 10.008 16.68">0.80</tspan>
+            </text>
+            <text
+               id="text2735"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,23.59,272.04)">
+              <tspan
+                 id="tspan2733"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 6.6719999 10.008 16.68">2.00</tspan>
+            </text>
+          </g>
+          <g
+             id="g2737" />
+          <g
+             id="g2739">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2741"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 49.93,68.34 h 3.49" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2743"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 49.93,102.57 h 3.49" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2745"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 49.93,123.3 h 3.49" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2747"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 49.93,194.08 h 3.49" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2749"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 49.93,276.35 h 3.49" />
+          </g>
+          <g
+             id="g2751" />
+          <g
+             id="g2753" />
+          <g
+             id="g2755" />
+          <g
+             id="g2757" />
+          <g
+             id="g2759" />
+          <g
+             id="g2761" />
+          <g
+             id="g2763">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2765"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="M 53.42,41.32 H 585.39" />
+          </g>
+          <g
+             id="g2767" />
+          <g
+             id="g2769" />
+          <g
+             id="g2771">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2773"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 167.16,37.84 v 3.48" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2775"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 346.27,37.84 v 3.48" />
+            <path
+               inkscape:connector-curvature="0"
+               id="path2777"
+               style="fill:none;stroke:#000000;stroke-width:1.07000005;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 525.39,37.84 v 3.48" />
+          </g>
+          <g
+             id="g2779" />
+          <g
+             id="g2781">
+            <text
+               id="text2785"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,156.98,26.23)">
+              <tspan
+                 id="tspan2783"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 7.0079999 13.68">−10</tspan>
+            </text>
+            <text
+               id="text2789"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,342.94,26.23)">
+              <tspan
+                 id="tspan2787"
+                 y="0"
+                 x="0">0</tspan>
+            </text>
+            <text
+               id="text2793"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,518.71,26.23)">
+              <tspan
+                 id="tspan2791"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 6.6719999">10</tspan>
+            </text>
+          </g>
+          <g
+             id="g2795" />
+          <g
+             id="g2797" />
+          <g
+             id="g2799" />
+          <g
+             id="g2801" />
+          <g
+             id="g2803" />
+          <g
+             id="g2805">
+            <text
+               id="text2809"
+               style="font-variant:normal;font-weight:normal;font-size:14px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,285.17,10.05)">
+              <tspan
+                 id="tspan2807"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 10.108 17.892 25.676001 30.337999 38.122002 41.23 49.014 56.798 60.689999">Coordinate</tspan>
+            </text>
+          </g>
+          <g
+             id="g2811" />
+          <g
+             id="g2813">
+            <text
+               id="text2817"
+               style="font-variant:normal;font-weight:normal;font-size:14px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(0,1,1,0,17.03,122.54)">
+              <tspan
+                 id="tspan2815"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 10.108 17.892 25.676001 32.675999 35.784 39.675999 46.675999 50.568001 55.23 62.23 70.014 75.236 79.127998">Density (sqrt)</tspan>
+            </text>
+          </g>
+          <g
+             id="g2819" />
+          <g
+             id="g2821" />
+          <g
+             id="g2823" />
+          <g
+             id="g2825" />
+          <g
+             id="g2827" />
+          <g
+             id="g2829" />
+          <g
+             id="g2831" />
+          <g
+             id="g2833" />
+          <g
+             id="g2835" />
+          <g
+             id="g2837" />
+          <g
+             id="g2839" />
+          <g
+             id="g2841" />
+          <g
+             id="g2843" />
+          <g
+             id="g2845">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2847"
+               style="fill:#a6cee3;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.07000005;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 600.04,185.87 h 13.93 v 22.8 h -13.93 z" />
+          </g>
+          <g
+             id="g2849" />
+          <g
+             id="g2851" />
+          <g
+             id="g2853" />
+          <g
+             id="g2855">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2857"
+               style="fill:#1f78b4;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.07000005;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 600.04,161.66 h 13.93 v 22.8 h -13.93 z" />
+          </g>
+          <g
+             id="g2859" />
+          <g
+             id="g2861" />
+          <g
+             id="g2863" />
+          <g
+             id="g2865">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2867"
+               style="fill:#fb9a99;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.07000005;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 600.04,137.44 h 13.93 v 22.8 h -13.93 z" />
+          </g>
+          <g
+             id="g2869" />
+          <g
+             id="g2871" />
+          <g
+             id="g2873" />
+          <g
+             id="g2875">
+            <path
+               inkscape:connector-curvature="0"
+               id="path2877"
+               style="fill:#e31a1c;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.07000005;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 600.04,113.22 h 13.93 v 22.8 h -13.93 z" />
+          </g>
+          <g
+             id="g2879" />
+          <g
+             id="g2881" />
+          <g
+             id="g2883" />
+          <g
+             id="g2885">
+            <text
+               id="text2889"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,621.65,199.44)">
+              <tspan
+                 id="tspan2887"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.0039997 18 24.672001 27.336 34.007999 40.68">Ambient</tspan>
+            </text>
+            <text
+               id="text2893"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,638.33,186.48)">
+              <tspan
+                 id="tspan2891"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.6639996">D9</tspan>
+            </text>
+          </g>
+          <g
+             id="g2895" />
+          <g
+             id="g2897" />
+          <g
+             id="g2899" />
+          <g
+             id="g2901" />
+          <g
+             id="g2903">
+            <text
+               id="text2907"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,621.65,175.23)">
+              <tspan
+                 id="tspan2905"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.0039997 18 24.672001 27.336 34.007999 40.68">Ambient</tspan>
+            </text>
+            <text
+               id="text2911"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,638.33,162.27)">
+              <tspan
+                 id="tspan2909"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.6639996 15.336">D80</tspan>
+            </text>
+          </g>
+          <g
+             id="g2913" />
+          <g
+             id="g2915" />
+          <g
+             id="g2917" />
+          <g
+             id="g2919" />
+          <g
+             id="g2921">
+            <text
+               id="text2925"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,621.65,151.01)">
+              <tspan
+                 id="tspan2923"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 9.0959997 17.1 20.436001 27.108 33.779999 40.452">OA 2800</tspan>
+            </text>
+            <text
+               id="text2929"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,638.33,138.05)">
+              <tspan
+                 id="tspan2927"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.6639996">D9</tspan>
+            </text>
+          </g>
+          <g
+             id="g2931" />
+          <g
+             id="g2933" />
+          <g
+             id="g2935" />
+          <g
+             id="g2937" />
+          <g
+             id="g2939">
+            <text
+               id="text2943"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,621.65,126.8)">
+              <tspan
+                 id="tspan2941"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 9.0959997 17.1 20.436001 27.108 33.779999 40.452">OA 2800</tspan>
+            </text>
+            <text
+               id="text2947"
+               style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,638.33,113.84)">
+              <tspan
+                 id="tspan2945"
+                 sodipodi:role="line"
+                 y="0"
+                 x="0 8.6639996 15.336">D80</tspan>
+            </text>
+          </g>
+          <g
+             id="g2949" />
+          <g
+             id="g2951" />
+          <g
+             id="g2953" />
+          <g
+             id="g2955" />
+          <g
+             id="g2957" />
+          <g
+             id="g2959" />
+          <g
+             id="g2961" />
+          <g
+             id="g2963" />
+          <g
+             id="g2965" />
+          <g
+             id="g2967" />
+          <g
+             id="g2969" />
+          <g
+             id="g2971" />
+          <g
+             id="g2973" />
+          <g
+             id="g2975" />
+          <g
+             id="g2977">
+            <text
+               id="text2981"
+               style="font-variant:normal;font-weight:bold;font-size:14px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+               transform="matrix(1,0,0,-1,5.05,301.42)">
+              <tspan
+                 id="tspan2979"
+                 y="0"
+                 x="0">B</tspan>
+            </text>
+          </g>
+          <g
+             id="g2983" />
+          <g
+             id="g2985" />
+          <g
+             id="g2987" />
+          <g
+             id="g2989" />
+          <g
+             id="g2991" />
+          <g
+             id="g2993" />
+          <g
+             id="g2995" />
+          <g
+             id="g2997" />
+          <g
+             id="g2999" />
+          <g
+             id="g3001" />
+          <g
+             id="g3003" />
+          <g
+             id="g3005" />
+          <g
+             id="g3007" />
+          <g
+             id="g3009" />
+          <g
+             id="g3011" />
+          <g
+             id="g3013" />
+          <g
+             id="g3015" />
+          <g
+             id="g3017" />
+          <g
+             id="g3019" />
+          <g
+             id="g3021" />
+          <g
+             id="g3023" />
+          <g
+             id="g3025" />
+          <g
+             id="g3027" />
+          <g
+             id="g3029" />
+          <g
+             id="g3031" />
+          <g
+             id="g3033" />
+          <g
+             id="g3035" />
+          <g
+             id="g3037" />
+          <g
+             id="g3039" />
+          <g
+             id="g3041" />
+          <g
+             id="g3043" />
+          <g
+             id="g3045" />
+          <g
+             id="g3047" />
+          <g
+             id="g3049" />
+          <g
+             id="g3051" />
+          <g
+             id="g3053" />
+          <g
+             id="g3055" />
+          <g
+             id="g3057" />
+          <g
+             id="g3059" />
+          <g
+             id="g3061" />
+          <g
+             id="g3063" />
+          <g
+             id="g3065" />
+          <g
+             id="g3067" />
+          <g
+             id="g3069" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
