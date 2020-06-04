@@ -353,6 +353,9 @@ allMod_tableSummary <- moduleTableSummary(allMods)
 saveRDS(allMod_tableSummary,"data/Analysis/WGCNA_allModTableSummary.RData")
 write.csv(allMod_tableSummary,"data/Analysis/WGCNA_allModTableSummary.csv",row.names = FALSE)
 
+
+### READIN DATA ####
+setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/")
 data <- readRDS("data/Analysis/WGCNA_allModTableSummary.RData")
 topMods <-  readRDS("data/Analysis/WGCNA_topModSummary.RData")
 

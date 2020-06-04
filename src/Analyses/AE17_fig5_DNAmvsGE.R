@@ -16,7 +16,6 @@ library(ggplot2)
 library(matrixStats)
 library(grid)
 library(gridExtra)
-
 library(RColorBrewer)
 pal <- brewer.pal(n = 3, name = "PRGn")
 
@@ -55,17 +54,18 @@ suppContriFig <- function(x){
 ## path
 inputDir <- "~/Github/AE17_Cvirginica_MolecularResponse"
 outputDir <- ""
-
 setwd(inputDir)
 
 # Read in meta data 
 meta_original <- readRDS("data/meta/metadata_20190811.RData")
-meta <- meta_original[meta_original$ID != "17099",]
+meta <- meta_original[meta_original$ID != c("17099"),]
+meta <- meta[meta$ID != c("17005"),]
 
 # Read in Gene Expression Matrix
 ge<-readRDS("data/Analysis/RNA_gene_postVoomAndNormalization_DGEListObj.RData")
 ge_counts <- ge$E # Extract just the counts
-ge_counts <- ge_counts[,colnames(ge_counts) != "17099"] # Remove problematic individual 
+ge_counts <- ge_counts[,colnames(ge_counts) != c("17099")] # Remove problematic individual 
+ge_counts <- ge_counts[,colnames(ge_counts) != c("17005")] # Remove problematic individual 
 
 # Read in DNA Methylation Data for Gene Bodys
 dnam <- readRDS("data/Analysis/DNAm_20200202_AllCountsList_cov5_byFeature.RData")
@@ -101,23 +101,23 @@ mat_80_control <- subMat_control(mat_80)
 mats_list <- list(mat_0_control,mat_20_control,mat_50_control,mat_80_control)
 
 # Labels (used later)
-dats <- c("mat","mat_20","mat_50","mat_80")
-dats_V2 <- c("No filter","20% coverage","50% coverage","80% coverage")
-namePlot <- c("A","B","C ","D")
+dats <- c("mat","mat_20","mat_50","mat_80") 
+dats_V2 <- c("No filter","20% coverage","50% coverage","80% coverage") 
+namePlot <- c("A","B","C ","D") 
 
 #### Gene Attribut PCA ####
 ### Control Timepoint (developmental response)
 # We are using log2 transformed and scaled variables (except methylation is not log2 transformed)
 
-# prcomp list
+# prcomp list 
 prcomp_obj <- list()
-# scree plot list
+# scree plot list 
 screeplot_obj <- list()
-# pca object
+# pca object 
 pca_obj <- list()
 
 for(i in 1:length(mats_list)){
-# Perform pca
+# Perform pca 
   prcomp_obj[[i]] <- prcomp(scale(mats_list[[i]]))
 # Scree plot 
   screeplot_obj[[i]] <- fviz_eig(prcomp_obj[[i]],addlabels = TRUE)
@@ -149,31 +149,6 @@ pPCA_alt <- plot_grid(pca_obj[[2]],pca_obj_PC2and3,labels=c("A","B"),nrow=2)
 #### Linear correlations between gene expression and DNA methylation ####
 prin_PCA <- princomp(scale(mats_list[[2]]))
 pr_PCA <- prcomp(scale(mats_list[[2]]))
-prin_PCA$loadings
-pr_PCA$rotation
-
-get_eigenvalue(prcomp_obj[[2]])
-get_pca(prcomp_obj[[2]])$contrib
-?get_pca()
-# % contribution calculat as the normalized absolute coordinate value * the square root of cos2
-cd2 <- get_pca(prcomp_obj[[2]])$coord[,1]
-cs2 <- get_pca(prcomp_obj[[2]])$cos2[,1]
-(abs(cd2)*sqrt(cs2))/sum((abs(cd2)*sqrt(cs2)))*100
-?prcomp()
-prcomp_out <- prcomp_obj[[2]]
-prcomp_out$rotation
-(prcomp_out$sdev)^2
-summary(prcomp_out)
-loadings(prcomp_out)
-scaleV <- 1#sqrt(prcomp_obj[[2]]$scale)
-eigen_value <- abs(prcomp_obj[[2]]$rotation[,1])
-eigen_vector <- 1 #prcomp_obj[[2]]$sdev
-((eigen_value*scaleV)/sum(eigen_value*scaleV))*100
-?fviz_contrib
-fviz_contrib(prcomp_obj[[2]], choice = "var", axes = 1, top = 10,color = "black",fill = "grey",
-             sort.val = "none")
-temp <- suppContriFig(prcomp_obj[[2]])
-plot_grid(plotlist =temp,labels=c(namePlot[i]),nrow = 1)
 
 ## Mean Methylation in our control groups (Day 9) vs Gene Expression
 pL_mean <- list()
@@ -188,6 +163,7 @@ for(i in 1:length(dats)){
     theme_cowplot()
   pL_mean[[i]]<- temp
 }
+
 ## Mean Methylation in our control groups (Day 9) vs Gene Expression CV (log)
 pL_cv <- list()
 for(i in 1:length(dats)){
@@ -201,16 +177,13 @@ for(i in 1:length(dats)){
   pL_cv[[i]]<- temp
 }
 
-
-# Development 
-right <- plot_grid(pL_mean[[2]],pL_cv[[2]],labels=c("B","C"),ncol=1)
-plot_grid(pPCA_C,right)
-ggsave(plot_grid(pPCA_C,right),filename="results/figures/Figure5/Figure5.pdf")
-ggsave(plot_grid(pPCA_C,right),filename="results/figures/Figure5/Figure5.png")
-## Figure 5 alt
 right_alt <- plot_grid(pL_mean[[2]],pL_cv[[2]],labels=c("C","D"),ncol=1)
-ggsave(plot_grid(pPCA_alt,right_alt),filename="results/figures/Figure5/Figure5_alt.pdf")
-ggsave(plot_grid(pPCA_alt,right_alt),filename="results/figures/Figure5/Figure5_alt.png")
+
+### Figure 5 ###
+fig5 <- plot_grid(pPCA_alt,right_alt)
+#ggsave(fig5,filename="results/figures/Figure5/Figure5.pdf")
+#ggsave(fig5,filename="results/figures/Figure5/Figure5.png")
+
 ### Statistics ###
   # Linear model with Mean gene DNA methylation as predictor 
   # and Mean gene expression or CV as response  
@@ -239,12 +212,11 @@ coverage_fig <- ggplot(covRange,aes(y=NumGenes,x=Percent_Coverage,colour=viridis
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5))
 coverage_fig
-ggsave(plot_grid(coverage_fig),filename="results/figures/Figure5/supp_Fig5_CpGByGeneCoverage.pdf")
-ggsave(coverage_fig,filename="results/figures/Figure5/supp_Fig5_CpGByGeneCoverage.png")
+#ggsave(plot_grid(coverage_fig),filename="results/figures/Figure5/supp_Fig5_CpGByGeneCoverage.pdf")
+#ggsave(coverage_fig,filename="results/figures/Figure5/supp_Fig5_CpGByGeneCoverage.png")
   
 ## Additional PCA figures
 suppPCA_fig_list <- list()
-
 for(i in 1:length(pca_obj)){
   suppPCA_fig_list[[i]] <- plot_grid(pca_obj[[i]],labels=c(namePlot[i]),nrow = 1)
 }
@@ -257,8 +229,8 @@ for(i in 1:length(dats_V2)){
   suppPCA_fig_rows[[i]] <-grid.arrange(arrangeGrob(suppPCA_fig_list[[i]],top = temp))
 }
 suppPCA_final <- plot_grid(plotlist = suppPCA_fig_rows,nrow=2)
-ggsave(suppPCA_final,filename="results/figures/Figure5/supp_Fig5_PCAsupp.pdf")
-ggsave(suppPCA_final,filename="results/figures/Figure5/supp_Fig5_PCAsupp.png")
+#ggsave(suppPCA_final,filename="results/figures/Figure5/supp_Fig5_PCAsupp.pdf")
+#ggsave(suppPCA_final,filename="results/figures/Figure5/supp_Fig5_PCAsupp.png")
 
 ## PC axes % contribution figure ##
 #Contribution plot list for different coverage thresholds
@@ -277,8 +249,8 @@ for(i in 1:length(dats_V2)){
   contribute_fig_rows[[i]] <-grid.arrange(arrangeGrob(contribute_fig_list[[i]],top = temp))
 }
 contribute_final <- plot_grid(plotlist = contribute_fig_rows,nrow=length(dats_V2))
-ggsave(contribute_final,filename="results/figures/Figure5/supp_Fig5_PCAAttContr.pdf")
-ggsave(contribute_final,filename="results/figures/Figure5/supp_Fig5_PCAAttContr.png")
+#ggsave(contribute_final,filename="results/figures/Figure5/supp_Fig5_PCAAttContr.pdf")
+#ggsave(contribute_final,filename="results/figures/Figure5/supp_Fig5_PCAAttContr.png")
 
 ## Gene Expression
 plot_grid(plotlist=pL_mean,labels = namePlot)

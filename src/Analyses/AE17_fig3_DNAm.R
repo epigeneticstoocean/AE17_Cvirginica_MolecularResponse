@@ -1,6 +1,5 @@
 #### This script is used summarize DNA Methylation response to OA and time ####
  # Figures from this code : 3
- # Supp. Figures from this code : XX
 
 ## Libraries
 library(ggplot2)
@@ -15,21 +14,19 @@ library(matrixStats)
 pal <- brewer.pal(n = 12, name = 'Paired')
 col_perm <- c(pal[1],pal[5],pal[2],pal[6])
 
-
 #### Data ####
 ##Path
 inputDir <- "~/Github/AE17_Cvirginica_MolecularResponse/"
 setwd(inputDir)
 
-## Meta Data
+### Sample Meta Data ###
 meta <- readRDS("data/meta/metadata_20190811.RData")
 meta <- meta[meta$ID != "17099",] # need to remove individual 17099
 
-## Summary table of Cpgs by feature
+### Summary table of Cpgs by feature (Panel 1)###
  # Contains counts of CpGs by the different primary subsets (all,those with coverage of >= 5,
  # those from the different DML comparisons) among exons,introns, and intergenic regions (currently didn't 
  # do anything more than those groups)
- # Table generated using the script : XXX
 sumTable <- read.csv("data/Analysis/DNAm_20200129_AllCpGAmongFeaturesSummaryTable.csv")
 sumTable_rev <- sumTable[sumTable$feature != "Gene",] # Remove gene in this case because it the same as introns + exons
 # Restructuring the table for plotting
@@ -38,39 +35,16 @@ sumTable_rev$category <- factor(sumTable_rev$category,levels=c("CpGs_all","CpGs_
 levels(sumTable_rev$category) <- c("CpGs (all)","CpGs (5x)",
                                    "DML","DML (D9)","DML (D80)")
 
-## Methylation and Total counts for all CpGs for each individual with 5x coverage
-# All CpGs
-meth_all_meth <- fread("data/MBDBS_seq/methylKitObj_all_cov5Filtered_united_MethylCCounts.csv")
-meth_all_total <- fread("data/MBDBS_seq/methylKitObj_all_cov5Filtered_united_totalCounts.csv")
-meth_beta <- meth_all_meth/meth_all_total
-beta <- as.matrix(meth_beta)
-class(beta) <- "numeric"
-# All CpGs store as a list broken down by feature
+### All CpGs by feature ###
 # Example: meth$mC$exon would retrieve a table for
 #          the methylated cytosine counts (mC) within exons 
 meth <- readRDS("data/Analysis/DNAm_20200202_AllCountsList_cov5_byFeature.RData")
-
-cpgNum <- NULL
-for(i in 1:length(meth$tC)){
-  cpgNum[i] <- nrow(meth$tC[[i]])
-}
-# # Summarizing counts
-# # All CpGs (gene body and intergenic)
-# cpgNum[2]+cpgNum[4]
-# # Percent Gene
-# cpgNum[2]/ (cpgNum[2]+cpgNum[4]) *100
-# # Exons
-# cpgNum[1]
-# # Introns
-# cpgNum[3]
-
 # total Count data for genes
 meth_total_gene <- meth$tC$gene[,2:24] # remove first column which has coordinate information
 sumCountMethylation_gene <- colSums(meth_total_gene,na.rm = TRUE)
 # beta values for genes
 meth_beta <- meth$beta
 meth_beta_gene <- meth$beta$gene[,2:24]
-
 ### Calculate median methylation globally for each individual for each feature
 med_values <- NULL
 name_values <- NULL
@@ -82,9 +56,9 @@ for(i in 1:length(meth$beta)){
   med_values <- c(med_values,temp_medians)
   name_values <- c(name_values,nm)
 }
-IDs<-rep(meta$ID,length(meth$beta))
-Treatment<-rep(meta$Treatment,length(meth$beta))
-Time<-rep(meta$Time,length(meth$beta))
+IDs <- rep(meta$ID,length(meth$beta))
+Treatment <- rep(meta$Treatment,length(meth$beta))
+Time <- rep(meta$Time,length(meth$beta))
 median_df <- data.frame(IDs,Treatment,Time,feature=name_values,median=med_values)
 # Remove gene since it is redundant (exon + intron)
 median_dfnoGene <- median_df[median_df$feature != "gene",]
@@ -92,18 +66,15 @@ median_dfnoGene$feature <- as.factor(as.character(median_dfnoGene$feature))
 # Reorder levels of feature
 median_dfnoGene$feature <- factor(median_dfnoGene$feature,levels=c("exon","Intron","Intergenic" ))
 levels(median_dfnoGene$feature) <- c("Exon","Intron","Intergenic")
-
 rm(meth)
-## Figure of Significant DMLs by % Difference methylation
- # Generated using script: "~/src/Accessory/BRMS_sigSummary.R"
-#dml_sig <- readRDS("results/figures/Fig3_Partial_DMLSummary_ggplotObj.RData")
-
 
 methByGene <-  readRDS("data/MBDBS_seq/20200130_CpGbyGeneSummary/gene_CpGcoverageSummary.RData")
 sum(is.na(methByGene$cov5_count))
 dim(methByGene)
 head(methByGene)
+
 #### Figure Three ####
+
 #### Plot 1 - CpG by feature summary across CpG subsets ####
 
 P1 <- ggplot(sumTable_rev,aes(x=category,y=percent,fill=feature)) + geom_bar(stat = "identity") + 
@@ -123,16 +94,18 @@ P1
  # manually in inkscape.
 sumTableSub <- sumTable[sumTable$feature == "Gene" | sumTable$feature == "Intergenic",]
 sumTableSub$count[seq(1,10,by=2)]+ sumTableSub$count[seq(2,10,by=2)]
+# Number of CpGs for each column of panel 1
 
 #### Plot 2 - Global Median Methylation among TreatmentsXTimes ####
 P2 <- ggplot(median_dfnoGene,
              aes(x=interaction(Treatment,Time),
-                 y=median*100)) + ylim(85,92.5) + 
-  geom_boxplot(aes(fill = interaction(Treatment,Time))) + theme_cowplot() + 
-  facet_grid(.~feature) + ylim(75,95) +
-  scale_fill_manual(values = col_perm) +
-  #scale_x_discrete(labels = c('Ambient\nD9', 'OA 2800\nD9', 'Ambient\nD80', 'OA 2800\nD80')) +
-  labs(x = "",y="Median Methylation (%)") +
+                 y=median*100)) + 
+  geom_boxplot(aes(fill = interaction(Treatment,Time))) + 
+  theme_cowplot() + 
+  facet_grid(.~feature) + 
+  ylim(75,95) +
+  scale_fill_manual(values = col_perm) + 
+  labs(x = "",y="Median Methylation (%)") + 
   theme(legend.position = "none",
         axis.title.x=element_blank(), # Comment these lines if you want x labels
         axis.text.x=element_blank(),
@@ -142,8 +115,6 @@ P2
 # Full model with feature
 model_out <- aov(median~Treatment*Time*feature,data=median_dfnoGene)
 (out <- summary(model_out))
-HSD <- TukeyHSD(model_out)
-## Note significance was added later manually to the plot
 
 #### Plot 3 -  PCA plots separated by feature ####
 # 1 = Exon, 2 = gene, 3 = Intron, 4 = intergenic region
@@ -160,10 +131,10 @@ for(i in 1:length(meth_beta)){
     geom_point(size=4) + 
     theme_cowplot() + 
     scale_colour_manual(values = col_perm[c(1,3,2,4)],
-                        labels=c('Ambient\n     D9','Ambient\n     D80','OA 2800\n     D9', 'OA 2800\n     D80')) + 
+                        labels=c('Control\n     D9','Control\n     D80','High OA\n     D9', 'High OA\n     D80')) + 
     scale_shape_manual(values = c(15,15,17,17),
-                       labels=c('Ambient\n     D9','Ambient\n     D80',
-                                'OA 2800\n     D9', 'OA 2800\n     D80')) +
+                       labels=c('Control\n     D9','Control\n     D80',
+                                'High OA\n     D9', 'High OA\n     D80')) +
     labs(x=paste0("PC1 (",round(eigs[1] / sum(eigs)*100,1),"%)"),
          y=paste0("PC2 (",round(eigs[2] / sum(eigs)*100,1),"%)"),
          title = plot_titles[i],
@@ -174,29 +145,20 @@ for(i in 1:length(meth_beta)){
 }
 # Extract the legend from one of the PCA plots
 legend <- get_legend(
-  # create some space to the left of the legend
+ # create some space to the left of the legend
  p_temp + theme(legend.box.margin = margin(0, 0, 0, 12),
                 legend.title = element_blank())
 )
 
 ## Significant using adonis function from vegan for gene bodies
- gb_dnam <- temp <- as.matrix(meth_beta[[2]][,2:ncol(meth_beta[[2]])])
- gb_dnam[is.na( gb_dnam)] <- 0
- class( gb_dnam) <- "numeric"
+gb_dnam <- temp <- as.matrix(meth_beta[[2]][,2:ncol(meth_beta[[2]])])
+gb_dnam[is.na( gb_dnam)] <- 0
+class( gb_dnam) <- "numeric"
 (out_dnam <- adonis(t(gb_dnam)~Time:Treatment+Time+Treatment+Pop+Lane,data=meta,
                   permutations = 5000,method = "manhattan" ))
 # Subtle effect of treatment but not effect of time or the interaction
 
 #### Plot 4 - DAPC separated by feature ####
-
-# Function for performing a simple dapc based on 6 pcs and 1 discriminant function
-# x <- as.matrix(meth_beta[[2]][,2:ncol(meth_beta[[2]])])
-# dim(meth_beta[[2]])
-# head(x)
-# model_dnam <- meta
-# x[is.na(x)] <- 0
-# x <- vegdist(t(x),method = "manhattan")
-
 dapc_plot <- function(x,model_dnam,names=NULL) {
   #x <- meth_beta$gene
   x <- as.matrix(x[,2:ncol(x)])
@@ -217,8 +179,8 @@ dapc_plot <- function(x,model_dnam,names=NULL) {
   output <- ggplot(whole_meta_dnam,aes(x=coord,fill=SFV)) + 
             geom_density(adjust=2) + xlim(-8,8) +
             scale_fill_manual(values = col_perm[c(1,3,2,4)],
-                                labels=c('Ambient\n     D9','Ambient\n     D80',
-                                         'OA 2800\n     D9', 'OA 2800\n     D80')) +
+                                labels=c('Control\n     D9','Control\n     D80',
+                                         'High OA\n     D9', 'High OA\n     D80')) +
             scale_y_continuous(breaks = c(0.1,1,2,4,6,10,20),limits = c(0,20),trans = "sqrt") + 
             theme_cowplot() +
             labs(x="Coordinate",
@@ -239,8 +201,9 @@ legend_dapc <- get_legend(
   dapc_plots[[1]] + theme(legend.box.margin = margin(0, 0, 0, 12),
                  legend.title = element_blank())
 )
-#### Constructing Final Figure 3 ####
 
+
+#### Constructing Final Figure 3 ####
 ## Option Current ##
 # First column of figure 3 
 # plot 1 - cpg summary by feature for different subsets
@@ -259,46 +222,10 @@ right_column <- plot_grid(second_third,NULL,labels = c("","E"),ncol=1)
 # Then add legend (adjusting for correct widths)
 final_1 <- plot_grid(first,right_column,ncol=2)
 final_1
-ggsave(plot=final_1,filename = "results/figures/Figure3/Fig3_final.png")
-ggsave(plot=final_1,filename = "results/figures/Figure3/Fig3_final.pdf")
-## Option Alt 1 ##
-# First column of figure 3 
-  # plot 1 - cpg summary by feature for different subsets
-  # plot 2 - median methylation by treatment level
-first <- plot_grid(P1,P2,labels=c("A","B"),ncol=1)
-# Second column of figure 3
-second <- plot_grid(pca_plots[[2]],
-                    pca_plots[[4]],
-                    dapc_plots[[2]]+ theme(legend.position="none"),
-                    dapc_plots[[4]]+ theme(legend.position="none"),
-                    labels=c("C","D","E","F"),ncol=1)
-# Third column - legend
-third <- plot_grid(legend,legend_dapc,ncol=1)
-## Final figure
-# First combine first two columns
-c1_c2 <- plot_grid(first,second)
-# Then add legend (adjusting for correct widths)
-final_1 <- plot_grid(c1_c2,third, rel_widths = c(3, .4))
-final_1
-ggsave(plot=final_1,filename = "results/figures/Figure3_rv_option1.png")
+#ggsave(plot=final_1,filename = "results/figures/Figure3/Fig3_final.png")
+#ggsave(plot=final_1,filename = "results/figures/Figure3/Fig3_final.pdf")
 
-## Option Alt 2 ##
-# First column of figure 3 
-# plot 1 - cpg summary by feature for different subsets
-# plot 2 - median methylation by treatment level
-first <- plot_grid(P1,P2,labels=c("A","B"),ncol=1)
-# Second column of figure 3
-second_top <- plot_grid(pca_plots[[2]],
-                        pca_plots[[4]],
-                        labels=c("C","D"),
-                        ncol=1)
-second_top_legend <- plot_grid(second_top,legend,rel_widths = c(3,1),ncol=2)
-second <- plot_grid(second_top_legend,dml_sig$full_fig,labels=c("","E"),ncol=1)
-# Final plot
-final_2 <- plot_grid(first,second)
-final_2
-ggsave(plot=final_2,filename = "results/figures/Figure3_rv_option2.png")
-ggsave(plot=final_2,filename = "results/figures/Figure3_rv_option2.pdf")
+## Final figure with DML venn diagram created in inkscape
 
 #### Supplemental Figure ####
 
@@ -311,5 +238,5 @@ dapc_col <- plot_grid(dapc_plots[[1]]+ theme(legend.position="none"),
                       ncol=1,labels=c("B","D","F","H"))
 final_gw_supp <- plot_grid(pca_col,legend,dapc_col,legend_dapc,rel_widths = c(3,1,3,1),ncol=4)
 final_gw_supp
-ggsave(final_gw_supp,filename="results/figures/supp_GW_DNAm.png")
-ggsave(final_gw_supp,filename="results/figures/supp_GW_DNAm.pdf")
+#ggsave(final_gw_supp,filename="results/figures/supp_GW_DNAm.png")
+#ggsave(final_gw_supp,filename="results/figures/supp_GW_DNAm.pdf")
