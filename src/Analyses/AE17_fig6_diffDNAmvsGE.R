@@ -1,9 +1,7 @@
 #### Correlated DNA methylation and gene expression responses to OA ####
 # Figures from this code : 6
-# Supp. Figures from this code : XX
   
 ## package
-knitr::opts_chunk$set(echo = TRUE)
 library(rtracklayer) # on bioconducter
 library(dplyr)
 library(edgeR)
@@ -16,7 +14,6 @@ library(ggplot2)
 library(matrixStats)
 library(grid)
 library(gridExtra)
-
 library(RColorBrewer)
 pal <- brewer.pal(n = 3, name = "PRGn")
 
@@ -33,7 +30,6 @@ get_density <- function(x, y, ...) {
 ## path
 inputDir <- "~/Github/AE17_Cvirginica_MolecularResponse"
 outputDir <- ""
-
 setwd(inputDir)
 
 # Read in meta data 
@@ -44,6 +40,7 @@ meta <- meta_original[meta_original$ID != "17099",]
 ge<-readRDS("data/Analysis/RNA_gene_postVoomAndNormalization_DGEListObj.RData")
 ge_counts <- ge$E # Extract just the counts
 ge_counts <- ge_counts[,colnames(ge_counts) != "17099"] # Remove problematic individual 
+ge_counts <- ge_counts[,colnames(ge_counts) != "17005"] # Remove problematic individual 
 
 # Read in DNA Methylation Data for Gene Bodys
 dnam <- readRDS("data/Analysis/DNAm_20200202_AllCountsList_cov5_byFeature.RData")
@@ -51,6 +48,7 @@ dnam <-dnam$beta$gene # Only going to look at the beta (dna methylation value) f
 dnam <- as.matrix(dnam[,2:ncol(dnam)]) # Change data into matrix 
 dnam[is.na(dnam)] <- 0
 class(dnam) <- "numeric"
+dnam <- dnam[,colnames(dnam) != "17005"] # Remove problematic individual 
 
 # Gene Atribute, Expression and Methylation Summary Table
 mat <- readRDS("data/Analysis/Multi_geneSummaryReduced.RData")
@@ -70,12 +68,6 @@ mat_red <- subset(mat,select=c("label","diff_tp9_Trt","diff_tp80_Trt",
 
 dmls_9_join <- left_join(dmls_9,mat_red,by="label")
 dmls_80_join <- left_join(dmls_80,mat_red,by="label")
-
-plot(dmls_9_join$meth.diff~dmls_9_join$gene_diff_tp9_Trt)
-plot(dmls_80_join$meth.diff~dmls_80_join$gene_diff_tp80_Trt)
-
-plot(dmls_9_join$meth.diff~c(dmls_9_join$gene_cv_9E-dmls_9_join$gene_cv_9C))
-plot(dmls_80_join$meth.diff~c(dmls_80_join$gene_cv_80E-dmls_80_join$gene_cv_80C))
 
 dmls_9_join$diff.cv <- c(dmls_9_join$gene_cv_9E-dmls_9_join$gene_cv_9C)
 dmls_80_join$diff.cv <- c(dmls_80_join$gene_cv_80E-dmls_80_join$gene_cv_80C)
@@ -111,39 +103,20 @@ p2_nolab
 
 ## Statistical Model ##
 # Day 09 
-plot(lm(dmls_9_join$diff_tp9_Trt~dmls_9_join$meth.diff))
+#plot(lm(dmls_9_join$diff_tp9_Trt~dmls_9_join$meth.diff))
 summary(lm(dmls_9_join$diff_tp9_Trt~dmls_9_join$meth.diff))
 # Slope 0.0004903 
 # P     0.000484
 # R2    0.4061
+
 # Day 80  
 dml_80s <- dmls_80_join[!is.na(dmls_80_join$gene_diff_tp80_Trt),]
-plot(lm(dml_80s$diff_tp80_Trt~dml_80s$meth.diff))
+#plot(lm(dml_80s$diff_tp80_Trt~dml_80s$meth.diff))
 # slight outlier but doesn't impact outcome all that much
 summary(lm(dml_80s$diff_tp80_Trt~dml_80s$meth.diff))
 # Slope 3.973e-04 
 # P     3.77e-05
 # R2    0.2762
-
-## CV differences - outdated script
-# p3<-ggplot(dmls_9_join,
-#            aes(y=meth.diff,x=diff.cv,colour=methylDirection)) + 
-#   geom_point(size=3) + ylim(-100,100) + 
-#   theme_cowplot() + scale_color_manual(values=pal[c(3,1)]) +
-#   labs(x="Log2 gene expression CV difference",y="Methylation difference of DMLs",title="Day 9") +
-#   theme(plot.title = element_text(hjust=0.5))
-# p3_nolab <- p3 + theme(axis.title = element_blank(),
-#                        legend.position = "none")
-# p3_nolab
-# p4<-ggplot(dmls_80_join,
-#            aes(y=meth.diff,x=diff.cv,colour=methylDirection)) + 
-#   geom_point(size=3) + ylim(-100,100) + 
-#   theme_cowplot() + scale_color_manual(values=pal[c(3,1)]) +
-#   labs(x="Log2 gene expression CV difference",y="Methylation difference of DMLs",title="Day 80") +
-#   theme(plot.title = element_text(hjust=0.5))
-# p4_nolab <- p4 + theme(axis.title = element_blank(),
-#                        legend.position = "none")
-# p4_nolab
 
 #### Gene level summary difference ####
 mat_final <- mat[mat$cov5_count/mat$all_count >= 0.2,]
@@ -193,7 +166,6 @@ pG_80_nolab
 plot_grid(pG_9,pG_80,nrow=1)
 
 ## Statitical models ###
-
 #Day 9
 summary(lm(gene_summary$d9_ge~gene_summary$d9_dnam))
 # slope 0.012131

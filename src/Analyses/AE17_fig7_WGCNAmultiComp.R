@@ -1,4 +1,6 @@
-#### Figure 7  - WGCNA and Differential pH association
+#### WGCNA and Differential pH association ####
+
+## Figures from code: 7
 
 ## This script takes the two RData objects generated from the WGCNA script to visualize
  # and analyze the gene co-expression modules with phenotype, DNA methylation, and enviro-
@@ -67,6 +69,7 @@ topTreatmentNames <- rownames(modTrait_P)[order(modTrait_P$Treatment)][1]
 topModuleNames <- c(topDiffpHNames,topTreatmentNames)
 
 ### DNA MEthylation Data (CpGs) ###
+  # NOTE: this file needs to be uncompressed prior to running this line
 gene_LOC <- fread("data/references/CpG_5x_methylKit_CDSAnnotation.tab",sep = "\t")
 cpg <- readRDS("data/MBDBS_seq/methylKitObj_all_cov5Filtered_united.RData")
 cpg_t <- getData(cpg)[,c(seq(5,73,3))]
@@ -81,7 +84,7 @@ cpg_beta$cpg_pos <- as.character(paste0(cpg_label$chr,"_",cpg_label$start))
 cpg_beta <- cpg_beta[,model_original$ID != "17005"]
 gene_LOC_simple <- gene_LOC[,c(4,8)]
 join_cpg <- left_join(gene_LOC_simple,cpg_beta)
-nrow(join_cpg)
+
 join_cpg %>% group_by(gene_id) %>%
   summarise_if(is.numeric, mean, na.rm = TRUE) -> cpg_geneSummary
 join_cpg %>% group_by(gene_id) %>%
@@ -90,7 +93,6 @@ join_cpg %>% group_by(gene_id) %>%
 cpgs <- list(cpg_geneSummary,cpg_geneSummary_count)
 
 #### Basic Heatmap (not in figure) ####
-sizeGrWindow(10,6)
 # Will display correlations and their p-values
 textMatrix =  paste(signif(moduleTraitCor, 2), "\n(",
                     signif(moduleTraitPvalue, 1), ")", sep = "");
@@ -311,10 +313,10 @@ moduleSummary <- function(meta,targetMods,mod,cpgs){
 #### Running Summary Function ####
 # Top three modules 
 topMods <- moduleSummary(m_final,topModuleNames,modList,cpgs)
-saveRDS(topMods,"data/Analysis/WGCNA_topModSummary.RData")
+#saveRDS(topMods,"data/Analysis/WGCNA_topModSummary.RData")
 allMods <- moduleSummary(m_final,rownames(modTrait_P),modList,cpgs)
 allMods$Env_CpG$paleturquoise
-saveRDS(allMods,"data/Analysis/WGCNA_allModSummary.RData")
+#saveRDS(allMods,"data/Analysis/WGCNA_allModSummary.RData")
 # Might take some time to calculate
 
 #### Single Table Summary ####
@@ -348,11 +350,10 @@ moduleTableSummary <- function(modSum) {
 ### Creating table summary of modules
 
 topMod_tableSummary <- moduleTableSummary(topMods)
-saveRDS(topMod_tableSummary,"data/Analysis/WGCNA_topModTableSummary.RData")
+#saveRDS(topMod_tableSummary,"data/Analysis/WGCNA_topModTableSummary.RData")
 allMod_tableSummary <- moduleTableSummary(allMods)
-saveRDS(allMod_tableSummary,"data/Analysis/WGCNA_allModTableSummary.RData")
-write.csv(allMod_tableSummary,"data/Analysis/WGCNA_allModTableSummary.csv",row.names = FALSE)
-
+#saveRDS(allMod_tableSummary,"data/Analysis/WGCNA_allModTableSummary.RData")
+#write.csv(allMod_tableSummary,"data/Analysis/WGCNA_allModTableSummary.csv",row.names = FALSE)
 
 ### READIN DATA ####
 setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/")
@@ -364,7 +365,7 @@ for(i in 1:length(topMods$annot)){
   write.csv(topMods$annot[i],paste0("data/Analysis/WGCNA_module_",names(topMods$annot)[i],"_annotation.csv"),row.names = FALSE)
 }
 
-  #### Figures ####
+#### Figures ####
 ## Labels
 y.grob1 <- textGrob("Eigengene Expression",
                     gp=gpar(col="black", fontsize=15), rot=90)
