@@ -101,7 +101,7 @@ table <- rbind(table,
                           mean=perSampleMeanCountF,sd=perSampleSDCountF,
                           min=perSampleMinCountF,max=perSampleMaxCountF,
                           genes=numberOfGenesF))
-#print(table)
+print(table)
 
 #### Save initial DGEList objects####
 saveRDS(dge_gene_a2,paste0(outputDir,"/RNA_gene_preNormalization_DGEListObj.RData"))
@@ -109,6 +109,9 @@ saveRDS(dge_gene_a2,paste0(outputDir,"/RNA_gene_preNormalization_DGEListObj.RDat
 #### Normalization with edgeR ####
 # Calculate normalization factors for scaling raw lib. size
 dge_gene_a2_norm <- calcNormFactors(dge_gene_a2,method = "TMMwsp") # gene - approach 2
+# Bar plot of normalization factors
+barplot(dge_gene_a2_norm$samples$norm.factors~rownames(dge_gene_a2_norm$samples),
+        las=2,ylab="Normalization factor",xlab="Samples")
 
 ## Create design matrix  
 design <- model.matrix(~0+SFVrn,data=meta) # 0+ is needed here otherwise the first level defaults to 1.

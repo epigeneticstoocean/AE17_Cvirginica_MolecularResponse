@@ -15,12 +15,8 @@ library(WGCNA)
 options(stringsAsFactors = FALSE);
 library(limma)
 library(cowplot)
-
 library(WGCNA)
-?adjacency()
-?TOMsimilarity()
-?hclust()
-?moduleEigengenes()
+
 #### Data ####
 
 # Set wd()
