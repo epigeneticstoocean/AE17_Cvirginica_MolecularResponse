@@ -217,7 +217,7 @@ Core function STAR 2nd pass:
 --sjdbFileChrStartEnd /path/toSpliceJunctionFolder
 ```
 
-## Step 4 - Running RSEM  <name a = "four"></a>
+## Step 4 - Running RSEM  <a name="four"></a>
 
 **Creating Index folder for RSEM**
 
@@ -248,7 +248,7 @@ rsem-calculate-expression --star --paired-end \
 /path/toRSEM_reference \
 /path/toOutputFolder
 ```
-## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <name a="five"></a>
+## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <a name="five"></a>
 
 **Description**  
 
@@ -256,7 +256,7 @@ Takes raw rsem count estimation matrix and filters out genes that have low cover
 
 * Full Script: [`05_filtering_CreatingDGEListObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/05_filtering_CreatingDGEListObj.R)
 
-## Step 6 - Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters <name a="six"></a>
+## Step 6 - Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters <a name="six"></a>
 
 **Description**
   
