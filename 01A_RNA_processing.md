@@ -249,15 +249,16 @@ rsem-calculate-expression --star --paired-end \
 ```
 ## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <name a = "five"></a>
 
-**Description**
+**Description**  
+
 Takes raw rsem count estimation matrix and filters out genes that have low coverage (<1 cpm in at least 5 individuals in at least one trt/time combination), and performs normalization and transformation steps using `EdgeR` and `limma` packages.
 
-* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/05_filtering_CreatingDGEListObj.R)
+* Full Script: [`05_filtering_CreatingDGEListObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/05_filtering_CreatingDGEListObj.R)
 
 ## Step 6 -  Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters 
 
 **Description**
   
-A weigheted gene co-expression network analysis was performed to identify genes that exhibit similar expression patterns among individual oysters using the R package WGCNA (Langfelder and Horvath, 2008). We followed a standard WGCNA pipeline for clustering, association testing, and creating WGCNA objects. This analysis was performed on the 22 individuals that remained after excluding individuals that were identified as outliers in either the gene expression (17005) and DNA methylation (17099) data. First, a gene dissimilarity matrix was generated based on the log2-cpm gene expression data using first the adjacency function followed by the TOMsimilarity function in WGCNA. This step estimates the level of dissimilarity between each gene by considering expression across all individuals. Next, genes were hierarchically clustered based on dissimilarity using the function hclust and the ‘Ward.D2’ method for clustering (Murtagh and Legendre, 2014). There objects created hear were used in the analysis step to generate figure 7.
+A weighted gene co-expression network analysis was performed to identify genes that exhibit similar expression patterns among individual oysters using the R package WGCNA (Langfelder and Horvath, 2008). We followed a standard WGCNA pipeline for clustering, association testing, and creating WGCNA objects. This analysis was performed on the 22 individuals that remained after excluding individuals that were identified as outliers in either the gene expression (17005) and DNA methylation (17099) data. First, a gene dissimilarity matrix was generated based on the log2-cpm gene expression data using first the adjacency function followed by the TOMsimilarity function in WGCNA. This step estimates the level of dissimilarity between each gene by considering expression across all individuals. Next, genes were hierarchically clustered based on dissimilarity using the function hclust and the ‘Ward.D2’ method for clustering (Murtagh and Legendre, 2014). There objects created hear were used in the analysis step to generate figure 7.
 
-* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/06_CreatingWGCNAObj.R)
+* Full Script: [`06_CreatingWGCNAObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/06_CreatingWGCNAObj.R)
