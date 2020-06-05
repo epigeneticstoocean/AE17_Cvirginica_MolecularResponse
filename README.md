@@ -1,7 +1,7 @@
 # Script and Analyses Repository
 
 ### **Disclaimer**  
-This repository is actively being updated with revisions while the paper is under review. Asa result, some sections of this repository may not represent the final analysis included in the paper or may only have partial descriptions of analyses.
+This repository is actively being updated with revisions while the paper is under review. As a result, some sections of this repository may not represent the final analysis included in the paper or may only have partial descriptions of analyses.
 
 **Repository for paper**: Ocean acidification induces subtle shifts in gene expression and DNA methylation in the tissue of calcification
 
@@ -12,7 +12,7 @@ This repository is actively being updated with revisions while the paper is unde
 * [*RNAseq Data Processing*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01A_RNA_processing.md)
 * [*MBD-BSseq Data Processing*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01B_DNAm_processing.md)
 * [*Phenotype Analysis*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/02A_phenotypeAnalysis.md)
-* [*Sequence Data (RNAseq and MBD-BSseq) Analysis*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/02B_sequenceAnalysis)
+* [*Sequence Data (RNAseq and MBD-BSseq) Analysis*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/02B_sequenceAnalysis.md)
   
 **Folders**
 * [*/data*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data) : Contains processed data files for analysis (raw sequence data available on NCBI).
