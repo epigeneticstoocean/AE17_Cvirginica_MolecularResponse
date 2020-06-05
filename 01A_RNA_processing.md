@@ -19,7 +19,7 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 ## Data <a name="data"></a>
 
-* [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
+* [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNA_seq)  
 * [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq)
 * Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
 
@@ -100,7 +100,7 @@ gffread my.gff -T -o my.gtf
 
 ### Step 2.2 - Create STAR index using oyster gene annotation file
 
-* Script : [`STAR_genomeCreate.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/02_STAR_genomeCreate.sh)
+* Script : [`STAR_genomeCreate.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/02_STAR_genomeCreate.sh)
 
 Command line code:
 ```
@@ -157,7 +157,7 @@ STAR maps trimmed reads to the index created in the previous steps.
 
 ### **Step 3.1** : Start STAR mapping 1st Pass
 
-* Full Script : [`STAR_1Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/03A_STAR_1Pass_all.sh)
+* Full Script : [`STAR_1Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/03A_STAR_1Pass_all.sh)
 
 Command Line:
 ```
@@ -180,7 +180,7 @@ mv *m2_* m2
 
 ### **Step 3.4** : Start STAR mapping 2nd Pass
 
-* Full Script : [`STAR_2Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/03B_STAR_2Pass_all.sh)
+* Full Script : [`STAR_2Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/03B_STAR_2Pass_all.sh)
 
 Command Line:
 ```
@@ -220,7 +220,7 @@ Core function STAR 2nd pass:
 
 **Creating Index folder for RSEM**
 
-* Full Script : [`RSEM_createRefFromStar.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/04A_RSEM_createRefFromStar.sh)
+* Full Script : [`RSEM_createRefFromStar.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/04A_RSEM_createRefFromStar.sh)
 
 Core function `rsem-prepare-reference`: 
 ```
@@ -234,7 +234,7 @@ rsem-prepare-reference \
 
 **Performing RSEM Transcript Quantification**
 
-* Full Script : [`RSEM_calcExp.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/04B_RSEM_calcExp_All.sh)
+* Full Script : [`RSEM_calcExp.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/04B_RSEM_calcExp_All.sh)
 
 Core function `rsem-calculate-expression`:
 
@@ -252,4 +252,12 @@ rsem-calculate-expression --star --paired-end \
 **Description**
 Takes raw rsem count estimation matrix and filters out genes that have low coverage (<1 cpm in at least 5 individuals in at least one trt/time combination), and performs normalization and transformation steps using `EdgeR` and `limma` packages.
 
-* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNAseq/05_filtering_CreatingDGEListObj.R)
+* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/05_filtering_CreatingDGEListObj.R)
+
+## Step 6 -  Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters 
+
+**Description**
+  
+A weigheted gene co-expression network analysis was performed to identify genes that exhibit similar expression patterns among individual oysters using the R package WGCNA (Langfelder and Horvath, 2008). We followed a standard WGCNA pipeline for clustering, association testing, and creating WGCNA objects. This analysis was performed on the 22 individuals that remained after excluding individuals that were identified as outliers in either the gene expression (17005) and DNA methylation (17099) data. First, a gene dissimilarity matrix was generated based on the log2-cpm gene expression data using first the adjacency function followed by the TOMsimilarity function in WGCNA. This step estimates the level of dissimilarity between each gene by considering expression across all individuals. Next, genes were hierarchically clustered based on dissimilarity using the function hclust and the ‘Ward.D2’ method for clustering (Murtagh and Legendre, 2014). There objects created hear were used in the analysis step to generate figure 7.
+
+* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/06_CreatingWGCNAObj.R)
