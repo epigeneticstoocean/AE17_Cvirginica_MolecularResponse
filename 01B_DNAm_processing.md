@@ -109,18 +109,19 @@ coverage2cytosine path/toMethylationExtractorOutput \
 -o path/Output 
 ```
 
-* [Script that performing mapping,depublication,sorting,and methylation calls for all samples](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/02_bismarkMappingFull.sh)
+* [Script that performing mapping,depublication,sorting,and methylation calls for all samples](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/02_bismarkMapping.sh)
 * [Script for creating full cytosine reports](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/03_cytosineReport.sh)
 
 ## Step 4 - Raw Matrices <a name = "four"></a>
 
-Use custom r script to create a matrix for methylated and unmethylated cytosines, as well as a metaData sheet for storing information about each locus.
+Use custom r script and the methylKit packaged to create a matrix for methylated and unmethylated cytosines, as well as a metaData sheet for storing information about each locus.
 
-* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/04_countMatrixFromCytoSummary.R)
+* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/04_methylationMatrix_diffMethylation_methylKit.R)
 
 ## Step 5  - Filtering and Summaries <a name = "five"></a>
 
 Use custom r script to filter complete dataset as well as annotated and summarize by feature.
   
-* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/04B_CountMatrixSummary.R)
+* [Script A](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05A_CpGCountByFeature.sh)
+* [Script B](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05B_CpGIntersectionByFeature.sh)
 
