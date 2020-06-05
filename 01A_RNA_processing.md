@@ -14,7 +14,7 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 5. [Step 3 - Mapping with STAR](#three)
 6. [Step 4 - Running RSEM](#four)
 7. [Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom)](#five)
-8. [Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters](#six)  
+8. [Step 6 - Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters](#six)  
 
 ---
 
@@ -248,7 +248,7 @@ rsem-calculate-expression --star --paired-end \
 /path/toRSEM_reference \
 /path/toOutputFolder
 ```
-## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <name a = "five"></a>
+## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <name a="five"></a>
 
 **Description**  
 
@@ -256,7 +256,7 @@ Takes raw rsem count estimation matrix and filters out genes that have low cover
 
 * Full Script: [`05_filtering_CreatingDGEListObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/05_filtering_CreatingDGEListObj.R)
 
-## Step 6 - Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters <name a = "six"></a>
+## Step 6 - Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters <name a="six"></a>
 
 **Description**
   
