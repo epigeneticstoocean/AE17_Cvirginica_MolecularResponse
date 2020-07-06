@@ -158,7 +158,7 @@ STAR maps trimmed reads to the index created in the previous steps.
 
 ### **Step 3.1** : Start STAR mapping 1st Pass
 
-* Full Script : [`STAR_1Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/03A_STAR_1Pass_all.sh)
+* Full Script : [`STAR_1Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/03A_STAR_1Pass.sh)
 
 Command Line:
 ```
@@ -181,7 +181,7 @@ mv *m2_* m2
 
 ### **Step 3.4** : Start STAR mapping 2nd Pass
 
-* Full Script : [`STAR_2Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/03B_STAR_2Pass_all.sh)
+* Full Script : [`STAR_2Pass_all.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/03B_STAR_2Pass.sh)
 
 Command Line:
 ```
@@ -235,7 +235,7 @@ rsem-prepare-reference \
 
 **Performing RSEM Transcript Quantification**
 
-* Full Script : [`RSEM_calcExp.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/04B_RSEM_calcExp_All.sh)
+* Full Script : [`RSEM_calcExp.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/04B_RSEM_calcExp.sh)
 
 Core function `rsem-calculate-expression`:
 
