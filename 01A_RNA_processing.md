@@ -33,20 +33,20 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 * [Website](https://www.ddocent.com/)
 * [Publication](https://peerj.com/articles/431/)
 
-*Trimmomatic* - a  flexible read trimming tool for Illumina NGS data. Used by dDocent to trim raw RNAseq fragments and remove adapters.
+*Trimmomatic* - A flexible read trimming tool for Illumina NGS data. Used by dDocent to trim raw RNAseq fragments and remove adapters.
 
 * [Github](https://github.com/timflutre/trimmomatic)
 * [Publication](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4103590/)
 
 **File Conversion**
 
-**gffread** - program to add in the conversion between different gene annotation file structures. Used here to convert from the `.gff` file format provided by NCBI to `.gtf` (preferred by STAR mapper).
+*gffread* - Program to add in the conversion between different gene annotation file structures. Used here to convert from the `.gff` file format provided by NCBI to `.gtf` (preferred by STAR mapper).
 
 * [Github](https://github.com/gpertea/gffread) : converts a `.gff` file format to `.gtf`
 
 **Mapping**
 
-*STAR* - fast RNA-seq aligner than can make to a reference genome and identify identify canonical as well as novel splice junctions. It will output mapped reads as `.sam` or `.bam` files, and with the `--quantMode` it can also create a tab delimited read count output (similar to HT-Seq). In addition, mapped reads can be ouputed as a `.bam` file with transcript coordinates. This can be used downstream by the transcript quantification program RSEM. 
+*STAR* - Fast RNA-seq aligner than can make to a reference genome and identify identify canonical as well as novel splice junctions. It will output mapped reads as `.sam` or `.bam` files, and with the `--quantMode` it can also create a tab delimited read count output (similar to HT-Seq). In addition, mapped reads can be ouputed as a `.bam` file with transcript coordinates. This can be used downstream by the transcript quantification program RSEM. 
 
 * [Github](https://github.com/alexdobin/STAR)  
 * [Publication](https://academic.oup.com/bioinformatics/article/29/1/15/272537)
@@ -64,7 +64,7 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 * [Manual](https://www.bioconductor.org/packages/release/bioc/vignettes/edgeR/inst/doc/edgeRUsersGuide.pdf)
 
-*limma* - R package used for analyzing transcriptomic sequence data. Here we are using limma for `TMM` standardization approach to account for variable library sizes among samples, to transform our counts into `log2-cpm` using the `voom` function, account for random tank effects. Also used to perform differential expression analysis with planned contrasts in RNAseq_Analysis workflow.
+*limma* - R package used for analyzing transcriptomic sequence data. Here we are using limma for `TMMwsp` standardization approach to account for variable library sizes among samples, to transform our counts into `log2-cpm` using the `voom` function, account for random tank effects. Also used to perform differential expression analysis with planned contrasts in RNAseq_Analysis workflow.
 
 * [Manual](https://www.bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf)
 

@@ -375,15 +375,19 @@ y.grob2 <- textGrob("DNA Methylation (%)",
                     gp=gpar(col="black", fontsize=15), rot=90)
 x.grob2 <- textGrob("DNA Methylation (%)",
                     gp=gpar(col="black", fontsize=15))
-y.grob3 <- textGrob("Differential pH",
+y.grob3 <- textGrob(expression(paste(Delta," pH (NBS)")),
                     gp=gpar(col="black", fontsize=15), rot=90)
-x.grob3 <- textGrob("Differential pH",
+x.grob3 <- textGrob(expression(paste(Delta," pH (NBS)")),
                     gp=gpar(col="black", fontsize=15))
 
 ## Add titles
 mod_top_titles <- list()
+topMods$ModuleSummary[[1]]$mod[1]
+topMods$Env_CpG
+alt_title <- c("Module 1","Module 2","Module 3")
 for(i in 1:length(topMods$Env_CpG)){
-  temp.title <- textGrob(paste0(substring(topMods$ModuleSummary[[i]]$mod[1], 3)),
+  #temp.title <- textGrob(paste0(substring(topMods$ModuleSummary[[i]]$mod[1], 3)),
+  temp.title <- textGrob(alt_title[i],
                           gp=gpar( col="black", fontsize=15,fontface="bold"))
   mod_top_titles[[i]] <- grid.arrange(arrangeGrob(topMods$Env_CpG[[i]],
                                              top=temp.title))

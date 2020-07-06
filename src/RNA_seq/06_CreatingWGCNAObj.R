@@ -18,7 +18,6 @@ library(cowplot)
 library(WGCNA)
 
 #### Data ####
-
 # Set wd()
 # Display the current working directory
 getwd()
@@ -34,7 +33,7 @@ dim(traitData_sans17005)
 names(traitData_sans17005)
 #Read in the gene expression data
 dataExp <- readRDS("RNA_gene_postVoomAndNormalization_DGEListObj.RData")
-gc<-dataExp$E
+gc <- dataExp$E
 gc_sans17005 <- gc[,traitData$ID != "17005"]
 # Removing 17005 outlier
 datExpr0 <-  as.data.frame(t(gc_sans17005))
@@ -88,7 +87,7 @@ library(WGCNA)
 enableWGCNAThreads()
 # Load the data saved in the first part
 lnames = load(file = "Limma_Expression_Data_forWGCNA.RData");
-#The variable lnames contains the names of loaded variables.
+# The variable lnames contains the names of loaded variables.
 lnames
 
 # Choose a set of soft-thresholding powers
@@ -193,4 +192,3 @@ moduleLabels = match(moduleColors, colorOrder)-1;
 MEs = mergedMEs;
 # Save module colors and labels for use in subsequent parts
 save(MEs, moduleLabels, moduleColors, geneTree, file = "Limma_networkConstruction_WGCNA.RData")
-
