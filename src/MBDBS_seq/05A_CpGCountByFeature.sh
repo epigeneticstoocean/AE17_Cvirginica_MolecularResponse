@@ -46,7 +46,6 @@ echo "Grouping ${file}..."
         fi
 done
 
-
 for file in *DML_all*
 do
 echo "Grouping ${file}..."

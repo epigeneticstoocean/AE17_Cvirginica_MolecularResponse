@@ -107,7 +107,7 @@ table <- rbind(table,
 print(table)
 
 #### Save initial DGEList objects####
-saveRDS(dge_gene_a2,paste0(outputDir,"/RNA_gene_preNormalization_DGEListObj.RData"))
+#saveRDS(dge_gene_a2,paste0(outputDir,"/RNA_gene_preNormalization_DGEListObj.RData"))
 
 #### Normalization with edgeR ####
 # Calculate normalization factors for scaling raw lib. size
@@ -139,7 +139,12 @@ ggbiplot(ge.pca,
 plotMDS(dge_gene_a2_o1_voom, col = as.numeric(meta$SFVrn))
 
 # Saving the final transformation of the data (after individual weights)
-saveRDS(dge_gene_a2_o1_voom,paste0(outputDir,"/RNA_gene_postVoomAndNormalization_DGEListObj.RData"))
+# saveRDS(dge_gene_a2_o1_voom,paste0(outputDir,"/RNA_gene_postVoomAndNormalization_DGEListObj.RData"))
+
+# Dendrogram based on co-expression clustering. Further illustrates 17005 as an outlier.
+out <- dist(t(scale(dge_gene_a2_o1_voom$E)))
+out2 <- hclust(out,method = "complete")
+plot(out2)
 
 #### Not in the manuscript ####
 
@@ -149,8 +154,6 @@ saveRDS(dge_gene_a2_o1_voom,paste0(outputDir,"/RNA_gene_postVoomAndNormalization
 
 #### Outlier Removal ##
 # List of samples removed
-#sample_list <- c("17005","17094","17122","17069")
-#sample_list <- c("17005","17122")
 sample_list <- c("17005") #Consistent top outlier removed from data after normalization
 # Alter meta file
 meta_alt <- meta[!(meta$ID %in% sample_list),]

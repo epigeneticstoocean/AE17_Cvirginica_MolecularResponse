@@ -15,7 +15,7 @@ library(WGCNA)
 options(stringsAsFactors = FALSE);
 library(limma)
 library(cowplot)
-library(WGCNA)
+
 
 #### Data ####
 # Set wd()
@@ -23,16 +23,17 @@ library(WGCNA)
 getwd()
 # If necessary, change the path below to the directory where the data files are stored. 
 # "." means current directory. On Windows use a forward slash / instead of the usual \.
-workingDir = "."
+workingDir = "/home/downeyam/Github/AE17_Cvirginica_MolecularResponse"
+#workingDir = "."
 setwd(workingDir)
 
 # Meta data
-traitData <- readRDS("metadata_20190811.RData")
+traitData <- readRDS("data/meta/metadata_20190811.RData")
 traitData_sans17005 <-  traitData[traitData$ID != "17005",]
 dim(traitData_sans17005)
 names(traitData_sans17005)
 #Read in the gene expression data
-dataExp <- readRDS("RNA_gene_postVoomAndNormalization_DGEListObj.RData")
+dataExp <- readRDS("data/Analysis/RNA_gene_postVoomAndNormalization_DGEListObj.RData")
 gc <- dataExp$E
 gc_sans17005 <- gc[,traitData$ID != "17005"]
 # Removing 17005 outlier
@@ -79,14 +80,14 @@ plotDendroAndColors(sampleTree2, traitColors,
                     groupLabels = names(traitD), 
                     main = "Sample dendrogram and trait heatmap")
 dev.off()
-save(datExpr,traitD, file = "Limma_Expression_Data_forWGCNA.RData")
+save(datExpr,traitD, file = "data/Analysis/Limma_Expression_Data_forWGCNA.RData")
 
 #### Step 2 : Clustering ####
 # Make sure to set working directory were where the RData file is located
 library(WGCNA)
 enableWGCNAThreads()
 # Load the data saved in the first part
-lnames = load(file = "Limma_Expression_Data_forWGCNA.RData");
+lnames = load(file = "data/Analysis/Limma_Expression_Data_forWGCNA.RData");
 # The variable lnames contains the names of loaded variables.
 lnames
 
@@ -192,3 +193,44 @@ moduleLabels = match(moduleColors, colorOrder)-1;
 MEs = mergedMEs;
 # Save module colors and labels for use in subsequent parts
 save(MEs, moduleLabels, moduleColors, geneTree, file = "Limma_networkConstruction_WGCNA.RData")
+
+#### Extract Module Membership values for GO-MWU ####
+
+lnames = load(file = "data/Analysis/RNA_Limma_Expression_Data_forWGCNA.RData")
+lnames = load(file = "data/Analysis/RNA_Limma_networkConstruction_WGCNA.RData")
+MEs_all = moduleEigengenes(datExpr, moduleColors)
+nSamples = nrow(datExpr)
+datME <- moduleEigengenes(datExpr,moduleColors)$eigengenes
+geneList <- colnames(datExpr)
+MEs = orderMEs(MEs0)
+# Calculate correlation among target variables and modules
+moduleTraitCor = cor(MEs, traitD, use = "p")
+modTrait_corr <- data.frame(moduleTraitCor)
+# Calculate P value from correlation
+modTrait_P <- data.frame(corPvalueStudent(moduleTraitCor, nSamples))
+# List of module gene summary information
+modList <- list(datME,moduleColors,modTrait_P,modTrait_corr)
+topDiffpHNames <- rownames(modTrait_P)[order(modTrait_P$diff_pH)][2:5]
+
+MEs_target <- MEs[,colnames(MEs) %in% topDiffpHNames]
+
+out <- signedKME(datExpr,
+                 MEs_target,
+                 outputColumnName = "",
+                 corFnc = "cor",
+                 corOptions = "use ='p'")
+
+moduleMemberList <- list()
+for( i in 1:length(topDiffpHNames)){
+        gl <- geneList[paste0("ME",modList[[2]]) == topDiffpHNames[i]]
+        temp <- data.frame(gene_id = rownames(out),
+                           Mod_Membership = out[,colnames(out) %in% substring(topDiffpHNames[i],3)])
+        temp$Mod_Membership[!temp$gene_id %in% gl] <- 0
+        temp$Mod_Membership[temp$gene_id %in% gl] <- abs(temp$Mod_Membership[temp$gene_id %in% gl])
+        moduleMemberList[[i]] <- temp
+        write.csv(temp,paste0("data/Analysis/RNA_Limma_WGCNA_ModuleMembership_",
+                         substring(topDiffpHNames[i],3),".csv"),row.names = FALSE)
+}
+names(moduleMemberList) <- substring(topDiffpHNames,3)
+        
+saveRDS(moduleMemberList,"data/Analysis/RNA_Limma_WGCNA_ModuleMembership.RData")

@@ -62,11 +62,12 @@ modList <- list(datME,moduleColors,modTrait_P,modTrait_corr)
 # Looking at the top association with diff. pH I found that the pattern was driven 
 # by a single individual, so I decided to use the second and third ranked modules instead.
 # Selecting 2 and 3 top candidates for diff. pH
-topDiffpHNames <- rownames(modTrait_P)[order(modTrait_P$diff_pH)][2:3]
+modTrait_P[order(modTrait_P$diff_pH),]
+topDiffpHNames <- rownames(modTrait_P)[order(modTrait_P$diff_pH)][2:5]
 # Selecting best candidate for Treatment
-topTreatmentNames <- rownames(modTrait_P)[order(modTrait_P$Treatment)][1]
+#topTreatmentNames <- rownames(modTrait_P)[order(modTrait_P$Treatment)][1]
 # Combining targets into single vector
-topModuleNames <- c(topDiffpHNames,topTreatmentNames)
+topModuleNames <- c(topDiffpHNames)#,topTreatmentNames)
 
 ### DNA MEthylation Data (CpGs) ###
   # NOTE: this file needs to be uncompressed prior to running this line
@@ -95,7 +96,7 @@ cpgs <- list(cpg_geneSummary,cpg_geneSummary_count)
 #### Basic Heatmap (not in figure) ####
 # Will display correlations and their p-values
 textMatrix =  paste(signif(moduleTraitCor, 2), "\n(",
-                    signif(moduleTraitPvalue, 1), ")", sep = "");
+                    signif(modTrait_P, 1), ")", sep = "");
 par(mar = c(6, 8.5, 3, 3));
 # Display the correlation values within a heatmap plot
 labeledHeatmap(Matrix = moduleTraitCor,
@@ -111,7 +112,7 @@ labeledHeatmap(Matrix = moduleTraitCor,
 
 #### Heat map with modules order (in figure) ####
 # Lets order the heat map by diff_pH (our primary phenotype)
-moduleTraitPvalue_orderdiffPH <- moduleTraitPvalue[order(moduleTraitPvalue[,9]),]
+moduleTraitPvalue_orderdiffPH <- modTrait_P[order(modTrait_P[,9]),]
 moduleTraitCor_orderdiffPH <- moduleTraitCor[rev(order(moduleTraitCor[,9])),]
 
 # Select only the columns we really care about (in this case the epf measures 
@@ -311,12 +312,13 @@ moduleSummary <- function(meta,targetMods,mod,cpgs){
 }
 
 #### Running Summary Function ####
+
 # Top three modules 
 topMods <- moduleSummary(m_final,topModuleNames,modList,cpgs)
-#saveRDS(topMods,"data/Analysis/WGCNA_topModSummary.RData")
+saveRDS(topMods,"data/Analysis/WGCNA_topModSummary2.RData")
 allMods <- moduleSummary(m_final,rownames(modTrait_P),modList,cpgs)
 allMods$Env_CpG$paleturquoise
-#saveRDS(allMods,"data/Analysis/WGCNA_allModSummary.RData")
+saveRDS(allMods,"data/Analysis/WGCNA_allModSummary2.RData")
 # Might take some time to calculate
 
 #### Single Table Summary ####
@@ -357,9 +359,12 @@ allMod_tableSummary <- moduleTableSummary(allMods)
 
 ### READIN DATA ####
 setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/")
+data <- readRDS("data/Analysis/WGCNA_allModTableSummary2.RData")
 data <- readRDS("data/Analysis/WGCNA_allModTableSummary.RData")
-topMods <-  readRDS("data/Analysis/WGCNA_topModSummary.RData")
+topMods <-  readRDS("data/Analysis/WGCNA_topModSummary2.RData")
 
+out2<-topMods$annot
+ex<-out2$cyan
 # Annotation Files for top candidates
 for(i in 1:length(topMods$annot)){
   write.csv(topMods$annot[i],paste0("data/Analysis/WGCNA_module_",names(topMods$annot)[i],"_annotation.csv"),row.names = FALSE)
@@ -382,29 +387,32 @@ x.grob3 <- textGrob(expression(paste(Delta," pH (NBS)")),
 
 ## Add titles
 mod_top_titles <- list()
-topMods$ModuleSummary[[1]]$mod[1]
-topMods$Env_CpG
-alt_title <- c("Module 1","Module 2","Module 3")
+
+alt_title <- c(substring(as.character(unique(topMods$ModuleSummary[[1]]$mod)),3),
+               substring(as.character(unique(topMods$ModuleSummary[[2]]$mod)),3),
+               substring(as.character(unique(topMods$ModuleSummary[[3]]$mod)),3))
+
 for(i in 1:length(topMods$Env_CpG)){
-  #temp.title <- textGrob(paste0(substring(topMods$ModuleSummary[[i]]$mod[1], 3)),
-  temp.title <- textGrob(alt_title[i],
+  temp.title <- textGrob(substring(as.character(unique(topMods$ModuleSummary[[i]]$mod)),3),
+  #temp.title <- textGrob(alt_title[i],
                           gp=gpar( col="black", fontsize=15,fontface="bold"))
-  mod_top_titles[[i]] <- grid.arrange(arrangeGrob(topMods$Env_CpG[[i]],
+  mod_top_titles[[i]] <- grid.arrange(arrangeGrob(topMods$Expr_diffpH[[i]],
                                              top=temp.title))
 }
 
 ## Module Panels
 mod_top <- plot_grid(plotlist = mod_top_titles,nrow=1)
 mod_top_labels <- grid.arrange(arrangeGrob(mod_top,
-                                           left=y.grob2))
+                                           left=y.grob3,
+                                           bottom=x.grob1))
 
 mod_middle <- plot_grid(plotlist = topMods$CpG_Expr,nrow=1)
 mod_middle_labels <- grid.arrange(arrangeGrob(mod_middle,
                                               left=y.grob1,bottom=x.grob2))
 
-mod_bottom <- plot_grid(plotlist = topMods$Expr_diffpH,nrow=1)
+mod_bottom <- plot_grid(plotlist = topMods$Env_CpG,nrow=1)
 mod_bottom_labels <- grid.arrange(arrangeGrob(mod_bottom,
-                                              left=y.grob3,bottom=x.grob1))
+                                              left=y.grob2))
 
 top_legend <-  plot_grid(mod_top_labels,topMods$bars_legend,rel_widths = c(5,1))
 middle_bottom <- plot_grid(mod_middle_labels,mod_bottom_labels,nrow=2)
