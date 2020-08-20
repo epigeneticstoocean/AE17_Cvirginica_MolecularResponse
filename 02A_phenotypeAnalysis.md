@@ -10,8 +10,7 @@
 
 ## Data <a name="data"></a>
 
-* [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/Analyses/Phenotype)  
-* [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/)  
+[**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/)  
 
 ## Analysis 1 - Extra-pallial fluid all timepoints <a name="one"></a>
 
