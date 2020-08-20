@@ -22,7 +22,8 @@ Four of the top five modules associated with ΔpH (colors are randomly assigned 
 
 ## Tables 
 
-### [Table 1]() :
+### [Table 1]() : Gene ontology (GO) categories enriched in differentially responsive genes by treatment, summarized by molecular function (MF), biological process (BP), and cellular component (CC). 
+Up- and down-regulation refers to the change in gene expression in the high OA treatment relative to the control treatment (i.e., the GO categories enriched in up-regulated genes had higher gene expression under high OA compared to the control treatment). Similarly, hypomethylation indicates the GO category was enriched with CpG loci (DNAm) that were less methylated under high OA relative to the control treatment. Names in bold represent GO categories enriched at both time points. The full category name for “oxidoreductase activity *” is “oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen”.
 
 
 ## Supplemental
