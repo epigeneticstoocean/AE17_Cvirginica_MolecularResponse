@@ -1,0 +1,33 @@
+Gene Expression,,,,,
+"Summary Category
+",Day,Direction in OA Treatment,Name,"Delta Rank
+",P (adj)
+BP,9,Down regulated,signal transduction,-192,0.0058
+BP,9,Up regulated,biosynthetic process,235,0.0058
+BP,9,Up regulated,cellular nitrogen compound metabolic process ,164,0.0315
+BP,9,Down regulated,G protein-coupled receptor signaling pathway,-227,0.0315
+BP,9,Up regulated,DNA metabolic process ,336,0.0334
+BP,80,Down regulated,macromolecule modification,-374,<0.0001
+BP,80,Down regulated,dephosphorylation,-523,<0.0001
+BP,80,Down regulated,phosphorus metabolic process,-288,<0.0001
+BP,80,Up regulated,DNA metabolic process ,421,0.0008
+BP,80,Down regulated,protein metabolic process,-200,0.0012
+BP,80,Up regulated,cellular nitrogen compound metabolic process ,178,0.0054
+BP,80,Up regulated,DNA recombination,532,0.0211
+BP,80,Up regulated,glutamine family amino acid metabolic process,535,0.0281
+BP,80,Up regulated,glutamate biosynthetic process,1676,0.0443
+BP,80,Up regulated,dicarboxylic acid biosynthetic process,1237,0.0443
+BP,80,Up regulated,macromolecule biosynthetic process,263,0.0474
+CC,9,Down regulated,transcription factor complex ,-147,0.0170
+CC,9,Up regulated,ribosome,169,0.0431
+CC,9,Up regulated,intracellular non-membrane-bounded organelle,139,0.0454
+CC,80,Down regulated,transcription factor complex ,-159,0.0045
+CC,80,Down regulated,protein-containing complex,-105,0.0154
+MF,80,Up regulated,DNA binding,352,0.0245
+MF,80,Up regulated,RNA-DNA hybrid ribonuclease activity,1320,0.0245
+MF,80,Up regulated,oxidoreductase activity,219,0.0245
+MF,80,Up regulated,oxidoreductase activity *,321,0.0245
+MF,80,Up regulated,double-stranded DNA binding,905,0.0487
+DNA Methylation,,,,,
+BP,80,Hypomethylated,cellular modified amino acid biosynthetic process,-4437,0.0333
+CC,9,Hypomethylated,glutamyl-tRNA(Gln) amidotransferase complex,-8528,0.0179
