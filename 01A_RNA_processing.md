@@ -81,15 +81,15 @@ Command Line:
 ## Step 2 - Creating STAR index <a name="two"></a>
 
 ### Overview 
-STAR performing the mapping in two primary stages. First, you need to create an index which the actuals reads are mapped too. We are creating this index using the available genome on NCBI, `.fna` file, and annotating it with a gene anotations file, `.gtf` format. 
+Create a index for STAR mapping. This is done using a reference genome and gene annotations, which in this case were taken from NCBI. STAR prefers using a `gtf` rather than the `gff` gene annotation file format provided by NCBI, so we also provide a step for converting between file formats using the program `gffread`. 
 
-**Additional Thoughts and Performance**
+**Additional thoughts and performance**
 * This step only needs to be done once, unless the genome or gene annotations have been updated.
 * Indexing should be relatively quick on a cluster (<10min)
 
 **Inputs**
-* [Reference genome: GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
-* [Gene annotations](https://drive.google.com/drive/u/0/folders/1KBAm4L5K2ZQ5dUOUfryk0BaB7fcA1RuL)
+* [Reference genome and gene annotations : GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
+* 
 
 ### Step 2.1 - File conversion
 
@@ -97,6 +97,7 @@ Command line code for converting from `.gff` to `.gtf`:
 ```
 gffread my.gff -T -o my.gtf
 ```
+* `-T` flag needed for conversion from `.gff` to `.gtf` format.
 
 ### Step 2.2 - Create STAR index using oyster gene annotation file
 
@@ -141,19 +142,19 @@ Jul 15 12:30:12 ..... finished successfully
 ## Step 3 - Mapping with STAR <a name="three"></a>
 
 ### Overview
-STAR maps trimmed reads to the index created in the previous steps. 
+Map samples to reference genome with two-step STAR mapping protocol. 
 
 **Additional Thoughts and Performance**
 * This will likely take a long time and require extensive RAM (>30GB), so will likely need to be done on a computing cluster.
-* It would be a good idea to create a dettachable session via tmux as each sample takes ~2-3 hours to process.
+* It would be a good idea to create a dettachable session via tmux as each sample takes ~1-2 hours to process.
 
 **Input**: 
 
-* Sample Reads (trimmed and QCed)
-    * Stored as `.fq.gz` format
+* Post trimming and QC reads reads (trimmed and QCed)
+    * Files stored as `.fq.gz` format
     * Forward Read Example : `P1_17005.R1.fq.gz`
     * Reverse Read Example : `P1_17005.R2.fq.gz`
-* Index Folder (from previous step)
+* Reference index Folder (from previous step)
 
 ### **Step 3.1** : Start STAR mapping 1st Pass
 
@@ -218,6 +219,13 @@ Core function STAR 2nd pass:
 
 ## Step 4 - Running RSEM  <a name="four"></a>
 
+### Overview
+Performed transcript quantification with RSEM.
+
+**Additional Thoughts and Performance**
+* This will likely also take a long time and require extensive RAM (>30GB), so will likely need to be done on a computing cluster.
+* It would be a good idea to create a dettachable session via tmux as each sample takes ~3 hours to process.
+
 **Creating Index folder for RSEM**
 
 * Full Script : [`RSEM_createRefFromStar.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/04A_RSEM_createRefFromStar.sh)
@@ -249,16 +257,16 @@ rsem-calculate-expression --star --paired-end \
 ```
 ## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <a name="five"></a>
 
-**Description**  
+### Overview  
 
-Takes raw rsem count estimation matrix and filters out genes that have low coverage (<1 cpm in at least 5 individuals in at least one trt/time combination), and performs normalization and transformation steps using `EdgeR` and `limma` packages.
+Takes a raw RSEM count estimation matrix and filters out genes that have low coverage (<1 cpm in at least 5 individuals in at least one trt/time combination), and performs normalization and transformation steps using `EdgeR` and `limma` packages.
 
-* Full Script: [`05_filtering_CreatingDGEListObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/05_filtering_CreatingDGEListObj.R)
+* Full R Script: [`05_filtering_CreatingDGEListObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/05_filtering_CreatingDGEListObj.R)
 
-## Step 6 - Clustering gene expression data with WGNCA, and correlating phenotypic and environmental variables with gene clusters <a name="six"></a>
+## Step 6 - Clustering gene expression data for WGNCA <a name="six"></a>
 
-**Description**
+### Overview
   
-A weighted gene co-expression network analysis was performed to identify genes that exhibit similar expression patterns among individual oysters using the R package WGCNA (Langfelder and Horvath, 2008). We followed a standard WGCNA pipeline for clustering, association testing, and creating WGCNA objects. This analysis was performed on the 22 individuals that remained after excluding individuals that were identified as outliers in either the gene expression (17005) and DNA methylation (17099) data. First, a gene dissimilarity matrix was generated based on the log2-cpm gene expression data using first the adjacency function followed by the TOMsimilarity function in WGCNA. This step estimates the level of dissimilarity between each gene by considering expression across all individuals. Next, genes were hierarchically clustered based on dissimilarity using the function hclust and the ‘Ward.D2’ method for clustering (Murtagh and Legendre, 2014). There objects created hear were used in the analysis step to generate figure 7.
+Step clusters co-expressed genes and generate WGCNA objects which are used for downstream weighted co-gene expression network analysis. Used to create figure 7.
 
-* Full Script: [`06_CreatingWGCNAObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/06_CreatingWGCNAObj.R)
+* Full R Script: [`06_CreatingWGCNAObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/06_CreatingWGCNAObj.R)
