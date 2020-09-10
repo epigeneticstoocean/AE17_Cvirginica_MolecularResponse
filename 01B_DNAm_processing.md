@@ -20,26 +20,47 @@ This pipeline takes advantage of a genome mapper Bismark, which is capable of al
 
 ## Data <a name="data"></a>
 
-* [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/RNAseq)  
-* [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/)
+* [**Link to scripts**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src/MBDBS_seq)  
+* [**Link to data**](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data)
 * Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
 
 ## Brief Description and Literature on Required Tools and primary R packages <a name="description"></a>
 
 **Trimming and Quality Control**
 
-*TrimGalore!* - a  flexible read trimming tool for Illumina NGS data. Used by dDocent to trim raw RNAseq fragments and remove adapters.
+*TrimGalore!* - A flexible read trimming tool for Illumina NGS data.
 
-* [Github](https://github.com/timflutre/trimmomatic)
-* [Publication](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4103590/)
+* [Github](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)
+
+**Mapping**
+
+*Bismark* - Mapping tool wrapper for analysing bisulfite-treated data.
+
+*[Github](https://github.com/FelixKrueger/Bismark)
+
+*Bowtie2* - The actual mapper that is used by `Bismark`.
+
+*[Github](https://github.com/BenLangmead/bowtie2)
+
+**General Utility**
+
+*samtools* - A program for basic `bed` file manipulation.  
+
+*[Github](https://github.com/samtools/samtools)
 
 ---
 
 ## Step 1 - Trimming and Adapter Removal <a name = "one"></a>
 
-Remove reads with poor mapping quality and also cut off 10bp from both the 5' and 3' regions of either strand. This will remove any adapter sequence to improve downstream mapping. This trimming follows the recommendations of bismark when the library prep was down with the pico zymo kit.
+### Overview  
+Remove reads with poor mapping quality and also cut off 10bp from both the 5' and 3' regions of either strand. This will remove any adapter sequence to improve downstream mapping. This trimming follows the recommendations of bismark when the library prep was done with the pico zymo kit.
 
-* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/01_seq_quality_trim.sh)
+### Input
+
+* Raw reads downloaded from NCBI bioproject.
+
+### Code  
+* [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/01_seqQualityTrim.sh)
 
 Bash script for quality trimming:
 
@@ -58,18 +79,32 @@ trim_galore --paired --clip_r1 10  --clip_r2 10 \
 
 ## Step 2 - Create bisulfite treated reference genome <a name = "two"></a>
 
-Only need to do this once for all samples (takes a couple of minutes). 
+### Overview  
+Create bisulfite converted reference genome for mapping. 
+
+### Input
+
+* Reference genome (see RNAseq workflow for details on downloading and prepping this).
+
+### Code
 
 **Command Line**
 ```
 bismark_genome_preparation --bowtie2 --genomic_composition --parallel 10 --verbose /path/toGenomeFolder > bismark_genomePrepartion_log.txt
 ```
-
 ---
 
 ## Step 3 - Mapping with Bismark and Bowtie2 <a name = "three"></a>
 
+### Overview 
 The trimmed reads were mapped to the bisulfite treated reference genome (created in the previous step) in order to determine the raw counts of methylated to unmethylated cytosines at each locus. This step was saved as several outputs including a sorted .bam file and a compressed .txt file with each row as a unique CpG.
+
+### Input
+
+* Trimmed and QCed files from `Step 1`
+* Bisulfite converted genome from `Step 2`
+
+### Code
 
 **Core functions for single samples**
 
@@ -111,6 +146,8 @@ coverage2cytosine path/toMethylationExtractorOutput \
 
 * [Script that performing mapping,depublication,sorting,and methylation calls for all samples](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/02_bismarkMapping.sh)
 * [Script for creating full cytosine reports](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/03_cytosineReport.sh)
+
+**Disclaimer** Scripts here were hard coded and paths will need to be changed to match personal directories.
 
 ## Step 4 - Raw Matrices <a name = "four"></a>
 
