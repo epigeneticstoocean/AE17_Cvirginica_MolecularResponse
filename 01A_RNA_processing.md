@@ -71,6 +71,10 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 ## Step 1 - Trimming and Adapter Removal <a name = "one"></a>
 
+### Overview
+Step performs trimming and quality control step implemented in the program dDocent, which uses trimmomatic to perform the trimming step.
+
+Details [here](https://www.ddocent.com/UserGuide/)
 
 Command Line:
 ```
