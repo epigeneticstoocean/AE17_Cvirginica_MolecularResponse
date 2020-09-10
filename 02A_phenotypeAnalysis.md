@@ -21,7 +21,7 @@ A linear mixed model was used to determine the effect of the explanatory variabl
 
 * [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig1_EPFtimeseries.R)
 
-![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/figures/Figure1/Figure1_alt.png)
+![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/manuscript/figures/Figure1/figure1.png)
 
 ## Analysis 2 - Long term EPF pH and Calcification Response <a name="two"></a>
 
@@ -34,5 +34,5 @@ Another set of linear mixed effect models were used to examine the effect of eit
 
 * [Script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig2_EPFfinal_calcification.R)
 
-![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/figures/Figure2/Figure2.png)
+![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/manuscript/figures/Figure2/Figure2.png)
 
