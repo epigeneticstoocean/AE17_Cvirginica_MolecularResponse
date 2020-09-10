@@ -17,6 +17,6 @@ This repository is actively being updated with revisions while the paper is unde
 **Folders**
 * [*/data*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data) : Contains processed data files for analysis (raw sequence data available on NCBI).
 * [*/src*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src) : Scripts file.
-* [*/results*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/results) : Tables and Figures from manuscript and supplemental.
+* [*/results*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/results) : Analyses outputs and manuscript tables, figures, and supplemental.
 
 
