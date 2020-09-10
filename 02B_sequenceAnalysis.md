@@ -6,8 +6,8 @@
 
 **Analysis**
 1. [ Genome-wide analysis](#one)  
-  1A.[ Global median methylation analysis](#oneA)  
-  1B.[ Principal components analysis and discriminant analysis of principal components ](#oneB)  
+  1A.[ DNA Methylation](#oneA)  
+  1B.[ RNA Seq ](#oneB)  
 2. [ Differential molecular response analysis](#two)  
   2A. [ Identification of differentially methylated loci](#twoA)  
   2B. [ Identification of differentially expressed genes](#twoB)  
@@ -23,18 +23,36 @@
   
 Reference genome: from NCBI ([GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))  
 
-## Genome-wide analysis ([gene expression](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig4_geneExpression.R), [DNA methylation](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig3_DNAm.R)) <a name="one"></a>
+## Genome-wide analysis <a name="one"></a>
 
-### Global median methylation analysis <a name="oneA"></a>
-A linear model including treatment and time and feature (i.e., exon, intron, and intergenic region) as explanatory factors was used to examine global patterns in median methylation among treatments and across time. Only CpG loci with at least 5x coverage for all samples were included. 
+The gene expression in the PCA was based on the post-filtered expression level of genes (in columns) for each individual (in rows). Gene expression level was calculated as counts per million using the cpm function from the R package `edgeR` (Robinson et al., 2010) and log2 transformed (i.e., log2-cpm). The DNA methylation PCA was based on all CpG loci located within gene bodies with at least 5x total coverage (in columns) for each individual (in rows). A PERMANOVA to test the null hypothesis of no effect of treatment, time, or their interaction on global gene expression and DNA methylation patterns. The PERMANOVA was based on the Manhattan distance using the adonis function in the R package `vegan` (v2.5-5; Dixon, 2003)
 
-### Principal components analysis and discriminant analysis of principal components <a name="oneB"></a>  
+The discriminant analysis of principal components (DAPC) was performed with the R package `adegenet` (Jombart et al., 2010), using the same transcriptomic and methylomic datasets described above for the PCA. The function dapc was used to generate a discriminant function that maximized differences between treatments on day 9 samples, then we predicted where samples from day 80 should fall along the discriminant function using the predict function to determine if genome-wide variation due to OA was maintained through time. 
 
-A principal components analysis (PCA) was used to visualize differences amongst treatments and time points in both global gene expression and gene body DNA methylation patterns. The gene expression PCA was based on the post-filtered expression level of genes (in columns) for each individual (in rows). Gene expression level was calculated as counts per million using the cpm function from the R package edgeR (Robinson et al., 2010) and log2 transformed (i.e., log2-cpm). The DNA methylation PCA was based on all CpG loci located within gene bodies with at least 5x total coverage (in columns) for each individual (in rows).  
+Lastly, we further examined the hypothesis that OA-induced changes in global DNA methylation by using a linear model to look at the effect of treatment, time, and feature (i.e., exon, intron, and intergenic region) on global methylation. Global methylation in this case was summarized as the median methylation across all CpGs within a feature for each sample.  
 
-  We used a PERMANOVA to test the null hypothesis of no effect of treatment, time, or their interaction on global gene expression and DNA methylation patterns. The PERMANOVA was based on the Manhattan distance using the adonis function in the R package vegan (v2.5-5; Dixon, 2003).  
-  
-  To further investigate the specific effect of OA on genome-wide variation in both differential gene expression and DNA methylation, a discriminant analysis of principal components (DAPC) was performed with the R package adegenet (Jombart et al., 2010), using the same transcriptomic and methylomic datasets described above for the PCA. In brief, this method defines a discriminant function that maximally differentiates between two or more categories based on multidimensional sample data. Here, a DAPC was used to generate a discriminant function that maximized differences between treatments in day 9 samples using the function dapc, then we predicted where samples from day 80 should fall along the discriminant function using the predict function to determine if genome-wide variation due to OA was maintained through time.  
+### DNA methylation (Figure 3) <a name="oneA"></a>
+
+* [script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig3_DNAm.R) 
+
+![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/manuscript/figures/Figure3/Figure3.png)
+
+### RNA-Seq (Figure 4) <a name="oneB"></a>
+
+* [script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig4_geneExpression.R) 
+
+![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/manuscript/figures/Figure4/Figure4.png)
+
+## Differential Expression and Methylation <a name="two"></a>
+
+**Differential DNA Methylation** : 
+
+
+
+**Differential Gene Expression** : 
+
+* [script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_diffExpression.R)
+
 
 ## Differential molecular response analysis <a name="two"></a>  
 
