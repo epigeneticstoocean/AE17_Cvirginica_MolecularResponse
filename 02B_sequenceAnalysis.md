@@ -8,12 +8,11 @@
 1. [ Genome-wide analysis](#one)  
   1A.[ DNA Methylation](#oneA)  
   1B.[ RNA Seq ](#oneB)  
-2. [ Differential molecular response analysis](#two)  
-  2A. [ Identification of differentially methylated loci](#twoA)  
-  2B. [ Identification of differentially expressed genes](#twoB)  
-3. [ Gene co-expression network analysis](#three)  
-4. [ Functional enrichment analysis (GOMWU)](#four)  
-5. [ Gene-level characterization of gene expression and DNA methylation](#five)  
+2. [ Differential molecular response analysis](#two)
+3. [ Gene-level characterization of gene expression and DNA methylation](#three) 
+4. [ Gene co-expression network analysis](#four)  
+5. [ Functional enrichment analysis (GOMWU)](#five)  
+ 
 
 ---
 
@@ -93,7 +92,7 @@ A weigheted gene co-expression network analysis was performed to identify genes 
 
 ![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/manuscript/figures/Figure7/Figure7.png)
 
-## Functional enrichment analysis (Table 1) <a name="four"></a>  
+## Functional enrichment analysis (Table 1) <a name="five"></a>  
 
 A functional enrichment test was conducted with GO-MWU, a rank-based gene enrichment method developed by (Wright et al., 2015), to identify gene ontology (GO) categories enriched among genes that are differentially regulated or methylated between treatments at each time point. We performed this analysis separately for each time point using the log2-fold change in gene expression and the difference in mean methylation among treatments. Mean methylation was calculated as the mean among all CpG loci within a gene across all individuals within a particular treatment and time point. Only genes with at least 5 CpG loci were considered for the analysis to ensure mean methylation estimates were based on genes where we had at least moderate CpGs coverage. Importantly, GO-MWU can handle a variety of differentiation metrics (e.g., log2-fold change in expression) and considers all genes, not just those that are significantly differentially expressed or methylated. This enables detection of GO categories enriched with responsive genes even when there is limited evidence of individually differentially expressed or methylated genes. GO-MWU scripts and the gene ontology database were downloaded from the GO-MWU github repository (https://github.com/z0on/GO_MWU).
 
