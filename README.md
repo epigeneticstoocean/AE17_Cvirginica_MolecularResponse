@@ -1,8 +1,5 @@
 # Script and Analyses Repository
 
-### **Disclaimer**  
-This repository is actively being updated with revisions while the paper is under review. As a result, some sections of this repository may not represent the final analysis included in the paper or may only have partial descriptions.
-
 **Repository for paper**: Ocean acidification induces subtle shifts in gene expression and DNA methylation in the tissue of calcification
 
 **Sequence data available at NCBI**  
