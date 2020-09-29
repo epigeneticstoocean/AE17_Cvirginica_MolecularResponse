@@ -5,8 +5,8 @@ Summaries of RNAseq data. Files were generated following the pipeline described 
 
 ### Folder
 
-* [dDocent](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq/dDocent) : Folder with `dDocent` parameters.
-
+* [`/dDocent`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq/dDocent) : Folder with `dDocent` parameters.
+* [`/RSEM_outputs`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq/RSEM_output) : Sample RSEM transcript quantification outputs.
 ### Files
 
 * [/RSEM_gene_Summary.Rdata](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_Summary.Rdata) : RSEM transcript quantification `RData` file (all counts).
