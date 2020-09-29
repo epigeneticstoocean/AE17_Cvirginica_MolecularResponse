@@ -304,6 +304,10 @@ Step clusters co-expressed genes and generate WGCNA objects which are used for d
 * Full R Script: [`06_CreatingWGCNAObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/06_CreatingWGCNAObj.R)
 
 **Input**
-* []()
+* [`/RNA_gene_postVoomAndNormalization_DGEListObj.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/RNA/RNA_gene_postVoomAndNormalization_DGEListObj.RData) : DGEListObj of gene expression data post-normalization with `limma`.
+* [`/AE17_RNAmetaData.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/meta/AE17_RNAmetaData.RData) : Sequenced sample meta data file.
 
 **Output**
+* [`/RNA_Limma_Expression_Data_forWGCNA.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/RNA/RNA_Limma_Expression_Data_forWGCNA.RData) 
+* [`/RNA_Limma_networkConstruction_WGCNA.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/RNA/RNA_Limma_networkConstruction_WGCNA.RData)
+* [`/RNA_Limma_WGCNA_ModuleMembership.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/RNA/RNA_Limma_WGCNA_ModuleMembership.RData)
