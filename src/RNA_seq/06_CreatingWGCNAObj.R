@@ -28,12 +28,12 @@ workingDir = "/home/downeyam/Github/AE17_Cvirginica_MolecularResponse"
 setwd(workingDir)
 
 # Meta data
-traitData <- readRDS("data/meta/metadata_20190811.RData")
+traitData <- readRDS("data/meta/AE17_RNAmetaData.RData")
 traitData_sans17005 <-  traitData[traitData$ID != "17005",]
 dim(traitData_sans17005)
 names(traitData_sans17005)
 #Read in the gene expression data
-dataExp <- readRDS("data/Analysis/RNA_gene_postVoomAndNormalization_DGEListObj.RData")
+dataExp <- readRDS("results/RNA/RNA_gene_postVoomAndNormalization_DGEListObj.RData")
 gc <- dataExp$E
 gc_sans17005 <- gc[,traitData$ID != "17005"]
 # Removing 17005 outlier
@@ -80,14 +80,14 @@ plotDendroAndColors(sampleTree2, traitColors,
                     groupLabels = names(traitD), 
                     main = "Sample dendrogram and trait heatmap")
 dev.off()
-save(datExpr,traitD, file = "data/Analysis/Limma_Expression_Data_forWGCNA.RData")
+save(datExpr,traitD, file = "results/RNA/RNA_Limma_Expression_Data_forWGCNA.RData")
 
 #### Step 2 : Clustering ####
 # Make sure to set working directory were where the RData file is located
 library(WGCNA)
 enableWGCNAThreads()
 # Load the data saved in the first part
-lnames = load(file = "data/Analysis/Limma_Expression_Data_forWGCNA.RData");
+lnames = load(file = "results/RNA/RNA_Limma_Expression_Data_forWGCNA.RData");
 # The variable lnames contains the names of loaded variables.
 lnames
 
@@ -192,12 +192,12 @@ colorOrder = c("grey", standardColors(50));
 moduleLabels = match(moduleColors, colorOrder)-1;
 MEs = mergedMEs;
 # Save module colors and labels for use in subsequent parts
-save(MEs, moduleLabels, moduleColors, geneTree, file = "Limma_networkConstruction_WGCNA.RData")
+save(MEs, moduleLabels, moduleColors, geneTree, file = "results/RNA/RNA_Limma_networkConstruction_WGCNA.RData")
 
 #### Extract Module Membership values for GO-MWU ####
 
-lnames = load(file = "data/Analysis/RNA_Limma_Expression_Data_forWGCNA.RData")
-lnames = load(file = "data/Analysis/RNA_Limma_networkConstruction_WGCNA.RData")
+lnames = load(file = "results/RNA/RNA_Limma_Expression_Data_forWGCNA.RData")
+lnames = load(file = "results/RNA/RNA_Limma_networkConstruction_WGCNA.RData")
 MEs_all = moduleEigengenes(datExpr, moduleColors)
 nSamples = nrow(datExpr)
 datME <- moduleEigengenes(datExpr,moduleColors)$eigengenes
@@ -228,9 +228,9 @@ for( i in 1:length(topDiffpHNames)){
         temp$Mod_Membership[!temp$gene_id %in% gl] <- 0
         temp$Mod_Membership[temp$gene_id %in% gl] <- abs(temp$Mod_Membership[temp$gene_id %in% gl])
         moduleMemberList[[i]] <- temp
-        write.csv(temp,paste0("data/Analysis/RNA_Limma_WGCNA_ModuleMembership_",
+        write.csv(temp,paste0("results/RNA/RNA_Limma_WGCNA_ModuleMembership_",
                          substring(topDiffpHNames[i],3),".csv"),row.names = FALSE)
 }
 names(moduleMemberList) <- substring(topDiffpHNames,3)
         
-saveRDS(moduleMemberList,"data/Analysis/RNA_Limma_WGCNA_ModuleMembership.RData")
+saveRDS(moduleMemberList,"results/RNA/RNA_Limma_WGCNA_ModuleMembership.RData")
