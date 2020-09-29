@@ -41,7 +41,7 @@ This pipeline takes advantage of a genome mapper STAR, which performs transcript
 
 *gffread* - Program to add in the conversion between different gene annotation file structures. Used here to convert from the `.gff` file format provided by NCBI to `.gtf` (preferred by STAR mapper).
 
-* [Github](https://github.com/gpertea/gffread) : converts a `.gff` file format to `.gtf`
+* [Github](https://github.com/gpertea/gffread)
 
 **Mapping**
 
@@ -76,6 +76,9 @@ Step performs trimming and quality control step implemented in the program dDoce
 
 Details [here](https://www.ddocent.com/UserGuide/)
 
+**Input**
+* Files from [BioProject](https://www.ncbi.nlm.nih.gov/bioproject/594029)
+
 Command Line:
 ```
 ./dDocent RNA.config
@@ -93,7 +96,11 @@ Create a index for STAR mapping. This is done using a reference genome and gene 
 
 **Inputs**
 * [Reference genome and gene annotations : GCA_002022765.4 C_virginica-3.0](https://www.ncbi.nlm.nih.gov/genome/?term=crassostrea+virginica))
-* 
+* [reference genome files used in this pipeline](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/references/compressed/GCF_002022765.2_C_virginica-3.0_rna_from_genomic.tar.xz)
+* [gff Annotation file used in this pipeline](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/references/compressed/gff_002022765.2_CV_3.0.tar.xz)
+
+**Output**
+* [gtf file created by conversion step](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/references/compressed/gff_002022765.2_CV_3.0.tar.xz)
 
 ### Step 2.1 - File conversion
 
@@ -259,6 +266,18 @@ rsem-calculate-expression --star --paired-end \
 /path/toRSEM_reference \
 /path/toOutputFolder
 ```
+**Combine Sample Transcript Files into Single Matrix**
+
+** Full Script : [`/01B_RSEM_countMatrix.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/01B_RSEM_countMatrix.R)
+
+**Outputs**
+
+* [`/RSEM_outputs`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq/RSEM_output) : Folder of sample RSEM transcript quantification outputs.
+* [/RSEM_gene_Summary.Rdata](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_Summary.Rdata) : RSEM transcript quantification `RData` file (all counts).
+* [/RSEM_gene_EstCount.csv](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_EstCount.csv) : Estimated counts from RSEM
+* [/RSEM_gene_FPKM.csv](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_FPKM.csv) : FPKM counts from RSEM
+* [/RSEM_gene_TPM.csv](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_TPM.csv) : TPM counts from RSEM
+
 ## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <a name="five"></a>
 
 ### Overview  
