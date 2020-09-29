@@ -1,4 +1,4 @@
-# Script and Analyses Repository
+# Data, Script, and Analyses Repository
 
 **Repository for paper**: Ocean acidification induces subtle shifts in gene expression and DNA methylation in the tissue of calcification
 
