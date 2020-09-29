@@ -273,10 +273,10 @@ rsem-calculate-expression --star --paired-end \
 **Outputs**
 
 * [`/RSEM_outputs`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/RNAseq/RSEM_output) : Folder of sample RSEM transcript quantification outputs.
-* [/RSEM_gene_Summary.Rdata](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_Summary.Rdata) : RSEM transcript quantification `RData` file (all counts).
-* [/RSEM_gene_EstCount.csv](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_EstCount.csv) : Estimated counts from RSEM
-* [/RSEM_gene_FPKM.csv](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_FPKM.csv) : FPKM counts from RSEM
-* [/RSEM_gene_TPM.csv](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_TPM.csv) : TPM counts from RSEM
+* [`/RSEM_gene_Summary.Rdata`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_Summary.Rdata) : RSEM transcript quantification `RData` file (all counts).
+* [`/RSEM_gene_EstCount.csv`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_EstCount.csv) : Estimated counts from RSEM
+* [`/RSEM_gene_FPKM.csv`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_FPKM.csv) : FPKM counts from RSEM
+* [`/RSEM_gene_TPM.csv`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_TPM.csv) : TPM counts from RSEM
 
 ## Step 5 - Filtering, Creating DGEList Object, and Normalization (with limma-voom) <a name="five"></a>
 
@@ -286,6 +286,15 @@ Takes a raw RSEM count estimation matrix and filters out genes that have low cov
 
 * Full R Script: [`05_filtering_CreatingDGEListObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/05_filtering_CreatingDGEListObj.R)
 
+**Inputs**
+* [`/RSEM_gene_Summary.Rdata`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/RNAseq/RSEM_gene_Summary.Rdata) : RSEM transcript quantification `RData` file (all counts).
+* [`STAR_gnomon_tximportGeneFile.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/references/STAR_gnomon_tximportGeneFile.RData) : Transcript annotation file.
+* [`/AE17_RNAmetaData.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/meta/AE17_RNAmetaData.RData) : Sequenced sample meta data file.
+
+**Outputs**
+* [`/RNA_gene_preNormalization_DGEListObj.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/RNA/RNA_gene_preNormalization_DGEListObj.RData) : DGEListObj of gene expression data prior to normalization with `limma`.
+* [`/RNA_gene_postVoomAndNormalization_DGEListObj.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/RNA/RNA_gene_postVoomAndNormalization_DGEListObj.RData) : DGEListObj of gene expression data post-normalization with `limma`.
+
 ## Step 6 - Clustering gene expression data for WGNCA <a name="six"></a>
 
 ### Overview
@@ -293,3 +302,8 @@ Takes a raw RSEM count estimation matrix and filters out genes that have low cov
 Step clusters co-expressed genes and generate WGCNA objects which are used for downstream weighted co-gene expression network analysis. Used to create figure 7.
 
 * Full R Script: [`06_CreatingWGCNAObj.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/RNA_seq/06_CreatingWGCNAObj.R)
+
+**Input**
+* []()
+
+**Output**
