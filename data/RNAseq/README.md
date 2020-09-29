@@ -1,7 +1,7 @@
 
 ### RNAseq Data
 
-Summaries of RNAseq data. Files were generated following the pipeline described [`HERE`](). Generally, these files were created using `Trimmomatic`, `STAR`, and `RSEM` for the trimming, aligning, and quantification steps, respectively.
+Summaries of RNAseq data. Files were generated following the pipeline described [`HERE`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01A_RNA_processing.md). Generally, these files were created using `Trimmomatic`, `STAR`, and `RSEM` for the trimming, aligning, and quantification steps, respectively.
 
 ### Folder
 
