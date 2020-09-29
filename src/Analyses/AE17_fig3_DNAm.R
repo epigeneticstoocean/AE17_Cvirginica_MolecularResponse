@@ -27,7 +27,7 @@ meta <- meta[meta$ID != "17099",] # need to remove individual 17099
  # Contains counts of CpGs by the different primary subsets (all,those with coverage of >= 5,
  # those from the different DML comparisons) among exons,introns, and intergenic regions (currently didn't 
  # do anything more than those groups)
-sumTable <- read.csv("data/Analysis/DNAm_20200129_AllCpGAmongFeaturesSummaryTable.csv")
+sumTable <- read.csv("results/DNAm/DNAm_20200129_AllCpGAmongFeaturesSummaryTable.csv")
 sumTable_rev <- sumTable[sumTable$feature != "Gene",] # Remove gene in this case because it the same as introns + exons
 # Restructuring the table for plotting
 sumTable_rev$feature <- factor(sumTable_rev$feature,levels=c("Exon","Intron","Intergenic" ))
@@ -38,7 +38,7 @@ levels(sumTable_rev$category) <- c("CpGs (all)","CpGs (5x)",
 ### All CpGs by feature ###
 # Example: meth$mC$exon would retrieve a table for
 #          the methylated cytosine counts (mC) within exons 
-meth <- readRDS("data/Analysis/DNAm_20200202_AllCountsList_cov5_byFeature.RData")
+meth <- readRDS("results/DNAm/DNAm_20200202_AllCountsList_cov5_byFeature.RData")
 # total Count data for genes
 meth_total_gene <- meth$tC$gene[,2:24] # remove first column which has coordinate information
 sumCountMethylation_gene <- colSums(meth_total_gene,na.rm = TRUE)
@@ -69,9 +69,6 @@ levels(median_dfnoGene$feature) <- c("Exon","Intron","Intergenic")
 rm(meth)
 
 methByGene <-  readRDS("data/MBDBS_seq/20200130_CpGbyGeneSummary/gene_CpGcoverageSummary.RData")
-sum(is.na(methByGene$cov5_count))
-dim(methByGene)
-head(methByGene)
 
 #### Figure Three ####
 
@@ -208,11 +205,11 @@ legend_dapc <- get_legend(
 # First column of figure 3 
 # plot 1 - cpg summary by feature for different subsets
 # plot 2 - median methylation by treatment level
-first <- plot_grid(P1,P2,labels=c("A","B"),ncol=1)
+first <- plot_grid(P1,P2,labels=c("A","D"),ncol=1)
 # Second column of figure 3
 second <- plot_grid(pca_plots[[2]],
                     dapc_plots[[2]]+ theme(legend.position="none"),
-                    labels=c("C","D"),ncol=1)
+                    labels=c("B","C"),ncol=1)
 # Third column - legend
 third <- plot_grid(legend,legend_dapc,ncol=1)
 second_third <- plot_grid(second,third,rel_widths = c(3, 1.5))
@@ -222,8 +219,8 @@ right_column <- plot_grid(second_third,NULL,labels = c("","E"),ncol=1)
 # Then add legend (adjusting for correct widths)
 final_1 <- plot_grid(first,right_column,ncol=2)
 final_1
-#ggsave(plot=final_1,filename = "results/figures/Figure3/Fig3_final.png")
-#ggsave(plot=final_1,filename = "results/figures/Figure3/Fig3_final.pdf")
+#ggsave(plot=final_1,filename = "results/manuscript/figures/Figure3/Fig3_final.png")
+#ggsave(plot=final_1,filename = "results/manuscript/figures/Figure3/Fig3_final.pdf")
 
 ## Final figure with DML venn diagram created in inkscape
 
@@ -238,5 +235,5 @@ dapc_col <- plot_grid(dapc_plots[[1]]+ theme(legend.position="none"),
                       ncol=1,labels=c("B","D","F","H"))
 final_gw_supp <- plot_grid(pca_col,legend,dapc_col,legend_dapc,rel_widths = c(3,1,3,1),ncol=4)
 final_gw_supp
-#ggsave(final_gw_supp,filename="results/figures/supp_GW_DNAm.png")
-#ggsave(final_gw_supp,filename="results/figures/supp_GW_DNAm.pdf")
+#ggsave(final_gw_supp,filename="results/manuscript/Supp/figures/supp_GW_DNAm.png")
+#ggsave(final_gw_supp,filename="results/manuscript/Supp/figures/supp_GW_DNAm.pdf")

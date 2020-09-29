@@ -37,13 +37,13 @@ meta_original <- readRDS("data/meta/metadata_20190811.RData")
 meta <- meta_original[meta_original$ID != "17099",]
 
 # Read in Gene Expression Matrix
-ge<-readRDS("data/Analysis/RNA_gene_postVoomAndNormalization_DGEListObj.RData")
+ge<-readRDS("results/RNA/RNA_gene_postVoomAndNormalization_DGEListObj.RData")
 ge_counts <- ge$E # Extract just the counts
 ge_counts <- ge_counts[,colnames(ge_counts) != "17099"] # Remove problematic individual 
 ge_counts <- ge_counts[,colnames(ge_counts) != "17005"] # Remove problematic individual 
 
 # Read in DNA Methylation Data for Gene Bodys
-dnam <- readRDS("data/Analysis/DNAm_20200202_AllCountsList_cov5_byFeature.RData")
+dnam <- readRDS("results/DNAm/DNAm_20200202_AllCountsList_cov5_byFeature.RData")
 dnam <-dnam$beta$gene # Only going to look at the beta (dna methylation value) for genes
 dnam <- as.matrix(dnam[,2:ncol(dnam)]) # Change data into matrix 
 dnam[is.na(dnam)] <- 0
@@ -51,11 +51,11 @@ class(dnam) <- "numeric"
 dnam <- dnam[,colnames(dnam) != "17005"] # Remove problematic individual 
 
 # Gene Atribute, Expression and Methylation Summary Table
-mat <- readRDS("data/Analysis/Multi_geneSummaryReduced.RData")
+mat <- readRDS("results/Multi/Multi_geneSummaryReduced.RData")
 # We have overlapping expression and DNA Methylation data for 9626 genes
 
 # Read in list of significant DMLs
-dmls <- read.csv("data/Analysis/DNAm_methylkit_dm50_q01_sigSummaryTable.csv")
+dmls <- read.csv("results/DNAm/DNAm_methylkit_dm50_q01_sigSummaryTable.csv")
 dmls <- dmls[dmls$X1 == "DML",]
 dmls$label <- paste0(dmls$chr,"_",dmls$gene_str,"_",dmls$gene_end) 
 dmls_9 <- dmls[dmls$X2 == "tp9",c(35,10,17,30)]
@@ -181,7 +181,7 @@ summary(lm(gene_summary$d80_ge~gene_summary$d80_dnam))
 #### Final Figure ####
 plot1 <- plot_grid(p1_nolab,p2_nolab,ncol=2)
 plot2 <- plot_grid(pG_9_nolab,pG_80_nolab,ncol=2)
-x.grob1 <- textGrob("DMLs (difference %)", 
+x.grob1 <- textGrob("Differential Methylated Loci (difference %)", 
                     gp=gpar(col="black", fontsize=15))
 x.grob2 <- textGrob("DNA Methylation (difference %)", 
                     gp=gpar(col="black", fontsize=15))

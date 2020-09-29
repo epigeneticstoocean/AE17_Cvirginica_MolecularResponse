@@ -25,19 +25,24 @@ col_perm <- c(pal[1:2],pal[5:6],pal[12])
 setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/")
 
 ### Meta data ###
-model_original<-readRDS("data/meta/metadata_20190811.RData")
-model <- model_original[model_original$ID != "17005",]
+model_original<-read.csv("data/Phenotype/CompletePhenotype_final2020.csv",stringsAsFactors = FALSE)
+sampleList<-readRDS("data/meta/metadata_20190811.RData")
+model <- sampleList[sampleList$ID != "17005",]
 m_final <- model[model$ID != "17099",]
+mo <- model_original[model_original$ID %in% m_final$ID,]
+m_final$EPF_pH <- mo$EPF_pH_Total
+m_final$diff_pH <- mo$EPF_pH_Total-mo$pH_Total_2W
+
 ref <- readRDS("data/references/CDS_wGoTerms_GeneLOC.RData")
 ref <- ref[!duplicated(ref$gene_id),]
 
 ### Module Gene Expression Data ###
 # Files from the WGCNA R script (run on separately on a computing cluster)
 # Load the expression and trait data saved in the first part
-lnames = load(file = "data/Analysis/RNA_Limma_Expression_Data_forWGCNA.RData");
+lnames = load(file = "results/RNA/Limma_Expression_Data_forWGCNA.RData");
 #The variable lnames contains the names of loaded variables.
 # Load network data saved in the second part.
-lnames = load(file = "data/Analysis/RNA_Limma_networkConstruction_WGCNA.RData");
+lnames = load(file = "results/RNA/RNA_Limma_networkConstruction_WGCNA.RData");
 # Number of genes
 nGenes = ncol(datExpr)
 # Number of samples
@@ -63,7 +68,7 @@ modList <- list(datME,moduleColors,modTrait_P,modTrait_corr)
 # by a single individual, so I decided to use the second and third ranked modules instead.
 # Selecting 2 and 3 top candidates for diff. pH
 modTrait_P[order(modTrait_P$diff_pH),]
-topDiffpHNames <- rownames(modTrait_P)[order(modTrait_P$diff_pH)][2:5]
+topDiffpHNames <- rownames(modTrait_P)[order(modTrait_P$diff_pH)][c(2:4,8)]
 # Selecting best candidate for Treatment
 #topTreatmentNames <- rownames(modTrait_P)[order(modTrait_P$Treatment)][1]
 # Combining targets into single vector
@@ -80,11 +85,11 @@ cpg_label <- getData(cpg)[,c(1,2)]
 cpg_beta <- data.frame(cpg_methyl/cpg_t)
 # Removing 17099 which had poor CpG coverage and 17005 which was an outlier for
 # gene expression
-colnames(cpg_beta) <- model_original$ID[model_original$ID != "17099"]
+colnames(cpg_beta) <- sampleList$ID[sampleList$ID != "17099"]
 cpg_beta$cpg_pos <- as.character(paste0(cpg_label$chr,"_",cpg_label$start))
-cpg_beta <- cpg_beta[,model_original$ID != "17005"]
+cpg_beta <- cpg_beta[,sampleList$ID != "17005"]
 gene_LOC_simple <- gene_LOC[,c(4,8)]
-join_cpg <- left_join(gene_LOC_simple,cpg_beta)
+join_cpg <- left_join(gene_LOC_simple,cpg_beta,by = "cpg_pos")
 
 join_cpg %>% group_by(gene_id) %>%
   summarise_if(is.numeric, mean, na.rm = TRUE) -> cpg_geneSummary
@@ -315,10 +320,9 @@ moduleSummary <- function(meta,targetMods,mod,cpgs){
 
 # Top three modules 
 topMods <- moduleSummary(m_final,topModuleNames,modList,cpgs)
-saveRDS(topMods,"data/Analysis/WGCNA_topModSummary2.RData")
+saveRDS(topMods,"results/WGCNA/WGCNA_topModSummary.RData")
 allMods <- moduleSummary(m_final,rownames(modTrait_P),modList,cpgs)
-allMods$Env_CpG$paleturquoise
-saveRDS(allMods,"data/Analysis/WGCNA_allModSummary2.RData")
+saveRDS(allMods,"results/WGCNA/WGCNA_allModSummary.RData")
 # Might take some time to calculate
 
 #### Single Table Summary ####
@@ -352,22 +356,23 @@ moduleTableSummary <- function(modSum) {
 ### Creating table summary of modules
 
 topMod_tableSummary <- moduleTableSummary(topMods)
-#saveRDS(topMod_tableSummary,"data/Analysis/WGCNA_topModTableSummary.RData")
+saveRDS(topMod_tableSummary,"results/WGCNA/WGCNA_topModTableSummary.RData")
+write.csv(topMod_tableSummary,"results/WGCNA/WGCNA_topModTableSummary.csv",row.names = FALSE)
 allMod_tableSummary <- moduleTableSummary(allMods)
-#saveRDS(allMod_tableSummary,"data/Analysis/WGCNA_allModTableSummary.RData")
-#write.csv(allMod_tableSummary,"data/Analysis/WGCNA_allModTableSummary.csv",row.names = FALSE)
+saveRDS(allMod_tableSummary,"results/WGCNA/WGCNA_allModTableSummary.RData")
+write.csv(allMod_tableSummary,"results/WGCNA/WGCNA_allModTableSummary.csv",row.names = FALSE)
 
 ### READIN DATA ####
 setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/")
-data <- readRDS("data/Analysis/WGCNA_allModTableSummary2.RData")
-data <- readRDS("data/Analysis/WGCNA_allModTableSummary.RData")
-topMods <-  readRDS("data/Analysis/WGCNA_topModSummary2.RData")
+data <- allMod_tableSummary
+data <- readRDS("results/WGCNA/WGCNA_allModTableSummary.RData")
+topMods <-  readRDS("results/WGCNA/WGCNA_topModSummary.RData")
 
 out2<-topMods$annot
 ex<-out2$cyan
 # Annotation Files for top candidates
 for(i in 1:length(topMods$annot)){
-  write.csv(topMods$annot[i],paste0("data/Analysis/WGCNA_module_",names(topMods$annot)[i],"_annotation.csv"),row.names = FALSE)
+  write.csv(topMods$annot[i],paste0("results/WGCNA/WGCNA_module_",names(topMods$annot)[i],"_annotation.csv"),row.names = FALSE)
 }
 
 #### Figures ####
@@ -380,9 +385,9 @@ y.grob2 <- textGrob("DNA Methylation (%)",
                     gp=gpar(col="black", fontsize=15), rot=90)
 x.grob2 <- textGrob("DNA Methylation (%)",
                     gp=gpar(col="black", fontsize=15))
-y.grob3 <- textGrob(expression(paste(Delta," pH (NBS)")),
+y.grob3 <- textGrob(expression(paste(Delta," pH (Total)")),
                     gp=gpar(col="black", fontsize=15), rot=90)
-x.grob3 <- textGrob(expression(paste(Delta," pH (NBS)")),
+x.grob3 <- textGrob(expression(paste(Delta," pH (Total)")),
                     gp=gpar(col="black", fontsize=15))
 
 ## Add titles

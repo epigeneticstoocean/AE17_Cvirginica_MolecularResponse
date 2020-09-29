@@ -11,7 +11,9 @@ library(lmerTest)
 library(car)
 library(RColorBrewer)
 pal <- brewer.pal(n = 12, name = 'Paired')
+yellow <- brewer.pal(n=9,name = 'YlOrRd')[4]
 col_perm <- c(pal[1:2],pal[5:6],pal[12])
+col_perm <- c(pal[1:2],pal[5:6],yellow)
 # Located in src Analysis/Phenotype folder, will need to set full working directory or setwd()
 setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse")
 source("src/Accessory/basicR_functions.R")
@@ -22,7 +24,13 @@ bw <- bw[bw$CompleteRecord==1,] # Trims data to only samples with bouyant weight
 table(bw$pCO2,bw$Timepoint)
 bw$pCO2_fac <- as.factor(bw$pCO2) # Turn treatment into a factor
 bw$Timepoint_fac <- as.factor(bw$Timepoint) # Turn time point into a factor
+bw$EPF_pH <- bw$EPF_pH_Total
 bw$EPF_envAdj <- bw$EPF_pH-bw$pH_NBS_2W # Calculate delta pH
+
+
+#### Water Chemistry Data ####
+wc <- read.delim("data/water_chem/AE17_weeklyExposure_final2020.csv",sep=",",
+                 stringsAsFactors = FALSE)
 
 #### Analysis #####
 
@@ -77,9 +85,9 @@ summary(calVspH_simple)
 
 #### Panel A - EPF pH measured end trend ####
 # Mean environmental pH
-c_mean <- mean(pheno_red$Tank_pH[pheno_red$pCO2_fac==400])
-oa_900_mean <- mean(pheno_red$Tank_pH[pheno_red$pCO2_fac==900])
-oa_2800_mean <- mean(pheno_red$Tank_pH[pheno_red$pCO2_fac==2800])
+c_mean <- mean(wc$pH_Total[wc$PCO2 == 550])
+oa_900_mean <- mean(wc$pH_Total[wc$PCO2 == 1000])
+oa_2800_mean <- mean(wc$pH_Total[wc$PCO2 == 2800])
 
 #Statistical Model
 tHSD <- TukeyHSD(aov(EPF_pH ~ pCO2_fac,data=bw))
@@ -93,16 +101,17 @@ plot.labels <- names(Tukey.labels[['Letters']])
 plot.labels.df <- data.frame(plot.labels,tlevels=Tukey.labels)
 labels.df <- merge(plot.labels.df,agg, by.x = 'plot.labels', by.y = 'pCO2_fac', sort = FALSE)
 names(labels.df) <- c("pCO2_fac","labels","height")
+labels.df$height <- labels.df$height + .05
 
-plot(bw$EPF_pH~bw$pCO2_fac)
 pA <- ggplot(bw,aes(x=pCO2_fac,y=EPF_pH,fill=pCO2_fac)) + 
   geom_hline(aes(yintercept=c_mean,linetype="Ambient"),colour=col_perm[2],size=.8,show.legend =TRUE) + 
   geom_hline(aes(yintercept=oa_900_mean,linetype="OA 900"),colour=col_perm[5],size=.8) + 
   geom_hline(aes(yintercept=oa_2800_mean,linetype="OA 2800"),colour=col_perm[4],size=.8) +
   geom_boxplot() +
   theme_cowplot() + 
+  scale_y_continuous(breaks=c(6.50,7.00,7.50,8.00),limits=c(6.45,8.15),labels=c(" 6.50"," 7.00"," 7.50"," 8.00")) +
   scale_fill_manual(values=c(col_perm[2],col_perm[5],col_perm[4]))+
-  labs(x="",y=expression(pH[EPF]~(NBS)),fill="") +
+  labs(x="",y=expression(pH[EPF]~(Total)),fill="") +
   #theme(legend.position = "NULL") +
   geom_text(data = labels.df,
             aes(x = pCO2_fac, y = height, label = labels),
@@ -129,14 +138,16 @@ plot.labels <- names(Tukey.labels[['Letters']])
 plot.labels.df <- data.frame(plot.labels,tlevels=Tukey.labels)
 labels.df <- merge(plot.labels.df,agg, by.x = 'plot.labels', by.y = 'pCO2_fac', sort = FALSE)
 names(labels.df) <- c("pCO2_fac","labels","height")
+labels.df$height <- labels.df$height + .05
 
 pB <- ggplot(bw,aes(x=pCO2_fac,y=EPF_envAdj,fill=pCO2_fac)) + 
-  geom_hline(yintercept=0,linetype=3,size=0.8) +
+  #geom_hline(yintercept=0,linetype=3,size=0.8) +
   geom_boxplot() +
   theme_cowplot() + 
   scale_fill_manual(values=c(col_perm[2],col_perm[5],col_perm[4]))+
-  labs(x="",y=expression(paste(Delta," pH (NBS)")),fill="") +
+  labs(x="",y=expression(paste(Delta," pH (Total)")),fill="") +
   theme(legend.position = "NULL") +
+  scale_y_continuous(limits=c(-1.1,0.3),breaks=c(-0.9,-0.60,-0.30,0,0.3),labels=c("-0.90","-0.60","-0.30","0.00","0.30")) +
   geom_text(data = labels.df,
             aes(x = pCO2_fac, y = height, label = labels),
             size=5)
@@ -147,7 +158,7 @@ pB
 mean_cal <- aggregate(PercentChangePerDay_DW2_DW3~pCO2,bw,FUN=mean)
 se_cal <- aggregate(PercentChangePerDay_DW2_DW3~pCO2,bw,FUN=se)
 se_pco2 <- aggregate(pCO2_Cal~pCO2,bw,FUN=sd)
-bw$pCO2_Cal
+
 mean_cal <- data.frame(pCO2=mean_cal$pCO2,Rel_Change=mean_cal$PercentChangePerDay_DW2_DW3,
                        ymin=mean_cal$PercentChangePerDay_DW2_DW3-c(se_cal$PercentChangePerDay_DW2_DW3*1.96),
                        ymax=mean_cal$PercentChangePerDay_DW2_DW3+c(se_cal$PercentChangePerDay_DW2_DW3*1.96),
@@ -161,7 +172,7 @@ p <- ggplot(mean_cal,aes(x=pCO2,y=Rel_Change,shape=as.factor(pCO2),colour=as.fac
   geom_abline(slope = out$coefficients[2,1],intercept = out$coefficients[1,1]) +
   geom_hline(aes(yintercept=0),linetype="dotted") +
   geom_point(aes(size=1.5)) +
-  ylim(-0.06,0.05) + 
+  ylim(-0.05,0.05) +
   xlim(280,3200) +
   scale_shape_manual(values=c(16,15,17))+
   scale_colour_manual(values=c(col_perm[2],col_perm[5],col_perm[4]))+
@@ -182,9 +193,9 @@ pC
 #### Panel D - Calcification vs. EPF pH ####
 bw$pCO2_name <- "NA"
 bw$pCO2_name[bw$pCO2 == unique(bw$pCO2)[1]] <-  "Control"
-bw$pCO2_name[bw$pCO2 == unique(bw$pCO2)[2]] <-  "Moderate OA" 
+bw$pCO2_name[bw$pCO2 == unique(bw$pCO2)[2]] <-  "Mod. OA" 
 bw$pCO2_name[bw$pCO2 == unique(bw$pCO2)[3]] <-  "High OA"
-bw$pCO2_name <- factor(bw$pCO2_name,levels = c("Control", "Moderate OA", "High OA"))
+bw$pCO2_name <- factor(bw$pCO2_name,levels = c("Control", "Mod. OA", "High OA"))
 
 p <- ggplot(bw,aes(x=EPF_pH,y=PercentChangePerDay_DW2_DW3,colour=pCO2_name)) +
   geom_point(size=4,aes(shape=pCO2_name)) + 
@@ -193,10 +204,9 @@ p <- ggplot(bw,aes(x=EPF_pH,y=PercentChangePerDay_DW2_DW3,colour=pCO2_name)) +
   scale_shape_manual(values=c(16,15,17)) +
   geom_abline(slope = calVspH_simple$coefficients[2],
               intercept = calVspH_simple$coefficients[1]) 
-
 pD <- p + 
   theme_bw(base_size = 16) + 
-  labs(x=expression(pH[EPF]~(NBS)),
+  labs(x=expression(pH[EPF]~(Total)),
        y="Calcification (% change per day)",
        colour="",
        shape="") + 

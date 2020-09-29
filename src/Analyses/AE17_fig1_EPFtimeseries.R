@@ -1,6 +1,8 @@
 #### Script used to analyze the full EPF pH timeseries data ####
 # Figures from this code : 1
 
+# Note : pH evaluated on the total scale.
+
 ## packages
 library(mgcv)
 library(dplyr)
@@ -12,22 +14,19 @@ library(multcomp)
 library(multcompView)
 library("RColorBrewer")
 pal <- brewer.pal(n = 12, name = 'Paired')
-col_perm <- c(pal[1:2],pal[5:6],pal[12])
+yellow <- brewer.pal(n=9,name = 'YlOrRd')[5]
+col_perm <- c(pal[1:2],pal[5:6],yellow)
+#col_perm <- c(pal[1:2],pal[5:6],pal[12])
 # Located in src Analysis/Phenotype folder, will need to set full working directory or setwd()
 setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse")
 source("src/Accessory/basicR_functions.R")
 
 #### Sample Data ####
 epf_exp <- read.csv("data/Phenotype/CompletePhenotype_final2020.csv",stringsAsFactors = FALSE)
-epf_exp$EPF_pH <- epf_exp$EPF_Total_pH
+epf_exp$EPF_pH <- epf_exp$EPF_pH_Total
 epf_exp$pCO2_fac <- as.factor(epf_exp$pCO2)
 epf_exp$Timepoint_fac <- as.factor(epf_exp$Timepoint)
 epf_exp$EPF_envAdj <- epf_exp$EPF_pH-epf_exp$pH_Total_2W
-epf_exp$EPF_envAdjAlt <- epf_exp$EPF_pH-epf_exp$pH_scaleFree_2W
-
-# Checking difference between NBS and scale free pH
-plot(epf_exp$EPF_envAdj~epf_exp$EPF_envAdjAlt)
-abline(a=0,b=1,col="red")
 
 #### Water Chemistry Data ####
 wc <- read.delim("data/water_chem/AE17_weeklyExposure_final2020.csv",sep=",",
@@ -50,10 +49,10 @@ plot(epfAllTP_red)
 
 anova(epfAllTP_red)
 #Type III Analysis of Variance Table with Satterthwaite's method
-#                        Sum Sq  Mean Sq NumDF  DenDF F value  Pr(>F)  
-#pCO2_fac               0.58311 0.291553     2 14.854  4.9360 0.02272 *
-#Timepoint_fac          0.27384 0.054769     5 73.993  0.9272 0.46837  
-#pCO2_fac:Timepoint_fac 1.40569 0.140569    10 73.985  2.3798 0.01666 *
+#                        Sum Sq Mean Sq NumDF  DenDF F value   Pr(>F)   
+#pCO2_fac               0.80996 0.40498     2 15.605  6.4073 0.009302 **
+#Timepoint_fac          0.17505 0.03501     5 85.947  0.5539 0.734949   
+#pCO2_fac:Timepoint_fac 1.72395 0.17240    10 85.931  2.7275 0.005833 **
 
 # Planned Comparisons  
 # Create 'k' object with planned comparisons.
@@ -100,7 +99,7 @@ anova(epfenvAllTP_red)
 
 ## T test to look at delta EPF relative to seawater pH
 tTest_out <- NULL
-x<-t.test(epf_exp$EPF_envAdj[epf_exp$Timepoint == unique(epf_exp$Timepoint)[1] & epf_exp$pCO2 == unique(epf_exp$pCO2)[1]],mu = 0)
+#x<-t.test(epf_exp$EPF_envAdj[epf_exp$Timepoint == unique(epf_exp$Timepoint)[1] & epf_exp$pCO2 == unique(epf_exp$pCO2)[1]],mu = 0)
 x<-NULL
 for(i in unique(epf_exp$Timepoint)){
    for(j in unique(epf_exp$pCO2)){
@@ -114,6 +113,18 @@ y <- expand.grid(unique(epf_exp$pCO2),unique(epf_exp$Timepoint))
 tTest_df <- data.frame(Timepoint=y[,2],pCO2=y[,1],pValue=x)
 tTest_df$pValue_corr <- p.adjust(tTest_df$pValue,method = "BH")
 tTest_df$Sig <- ifelse(tTest_df$pValue_corr < 0.05,"TRUE","FALSE")
+tTest_df <- tTest_df[order(tTest_df$Timepoint),]
+tTest_df <- tTest_df[order(tTest_df$pCO2),]
+x <- NULL
+for(j in 1:nrow(tTest_df)){
+   i <- tTest_df$pValue_corr[j]
+   if(i >= 0.1){x <- c(x,"")}
+   if(i < 0.1 & i >= 0.05){x <- c(x,"+")}
+   if(i < 0.05 & i >= 0.01){x <- c(x,"*")}
+   if(i < 0.01 & i >= 0.001){x <- c(x,"**")}
+   if(i < 0.001){x <- c(x,"***")}
+}
+tTest_df$sig_signal <- x
 
 # Quick visualization of delta pH to make sure tTest values make sense
 ggplot(epf_exp,aes(y=EPF_envAdj,x=Timepoint_fac,colour=pCO2_fac)) + 
@@ -137,213 +148,299 @@ par(mar = c(5,5,3,2))
 ### Summarize measured EPF pH for plotting
 ## Take the means for each timepoint and treatment level
 treatSeq_means <- aggregate(EPF_pH~Timepoint+pCO2_fac,epf_exp,FUN=mean)
-treatSeq_means$Timepoint[treatSeq_means$Timepoint == 2] <- 4
-treat_means_ctrl <- treatSeq_means[treatSeq_means$pCO2_fac == "400",]
-treat_means_oa_900 <- treatSeq_means[treatSeq_means$pCO2_fac == "900",]
-treat_means_oa_2800 <- treatSeq_means[treatSeq_means$pCO2_fac == "2800",]
-# Stagger the timepoints for 900 and 2800 treatments so they can be seen better on plot
-treat_means_oa_900$timepoint <- treat_means_oa_900$Timepoint + 1
-treat_means_oa_2800$timepoint <- treat_means_oa_2800$Timepoint + 2
-# Manually alter timepoint 2 placement along x-axis for visual clarity
-treat_means_oa_900$Timepoint <- treat_means_oa_900$Timepoint + 1
-treat_means_oa_2800$Timepoint <- treat_means_oa_2800$Timepoint +2
+treatSeq_means$pCO2_fac <- as.character(treatSeq_means$pCO2_fac)
+treatSeq_means$pCO2_fac[treatSeq_means$pCO2_fac == "400"]  <- "Control"
+treatSeq_means$pCO2_fac[treatSeq_means$pCO2_fac == "900"]  <- "Mod. OA"
+treatSeq_means$pCO2_fac[treatSeq_means$pCO2_fac == "2800"]  <- "High OA"
+treatSeq_means$pCO2_fac <- as.factor(treatSeq_means$pCO2_fac )
+treatSeq_means$pCO2_fac <- factor(treatSeq_means$pCO2_fac, levels = c("Control", "Mod. OA", "High OA"))
 ## Take the standard error (SE) for each timepoint and treatment level
 treatSeq_SE <- aggregate(EPF_pH~Timepoint+pCO2_fac,epf_exp,FUN=se)
-treat_SE_ctrl <- treatSeq_SE[treatSeq_SE$pCO2_fac == "400",]$EPF_pH
-treat_SE_oa_900 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "900",]$EPF_pH
-treat_SE_oa_2800 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "2800",]$EPF_pH
+treatSeq_means$error <- treatSeq_SE$EPF_pH
+library(cowplot)
 
-# Base plot with 400
-bp <- plot(treat_means_ctrl$EPF_pH~treat_means_ctrl$Timepoint,
-           ylab=expression(pH[EPF]~(NBS)),xlab="Time (Days)",
-           col=col_perm[2],pch=16,cex=2,cex.axis = 1.5,cex.lab=1.5,
-           ylim = c(7.0,8.25),xlim=c(0,82),bty="n")
+# EPF pH plot
+pA <- ggplot(treatSeq_means,aes(x=Timepoint,y=EPF_pH,group=pCO2_fac,shape=pCO2_fac,colour=pCO2_fac)) +
+   geom_hline(yintercept=c_mean,colour=col_perm[2],linetype=17,size=.8,show.legend =TRUE) + # control 
+   geom_hline(yintercept=oa_900_mean,colour=col_perm[5],linetype=16,size=.8) +# 900
+   geom_hline(yintercept=oa_2800_mean,colour=col_perm[4],linetype=15,size=.8) +# 2800
+   geom_line(position=position_dodge(width=0.15)) +
+   geom_point(size=5,position=position_dodge(width=0.15)) +
+   geom_errorbar(aes(ymin=EPF_pH-error,ymax=EPF_pH+error),width=0.1,position=position_dodge(width=0.15)) +
+   scale_y_continuous(breaks=c(6.50,7.00,7.50,8.00),limits=c(6.45,8.15),labels=c(" 6.50"," 7.00"," 7.50"," 8.00")) +
+   scale_x_log10(breaks = c(1,2,9,22,50,80)) +
+   scale_shape_manual(values=c(16,15,17))+
+   scale_colour_manual(values=c(col_perm[2],col_perm[5],col_perm[4])) +
+   labs(x="Time (Days)",y=expression(pH[EPF]~(Total)),fill="") +
+   theme_cowplot() +
+   theme(panel.border = element_blank(),
+      legend.direction = "horizontal",
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      legend.title = element_blank(),
+      legend.spacing.y = unit(10, "mm"),
+      legend.position = c(0.02,.08),
+      legend.background = element_rect(linetype = 1, 
+                                       size = 0.5, 
+                                       colour = 1),
+      legend.margin = margin(6, 6, 6, 6))
+pA
 
-# Mean environment lines underneath other lines    
-abline(h=c_mean,col=col_perm[2],lty=2) # control
-abline(h=oa_900_mean,col=col_perm[5],lty=2) # 900
-abline(h=oa_2800_mean,col=col_perm[4],lty=2) # 2800
-
-# 400 EPF lines
-lines(treat_means_ctrl$EPF_pH~treat_means_ctrl$Timepoint,
-      col="lightblue4")
-arrows(x0 = treat_means_ctrl$Timepoint,
-       x1 = treat_means_ctrl$Timepoint,
-       y0 = c(treat_means_ctrl$EPF_pH - treat_SE_ctrl),
-       y1 = treat_means_ctrl$EPF_pH + treat_SE_ctrl,
-       angle = 90, len = 0.05,
-       code = 3, xpd = NA, lwd = 2,
-       col=col_perm[2])
-# 900 EPF lines
-points(treat_means_oa_900$EPF_pH~treat_means_oa_900$Timepoint,
-       col=col_perm[5],pch=15,cex=2)
-lines(treat_means_oa_900$EPF_pH~treat_means_oa_900$Timepoint,
-      col=col_perm[5])
-arrows(x0 = treat_means_oa_900$Timepoint,
-       x1 = treat_means_oa_900$Timepoint,
-       y0 = c(treat_means_oa_900$EPF_pH - treat_SE_ctrl),
-       y1 = treat_means_oa_900$EPF_pH + treat_SE_ctrl,
-       angle = 90, len = 0.05,
-       code = 3, xpd = NA, lwd = 2,
-       col=col_perm[5])
-# 2800 EPF lines 
-points(treat_means_oa_2800$EPF_pH~treat_means_oa_2800$Timepoint,
-       col=col_perm[4],pch=17,cex=2)
-lines(treat_means_oa_2800$EPF_pH~treat_means_oa_2800$Timepoint,
-      col=col_perm[4])
-arrows(x0 = treat_means_oa_2800$Timepoint,
-       x1 = treat_means_oa_2800$Timepoint,
-       y0 = c(treat_means_oa_2800$EPF_pH - treat_SE_oa_2800),
-       y1 = treat_means_oa_2800$EPF_pH + treat_SE_oa_2800,
-       angle = 90, len = 0.05, code = 3, xpd = NA, lwd = 2,
-       col=col_perm[4])
-
-# Based on planned comparisons, significance stars
-text(x=5+1,y=8.25,label="*",cex = 2.2,col=col_perm[4], xpd = NA)
-text(x=51+1,y=8.25,label="*",cex = 2.2,col=col_perm[4], xpd = NA)
-text(x=80+1,y=8.25,label="*",cex = 2.2,col=col_perm[4], xpd = NA)
-
-# Letter labels
-text(x=-8,y=8.35,label="A",cex = 2.2, xpd = NA)
-
-#### Legend #####
-par(mar = c(0,0,0,0))
-plot(1, type = "n", axes=FALSE, xlab="", ylab="")
-legend("bottom",horiz = TRUE,
-       legend = c("Control","Moderate OA","High OA"),
-       col = c(col_perm[2],col_perm[5],col_perm[4]),
-       pch=c(16,15,17),
-       cex = 1.5,
-       lwd = 2,
-       bty = "n")
-#### Panel B - diff EPF #### 
-par(mar = c(5,5,3,2))
-## Take the means for each timepoint and treatment level
+# Delta pH plot
 treatSeq_means <- aggregate(EPF_envAdj~Timepoint+pCO2_fac,epf_exp,FUN=mean)
-treatSeq_means$Timepoint[treatSeq_means$Timepoint == 2] <- 4 
-treat_means_ctrl <- treatSeq_means[treatSeq_means$pCO2_fac == "400",]
-treat_means_oa_900 <- treatSeq_means[treatSeq_means$pCO2_fac == "900",]
-treat_means_oa_2800 <- treatSeq_means[treatSeq_means$pCO2_fac == "2800",]
-# Stagger the timepoints for 900 and 2800 treatments so they can be seen better on plot
-# Manually alter timepoint 2 placement along x-axis for visual clarity
-treat_means_oa_900$Timepoint <- treat_means_oa_900$Timepoint+ 1
-treat_means_oa_2800$Timepoint <- treat_means_oa_2800$Timepoint+ 2
-## Take the standard error (se) for each timepoint and treatment level
+treatSeq_means$pCO2_fac <- as.character(treatSeq_means$pCO2_fac)
+treatSeq_means$pCO2_fac[treatSeq_means$pCO2_fac == "400"]  <- "Control"
+treatSeq_means$pCO2_fac[treatSeq_means$pCO2_fac == "900"]  <- "Mod. OA"
+treatSeq_means$pCO2_fac[treatSeq_means$pCO2_fac == "2800"]  <- "High OA"
+treatSeq_means$pCO2_fac <- as.factor(treatSeq_means$pCO2_fac )
+treatSeq_means$pCO2_fac <- factor(treatSeq_means$pCO2_fac, levels = c("Control", "Mod. OA", "High OA"))
 treatSeq_SE <- aggregate(EPF_envAdj~Timepoint+pCO2_fac,epf_exp,FUN=se)
-treat_SE_ctrl <- treatSeq_SE[treatSeq_SE$pCO2_fac == "400",]$EPF_envAdj
-treat_SE_oa_900 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "900",]$EPF_envAdj
-treat_SE_oa_2800 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "2800",]$EPF_envAdj
+treatSeq_means$error <- treatSeq_SE$EPF_envAdj
+pB <- ggplot(treatSeq_means,aes(x=Timepoint,y=EPF_envAdj,group=pCO2_fac,shape=pCO2_fac,colour=pCO2_fac)) +
+   #geom_hline(yintercept=0,linetype=3,size=0.8) +
+   geom_line(position=position_dodge(width=0.15)) +
+   geom_point(size=5,position=position_dodge(width=0.15)) +
+   geom_errorbar(aes(ymin=EPF_envAdj-error,ymax=EPF_envAdj+error),width=0.1,position=position_dodge(width=0.15)) +
+   scale_y_continuous(limits=c(-1.1,0.3),breaks=c(-0.9,-0.60,-0.30,0,0.3),labels=c("-0.90","-0.60","-0.30","0.00","0.30")) +
+   scale_x_log10(breaks = c(1,2,9,22,50,80)) +
+   scale_shape_manual(values=c(16,15,17))+
+   scale_colour_manual(values=c(col_perm[2],col_perm[5],col_perm[4])) +
+   labs(x="Time (Days)",y=expression(paste(Delta," pH (Total)")),fill="") +
+   theme_cowplot() +
+   theme(panel.border = element_blank(),
+         legend.direction = "horizontal",
+         panel.grid.major = element_blank(),
+         panel.grid.minor = element_blank(),
+         legend.title = element_blank(),
+         #legend.spacing.y = unit(0, "mm"),
+         legend.position = c(0.02,.08),
+         legend.background = element_rect(linetype = 1, 
+                                          size = 0.5, 
+                                          colour = 1),
+         legend.margin = margin(6, 6, 6, 6)) 
 
-# Base plot with 400
-bp <- plot(treat_means_ctrl$EPF_envAdj~treat_means_ctrl$Timepoint,
-           ylab=expression(paste(Delta," pH (NBS)")),
-           xlab="Time (Days)",pch=16,
-           col=col_perm[2],cex=2,cex.axis = 1.5,cex.lab=1.5,
-           ylim = c(-1.2,1.1),xlim=c(0,82),bty="n")
-# Mean environment lines underneath other lines    
-abline(h=0,col="black",lty=2) # control
-# 400 EPF lines
-lines(treat_means_ctrl$EPF_envAdj~treat_means_ctrl$Timepoint,
-      col=col_perm[2])
-arrows(x0 = treat_means_ctrl$Timepoint,
-       x1 = treat_means_ctrl$Timepoint,
-       y0 = c(treat_means_ctrl$EPF_envAdj - treat_SE_ctrl),
-       y1 = treat_means_ctrl$EPF_envAdj + treat_SE_ctrl,
-       angle = 90, len = 0.05,
-       code = 3, xpd = NA, lwd = 2,
-       col=col_perm[2])
-# 900 EPF lines
-points(treat_means_oa_900$EPF_envAdj~treat_means_oa_900$Timepoint,
-       col=col_perm[5],pch=15,cex=2)
-lines(treat_means_oa_900$EPF_envAdj~treat_means_oa_900$Timepoint,
-      col=col_perm[5])
-arrows(x0 = treat_means_oa_900$Timepoint,
-       x1 = treat_means_oa_900$Timepoint,
-       y0 = c(treat_means_oa_900$EPF_envAdj - treat_SE_oa_900),
-       y1 = treat_means_oa_900$EPF_envAdj + treat_SE_oa_900,
-       angle = 90, len = 0.05,
-       code = 3, xpd = NA, lwd = 2,
-       col=col_perm[5])
-# 2800 EPF lines 
-points(treat_means_oa_2800$EPF_envAdj~treat_means_oa_2800$Timepoint,
-       col=col_perm[4],pch=17,cex=2)
-lines(treat_means_oa_2800$EPF_envAdj~treat_means_oa_2800$Timepoint,
-      col=col_perm[4])
-arrows(x0 = treat_means_oa_2800$Timepoint,
-       x1 = treat_means_oa_2800$Timepoint,
-       y0 = c(treat_means_oa_2800$EPF_envAdj - treat_SE_oa_2800),
-       y1 = treat_means_oa_2800$EPF_envAdj + treat_SE_oa_2800,
-       angle = 90, len = 0.05, code = 3, xpd = NA, lwd = 2,
-       col=col_perm[4])
+plot_grid("",pA,"",pB,labels = c("A","","B",""),nrow=4,rel_heights = c(1,5,2,5))
 
-# Significance symbols based on planned comparisons
-text(x=-1,y=1.20,label="Trt",cex=1.8,xpd=NA,srt=90)
-lines(x=c(0,80),y=c(1,1),lwd=2,xpd=NA)
-text(x=-1,y=0.80,label="Env",cex=1.8,xpd=NA,srt=90)
-#Planned tukey test with treatment
+# #### Panel A - measured EPF pH ####
+# ### Summarize measured EPF pH for plotting
+# ## Take the means for each timepoint and treatment level
+# treatSeq_means <- aggregate(EPF_pH~Timepoint+pCO2_fac,epf_exp,FUN=mean)
+# #treatSeq_means$Timepoint[treatSeq_means$Timepoint == 2] <- 4
+# treat_means_ctrl <- treatSeq_means[treatSeq_means$pCO2_fac == "400",]
+# treat_means_oa_900 <- treatSeq_means[treatSeq_means$pCO2_fac == "900",]
+# treat_means_oa_2800 <- treatSeq_means[treatSeq_means$pCO2_fac == "2800",]
+# # Stagger the timepoints for 900 and 2800 treatments so they can be seen better on plot
+# treat_means_oa_900$timepoint <- treat_means_oa_900$Timepoint + 1
+# treat_means_oa_2800$timepoint <- treat_means_oa_2800$Timepoint + 2
+# # Manually alter timepoint 2 placement along x-axis for visual clarity
+# treat_means_oa_900$Timepoint <- treat_means_oa_900$Timepoint + 1
+# treat_means_oa_2800$Timepoint <- treat_means_oa_2800$Timepoint +2
+# ## Take the standard error (SE) for each timepoint and treatment level
+# treatSeq_SE <- aggregate(EPF_pH~Timepoint+pCO2_fac,epf_exp,FUN=se)
+# treat_SE_ctrl <- treatSeq_SE[treatSeq_SE$pCO2_fac == "400",]$EPF_pH
+# treat_SE_oa_900 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "900",]$EPF_pH
+# treat_SE_oa_2800 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "2800",]$EPF_pH
+# # Base plot with 400
+# bp <- plot(treat_means_ctrl$EPF_pH~treat_means_ctrl$Timepoint,
+#            ylab=expression(pH[EPF]~(Total)),xlab="Time (Days)",
+#            col=col_perm[2],pch=16,cex=2,cex.axis = 1.5,cex.lab=1.5,
+#            ylim = c(6.75,8.15),xlim=c(0,82),bty="n")
+# 
+# # Mean environment lines underneath other lines    
+# abline(h=c_mean,col=col_perm[2],lty=17,lwd=2) # control
+# abline(h=oa_900_mean,col=col_perm[5],lty=16,lwd=2) # 900
+# abline(h=oa_2800_mean,col=col_perm[4],lty=15,lwd=2) # 2800
+# 
+# # 400 EPF lines
+# lines(treat_means_ctrl$EPF_pH~treat_means_ctrl$Timepoint,
+#       col="lightblue4")
+# arrows(x0 = treat_means_ctrl$Timepoint,
+#        x1 = treat_means_ctrl$Timepoint,
+#        y0 = c(treat_means_ctrl$EPF_pH - treat_SE_ctrl),
+#        y1 = treat_means_ctrl$EPF_pH + treat_SE_ctrl,
+#        angle = 90, len = 0.05,
+#        code = 3, xpd = NA, lwd = 2,
+#        col=col_perm[2])
+# # 900 EPF lines
+# points(treat_means_oa_900$EPF_pH~treat_means_oa_900$Timepoint,
+#        col=col_perm[5],pch=15,cex=2)
+# lines(treat_means_oa_900$EPF_pH~treat_means_oa_900$Timepoint,
+#       col=col_perm[5])
+# arrows(x0 = treat_means_oa_900$Timepoint,
+#        x1 = treat_means_oa_900$Timepoint,
+#        y0 = c(treat_means_oa_900$EPF_pH - treat_SE_ctrl),
+#        y1 = treat_means_oa_900$EPF_pH + treat_SE_ctrl,
+#        angle = 90, len = 0.05,
+#        code = 3, xpd = NA, lwd = 2,
+#        col=col_perm[5])
+# # 2800 EPF lines 
+# points(treat_means_oa_2800$EPF_pH~treat_means_oa_2800$Timepoint,
+#        col=col_perm[4],pch=17,cex=2)
+# lines(treat_means_oa_2800$EPF_pH~treat_means_oa_2800$Timepoint,
+#       col=col_perm[4])
+# arrows(x0 = treat_means_oa_2800$Timepoint,
+#        x1 = treat_means_oa_2800$Timepoint,
+#        y0 = c(treat_means_oa_2800$EPF_pH - treat_SE_oa_2800),
+#        y1 = treat_means_oa_2800$EPF_pH + treat_SE_oa_2800,
+#        angle = 90, len = 0.05, code = 3, xpd = NA, lwd = 2,
+#        col=col_perm[4])
+# 
+# # Based on planned comparisons, significance stars
+# text(x=5+1,y=8.15,label="*",cex = 2.2,col=col_perm[4], xpd = NA)
+# text(x=51+1,y=8.15,label="*",cex = 2.2,col=col_perm[4], xpd = NA)
+# text(x=80+1,y=8.15,label="*",cex = 2.2,col=col_perm[4], xpd = NA)
+# 
+# # Letter labels
+# text(x=-10,y=8.25,label="A",cex = 2.2, xpd = NA)
+# 
+# #### Legend #####
+# par(mar = c(0,0,0,0))
+# plot(1, type = "n", axes=FALSE, xlab="", ylab="")
+# legend("bottom",horiz = TRUE,
+#        legend = c("Control","Mod. OA","High OA"),
+#        col = c(col_perm[2],col_perm[5],col_perm[4]),
+#        pch=c(16,15,17),
+#        cex = 1.5,
+#        lwd = 2,
+#        bty = "n")
+# #### Panel B - diff EPF #### 
+# par(mar = c(5,5,3,2))
+# ## Take the means for each timepoint and treatment level
+# treatSeq_means <- aggregate(EPF_envAdj~Timepoint+pCO2_fac,epf_exp,FUN=mean)
+# treatSeq_means$Timepoint[treatSeq_means$Timepoint == 2] <- 4 
+# treat_means_ctrl <- treatSeq_means[treatSeq_means$pCO2_fac == "400",]
+# treat_means_oa_900 <- treatSeq_means[treatSeq_means$pCO2_fac == "900",]
+# treat_means_oa_2800 <- treatSeq_means[treatSeq_means$pCO2_fac == "2800",]
+# # Stagger the timepoints for 900 and 2800 treatments so they can be seen better on plot
+# # Manually alter timepoint 2 placement along x-axis for visual clarity
+# treat_means_oa_900$Timepoint <- treat_means_oa_900$Timepoint+ 1
+# treat_means_oa_2800$Timepoint <- treat_means_oa_2800$Timepoint+ 2
+# ## Take the standard error (se) for each timepoint and treatment level
+# treatSeq_SE <- aggregate(EPF_envAdj~Timepoint+pCO2_fac,epf_exp,FUN=se)
+# treat_SE_ctrl <- treatSeq_SE[treatSeq_SE$pCO2_fac == "400",]$EPF_envAdj
+# treat_SE_oa_900 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "900",]$EPF_envAdj
+# treat_SE_oa_2800 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "2800",]$EPF_envAdj
+# 
+# # Base plot with 400
+# bp <- plot(treat_means_ctrl$EPF_envAdj~treat_means_ctrl$Timepoint,
+#            ylab=expression(paste(Delta," pH (Total)")),
+#            xlab="Time (Days)",pch=16,
+#            col=col_perm[2],cex=2,cex.axis = 1.5,cex.lab=1.5,
+#            ylim = c(-1.2,1.1),xlim=c(0,82),bty="n")
+# # Mean environment lines underneath other lines    
+# #abline(h=0,col="black",lty=2) # control
+# # 400 EPF lines
+# lines(treat_means_ctrl$EPF_envAdj~treat_means_ctrl$Timepoint,
+#       col=col_perm[2])
+# arrows(x0 = treat_means_ctrl$Timepoint,
+#        x1 = treat_means_ctrl$Timepoint,
+#        y0 = c(treat_means_ctrl$EPF_envAdj - treat_SE_ctrl),
+#        y1 = treat_means_ctrl$EPF_envAdj + treat_SE_ctrl,
+#        angle = 90, len = 0.05,
+#        code = 3, xpd = NA, lwd = 2,
+#        col=col_perm[2])
+# # 900 EPF lines
+# points(treat_means_oa_900$EPF_envAdj~treat_means_oa_900$Timepoint,
+#        col=col_perm[5],pch=15,cex=2)
+# lines(treat_means_oa_900$EPF_envAdj~treat_means_oa_900$Timepoint,
+#       col=col_perm[5])
+# arrows(x0 = treat_means_oa_900$Timepoint,
+#        x1 = treat_means_oa_900$Timepoint,
+#        y0 = c(treat_means_oa_900$EPF_envAdj - treat_SE_oa_900),
+#        y1 = treat_means_oa_900$EPF_envAdj + treat_SE_oa_900,
+#        angle = 90, len = 0.05,
+#        code = 3, xpd = NA, lwd = 2,
+#        col=col_perm[5])
+# # 2800 EPF lines 
+# points(treat_means_oa_2800$EPF_envAdj~treat_means_oa_2800$Timepoint,
+#        col=col_perm[4],pch=17,cex=2)
+# lines(treat_means_oa_2800$EPF_envAdj~treat_means_oa_2800$Timepoint,
+#       col=col_perm[4])
+# arrows(x0 = treat_means_oa_2800$Timepoint,
+#        x1 = treat_means_oa_2800$Timepoint,
+#        y0 = c(treat_means_oa_2800$EPF_envAdj - treat_SE_oa_2800),
+#        y1 = treat_means_oa_2800$EPF_envAdj + treat_SE_oa_2800,
+#        angle = 90, len = 0.05, code = 3, xpd = NA, lwd = 2,
+#        col=col_perm[4])
+# 
+# # Significance symbols based on planned comparisons
+# text(x=-1,y=1.20,label="Trt",cex=1.8,xpd=NA,srt=90)
+# lines(x=c(0,80),y=c(1,1),lwd=2,xpd=NA)
+# text(x=-1,y=0.80,label="Env",cex=1.8,xpd=NA,srt=90)
+# #Planned tukey test with treatment
+# 
+# text(x=10,
+#      y=1.10,label="***",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# text(x=22,
+#      y=1.10,label="***",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# text(x=50,
+#      y=1.10,label="+",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# text(x=22,
+#      y=1.20,label="+",
+#      cex = 2,col=col_perm[5], xpd = NA)
+# text(x=50,
+#      y=1.20,label="+",
+#      cex = 2,col=col_perm[5], xpd = NA)
+# # Planned t tests with environment
+# print(tTest_df)
+# text(x=2,
+#      y=0.90,label="*",
+#      cex = 2,col=col_perm[2], xpd = NA)
+# text(x=5,
+#      y=0.90,label="**",
+#      cex = 2,col=col_perm[2], xpd = NA)
+# text(x=10,
+#      y=0.90,label="**",
+#      cex = 2,col=col_perm[2], xpd = NA)
+# text(x=22,
+#      y=0.90,label="**",
+#      cex = 2,col=col_perm[2], xpd = NA)
+# text(x=50,
+#      y=0.90,label="**",
+#      cex = 2,col=col_perm[2], xpd = NA)
+# text(x=80,
+#      y=0.90,label="**",
+#      cex = 2,col=col_perm[2], xpd = NA)
+# text(x=2,
+#      y=0.80,label="**",
+#      cex = 2,col=col_perm[5], xpd = NA)
+# text(x=5,
+#      y=0.80,label="***",
+#      cex = 2,col=col_perm[5], xpd = NA)
+# text(x=10,
+#      y=0.80,label="**",
+#      cex = 2,col=col_perm[5], xpd = NA)
+# text(x=22,
+#      y=0.80,label="***",
+#      cex = 2,col=col_perm[5], xpd = NA)
+# text(x=50,
+#      y=0.80,label="*",
+#      cex = 2,col=col_perm[5], xpd = NA)
+# text(x=80,
+#      y=0.80,label="**",
+#      cex = 2,col=col_perm[5], xpd = NA)
+# text(x=2,
+#      y=0.70,label="*",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# text(x=5,
+#      y=0.70,label="*",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# text(x=10,
+#      y=0.70,label="",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# text(x=22,
+#      y=0.70,label="***",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# text(x=50,
+#      y=0.70,label="*",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# text(x=80,
+#      y=0.70,label="**",
+#      cex = 2,col=col_perm[4], xpd = NA)
+# 
+# # Letter label
+# text(x=-10,y=1.3,label="B",cex = 2.2, xpd = NA)
 
-text(x=10,
-     y=1.15,label="***",
-     cex = 2,col=col_perm[4], xpd = NA)
-text(x=22,
-     y=1.15,label="**",
-     cex = 2,col=col_perm[4], xpd = NA)
-# Planned t tests with environment
-print(tTest_df)
-text(x=2,
-     y=0.90,label="*",
-     cex = 2,col=col_perm[2], xpd = NA)
-text(x=5,
-     y=0.90,label="*",
-     cex = 2,col=col_perm[2], xpd = NA)
-text(x=10,
-     y=0.90,label="*",
-     cex = 2,col=col_perm[2], xpd = NA)
-text(x=22,
-     y=0.90,label="**",
-     cex = 2,col=col_perm[2], xpd = NA)
-text(x=50,
-     y=0.90,label="**",
-     cex = 2,col=col_perm[2], xpd = NA)
-text(x=80,
-     y=0.90,label="**",
-     cex = 2,col=col_perm[2], xpd = NA)
-text(x=2,
-     y=0.80,label="",
-     cex = 2,col=col_perm[5], xpd = NA)
-text(x=5,
-     y=0.80,label="**",
-     cex = 2,col=col_perm[5], xpd = NA)
-text(x=10,
-     y=0.80,label="*",
-     cex = 2,col=col_perm[5], xpd = NA)
-text(x=22,
-     y=0.80,label="**",
-     cex = 2,col=col_perm[5], xpd = NA)
-text(x=50,
-     y=0.80,label="",
-     cex = 2,col=col_perm[5], xpd = NA)
-text(x=80,
-     y=0.80,label="*",
-     cex = 2,col=col_perm[5], xpd = NA)
-text(x=2,
-     y=0.70,label="+",
-     cex = 2,col=col_perm[4], xpd = NA)
-text(x=5,
-     y=0.70,label="+",
-     cex = 2,col=col_perm[4], xpd = NA)
-text(x=10,
-     y=0.70,label="+",
-     cex = 2,col=col_perm[4], xpd = NA)
-text(x=22,
-     y=0.70,label="+",
-     cex = 2,col=col_perm[4], xpd = NA)
-text(x=50,
-     y=0.70,label="+",
-     cex = 2,col=col_perm[4], xpd = NA)
-text(x=80,
-     y=0.70,label="*",
-     cex = 2,col=col_perm[4], xpd = NA)
-
-# Letter label
-text(x=-8,y=1.3,label="B",cex = 2.2, xpd = NA)
