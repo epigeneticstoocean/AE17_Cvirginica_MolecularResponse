@@ -104,6 +104,10 @@ The trimmed reads were mapped to the bisulfite treated reference genome (created
 * Trimmed and QCed files from `Step 1`
 * Bisulfite converted genome from `Step 2`
 
+### Output
+
+* You will create a series of cytosine reports that will be stored in the designated output folder. These will be used in the next step to make the count matrices and perform the differential methylation.
+
 ### Code
 
 **Core functions for single samples**
@@ -144,8 +148,8 @@ coverage2cytosine path/toMethylationExtractorOutput \
 -o path/Output 
 ```
 
-* [Script that performing mapping,depublication,sorting,and methylation calls for all samples](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/02_bismarkMapping.sh)
-* [Script for creating full cytosine reports](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/03_cytosineReport.sh)
+* [`/02_bismarkMapping.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/02_bismarkMapping.sh) : Script that performing mapping,depublication,sorting,and methylation calls for all samples
+* [`/03_cytosineReport.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/03_cytosineReport.sh) : Script for creating full cytosine reports
 
 **Disclaimer** Scripts here were hard coded and paths will need to be changed to match personal directories.
 
