@@ -1,6 +1,8 @@
 # Data, Script, and Analyses Repository
 
-**Repository for paper**: Ocean acidification induces subtle shifts in gene expression and DNA methylation in the tissue of calcification
+## Paper Title : Ocean acidification induces subtle shifts in gene expression and DNA methylation in mantle tissue of the Eastern oyster (Crassostrea virginica)
+
+[**Link to BioRxiv**](https://www.biorxiv.org/content/10.1101/2020.06.05.136424v1.abstract) 
 
 **Sequence data available at NCBI**  
 [Bioproject:594029](https://www.ncbi.nlm.nih.gov/bioproject/594029)
@@ -13,7 +15,7 @@
   
 **Folders**
 * [*/data*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data) : Contains processed data files for analysis (raw sequence data available on NCBI).
-* [*/src*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src) : Scripts file.
-* [*/results*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/results) : Analyses outputs and manuscript tables, figures, and supplemental.
+* [*/src*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/src) : Contains all scripts used to process and analyze data.
+* [*/results*](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/results) : Contains major analyses outputs and manuscript results.
 
 
