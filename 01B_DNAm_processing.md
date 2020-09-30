@@ -244,4 +244,17 @@ Combines files generated in `Step 5` into a single `RData` file called [`/gene_C
 * [`/gene_CpGcoverageSummary.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/MBDBS_seq/20200130_CpGbyGeneSummary/gene_CpGcoverageSummary.RData)
 
 ### Code
-[`/CpGSummaryByGeneTable.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Accessory/CpGSummaryByGeneTable.R)
+* [`/CpGSummaryByGeneTable.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Accessory/CpGSummaryByGeneTable.R)
+
+## Step 7 - 
+
+### Overview 
+Script takes the count (coverage) information for all cpgs with at least 5x coverage starting with the methylKit object, subsets these counts by feature and summarizes (takes the median) methylation for each individual by feature and generates a median methylation by feature summary table with associated meta data for each individuals (i.e. treatment and time).
+
+### Input
+* []()
+### Output
+* []()
+### Code
+* [`/geneSummary_MethylationAndExpressionCompleteMatrix.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Accessory/geneSummary_MethylationAndExpressionCompleteMatrix.R)
+
