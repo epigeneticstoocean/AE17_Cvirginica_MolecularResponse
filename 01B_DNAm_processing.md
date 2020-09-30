@@ -200,11 +200,18 @@ Uniting sample counts into a single matrix and destranding
 meth_filt <- unite(norm.filtered.myobj, destrand=TRUE)
 ```
 
-Differentrial Expression (example of single comparison)
+Differentrial Expression (generic example)
+* Chi-squared testing approach : `test=Chisq`
+* Minimum difference in methylation among treatments = 50% : `difference=50`
+* Critical q.value : `qvalue=0.01`
+
 ```
-cov = data.frame(tp=meta_final$timepoint)
-# All trt
-performDiffMethSteps(meth,cov=cov,type="DML",output=baseOutputDir)
+y<-calculateDiffMeth(x,
+                       covariates=cov,test="Chisq",mc.cores=15)
+  saveRDS(y,paste0(type,"_",comparison,app,".RData"))
+  fwrite(y,paste0(type,"_",comparison,app,".csv"),sep = ",")
+  # Multicomparison correction and critical % Diff. Threshold
+  y_getDiff <- getMethylDiff(y,difference=50,qvalue=0.01)
 ```
 
 
