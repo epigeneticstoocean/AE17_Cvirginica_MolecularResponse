@@ -5,7 +5,6 @@
 library(ggplot2)
 library(cowplot)
 library(RColorBrewer)
-library(wesanderson)
 library(data.table)
 library(vegan)
 library(adegenet)
@@ -19,8 +18,8 @@ col_perm <- c(pal[1],pal[5],pal[2],pal[6])
 inputDir <- "~/Github/AE17_Cvirginica_MolecularResponse/"
 setwd(inputDir)
 
-### Sample Meta Data ###
-meta <- readRDS("data/meta/metadata_20190811.RData")
+### Sample Meta Data ###  
+meta <- readRDS("data/meta/AE17_RNAmetaData.RData")
 meta <- meta[meta$ID != "17099",] # need to remove individual 17099
 
 ### Summary table of Cpgs by feature (Panel 1)###
@@ -38,27 +37,30 @@ levels(sumTable_rev$category) <- c("CpGs (all)","CpGs (5x)",
 ### All CpGs by feature ###
 # Example: meth$mC$exon would retrieve a table for
 #          the methylated cytosine counts (mC) within exons 
-meth <- readRDS("results/DNAm/DNAm_20200202_AllCountsList_cov5_byFeature.RData")
-# total Count data for genes
-meth_total_gene <- meth$tC$gene[,2:24] # remove first column which has coordinate information
-sumCountMethylation_gene <- colSums(meth_total_gene,na.rm = TRUE)
-# beta values for genes
-meth_beta <- meth$beta
-meth_beta_gene <- meth$beta$gene[,2:24]
+#meth <- readRDS("results/DNAm/20200202_AllCountsList_cov5_byFeature.RData")
+#m <- meth$beta
+#saveRDS(m,"results/DNAm/20200202_AllBeta_cov5_byFeature.RData")
+# # total Count data for genes
+# meth_total_gene <- meth$tC$gene[,2:24] # remove first column which has coordinate information
+# sumCountMethylation_gene <- colSums(meth_total_gene,na.rm = TRUE)
+# # beta values for genes
+#meth_beta <- readRDS("results/DNAm/20200202_AllBeta_cov5_byFeature.RData")
+#meth_beta_gene <- meth_beta$gene[,2:24]
+meth_beta_gene <- readRDS("results/DNAm/20200202_geneBeta_cov5_byFeature.RData")
 ### Calculate median methylation globally for each individual for each feature
 med_values <- NULL
 name_values <- NULL
-for(i in 1:length(meth$beta)){
-  temp <-  as.matrix(meth$beta[[i]][,2:24])
-  nm <- rep(names(meth$beta)[i],times=23)
+for(i in 1:length(meth_beta)){
+  temp <-  as.matrix(meth_beta[[i]][,2:24])
+  nm <- rep(names(meth_beta)[i],times=23)
   temp_medians <- colMedians(temp,na.rm = TRUE)
   
   med_values <- c(med_values,temp_medians)
   name_values <- c(name_values,nm)
 }
-IDs <- rep(meta$ID,length(meth$beta))
-Treatment <- rep(meta$Treatment,length(meth$beta))
-Time <- rep(meta$Time,length(meth$beta))
+IDs <- rep(meta$ID,length(meth_beta))
+Treatment <- rep(meta$Treatment,length(meth_beta))
+Time <- rep(meta$Time,length(meth_beta))
 median_df <- data.frame(IDs,Treatment,Time,feature=name_values,median=med_values)
 # Remove gene since it is redundant (exon + intron)
 median_dfnoGene <- median_df[median_df$feature != "gene",]
@@ -66,7 +68,6 @@ median_dfnoGene$feature <- as.factor(as.character(median_dfnoGene$feature))
 # Reorder levels of feature
 median_dfnoGene$feature <- factor(median_dfnoGene$feature,levels=c("exon","Intron","Intergenic" ))
 levels(median_dfnoGene$feature) <- c("Exon","Intron","Intergenic")
-rm(meth)
 
 methByGene <-  readRDS("data/MBDBS_seq/20200130_CpGbyGeneSummary/gene_CpGcoverageSummary.RData")
 

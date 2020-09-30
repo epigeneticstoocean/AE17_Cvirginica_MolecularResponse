@@ -406,10 +406,6 @@ filtered.myobj <- filterByCoverage(myobj,lo.count=5,lo.perc=NULL,
 norm.filtered.myobj <- normalizeCoverage(filtered.myobj,method="median") 
 saveRDS(norm.filtered.myobj,"methylKitObj_cov5Filtered_medianNormalized.RData")
 fwrite(norm.filtered.myobj,"methylKitObj_cov5Filtered_medianNormalized.csv",sep = ",")
-## Normalizing unfiltered object 
-norm.myobj <- normalizeCoverage(myobj,method="median")
-saveRDS(norm.myobj,"methylKitObj_unfiltered_medianNormalized.RData")
-fwrite(norm.myobj,"methylKitObj_unfiltered_medianNormalized.csv",sep = ",")
 
 #### Unite will combine samples ####
  # Function will shrink dataframe of each individual to only 
@@ -420,56 +416,12 @@ fwrite(norm.myobj,"methylKitObj_unfiltered_medianNormalized.csv",sep = ",")
  # within a CpG from eith strand. This increases the number of loci in our final data, but makes the important
  # assuming that both strands have the same methylation state (methylated or unmethylated).
 
-# All loci (unfiltered) and no normalization
-meth_all <- unite(myobj, destrand=TRUE)
-saveRDS(meth_all,"methylKitObj_unfiltered_united.RData")
-summaryPlots(x=meth_all,label = "Unfiltered and Not Normalized",
-             fileName = "unfiltered_nonNormalized")
-fwrite(meth_all,"methylKitObj_unfiltered_united.csv",sep = ",")
-## Unfiltered and normalized object
-meth_norm_all <- unite(norm.myobj, destrand=TRUE)
-saveRDS(meth_norm_all,"methylKitObj_unfiltered_medianNormalized_united.RData")
-summaryPlots(x=meth_norm_all,label = "Unfiltered and Median Normalized",
-             fileName = "unfiltered_medianNormalized")
-fwrite(meth_norm_all,"methylKitObj_unfiltered_medianNormalized_united.csv",sep = ",")
 ## Loci with at least 5X coverage (filtered) for ALL individuals and normalized
 meth_filt <- unite(norm.filtered.myobj, destrand=TRUE)
 saveRDS(meth_filt,"methylKitObj_cov5Filtered_medianNormalized_united.RData")
 summaryPlots(x=meth_filt,label = "x5 Filter Threshold and Median Normalized",
              fileName = "cov5Filtered_medianNormalized")
 fwrite(meth_filt,"methylKitObj_cov5Filtered_medianNormalized_united.csv",sep = ",")
-
-## Alternative filtering ##
- # Here I take a custom filtering approach similar to what was done with GE. I
- # retain all CpGs that have 5x coverage for at least 5 individuals (4 for control day 9)
- # in at least one treatment x time combination (i.e. Day 80 Treatment 2800). The rationale
- # here is we could have methylation occuring in only one treatment X time combination, which
- # might be of particular interest, since it represents differential response. However, the
- # traditional filtering would remove those loci. This is problematic since our 
- # sequencing method (MBD-BSseq) is biased toward representing methylated regions. This means
- # that lack of coverage could be the result of no methylation.
-
-# meth_all <- readRDS("methylKitObj_unfiltered_united.RData")
-meth_get <- getData(meth_all) # Acquire sampleXloci matrix from methylKitObj
-meth_cov <- meth_get[,seq(from=5,to=73,by=3)] # Select columns for coverage
-meth_cyto <- meth_get[,seq(from=6,to=73,by=3)] # select columns for Cytosines
-meth_beta <- meth_cyto/meth_cov # Calculate beta (% methylation) as the number of cytosines/total coverage
-meth_beta(is.na(meth_beta)) <- 0 # Coverts any NaNs resulting from dvidings by 0
-# Breaking down expression coverage by treatment*time combination
-#Day 9 Trt 2800
-keep_D9.2800 <- rowSums(meth_cov[,meta_final$SFV=="09.2800"] > 5) >= 5
-#Day 9 Trt 400
-keep_D9.400 <- rowSums(meth_cov[,meta_final$SFV=="09.400"] > 5) >= 5
-#Day 80 Trt 2800
-keep_D80.2800 <- rowSums(meth_cov[,meta_final$SFV=="80.2800"] > 5) >= 5
-#Day 80 Trt 400
-keep_D80.400 <- rowSums(meth_cov[,meta_final$SFV=="80.400"] > 5) >= 4
-keep_gene <- rowSums(cbind(keep_D9.2800,keep_D9.400,
-                           keep_D80.2800,keep_D80.400)) >= 1
-meth_altCov <- meth_all[keep_gene, ]
-saveRDS(meth_altCov,"methylKitObj_5x5SampleSingleTreatment_united.RData")
-summaryPlots(x=meth_altCov,label = "x5 Filter 5 Samples Single Trt and non Normalized",
-             fileName = "alt5xFilter_nonNormalized")
 
 #### Use reorganize to subset data by timepoints ####
  # Subsetting data so we can do targetted analysis we samples at each day or within 
@@ -586,7 +538,7 @@ meth_summary <- cbind(mean_beta,
 meth_summary[is.na(meth_summary)]<-0 
 # in cases where the mean of treatmentxtime combination is 0 for the CV calculation will produce an NA,
 # we want to change these to 0s.
-    saveRDS(meth_summary,"methylSummary_cov5Filtered_medianNormalized_united.RData")
+saveRDS(meth_summary,"methylSummary_cov5Filtered_medianNormalized_united.RData")
 
 #### Create 'bed' file formats for these outputs ####
 newDir(baseOutputDir,"bed")
@@ -600,16 +552,6 @@ bedFileCreate(x=meth_all,type="CpG_noFilter_noNormalization",output=baseOutputDi
 bedFileCreate(x=meth_filt,type="CpG_5xCov_medianNormalization",output=baseOutputDir)
 ## CpGs after alternative filtration and no normalization
 bedFileCreate(x=meth_altCov,type="CpG_5x5SampleSingleTreatment_noNormalization",output=baseOutputDir)
-
-# meth <- readRDS(paste0(baseOutputDir,"/methylKitObj_cov5Filtered_medianNormalized_united.RData"))
-# CpG_5xCov_bed <- mutate(meth,label=paste0(chr,"_",start),start = start-1, end = end + 1) %>% 
-#   select(chr, start, end,label) %>% 
-#   mutate_if(is.numeric, as.integer) #Save as a BED file, and avoid writing information in scientific notation
-# CpG_5xCov_bed <- data.frame(CpG_5xCov_bed,meth_summary)
-# fwrite(CpG_5xCov_bed,
-#        "CpG_5xCov.bed",
-#        sep = '\t',
-#        col.names = FALSE) #Save data as a BED file
 
 #### Read in files from saved folder (optional)####
 # If you want to start with the united methyKit Objects 
@@ -641,7 +583,7 @@ performDiffMethSteps(methC,type="DML",comparison="C",output=baseOutputDir)
 # E
 performDiffMethSteps(methE,type="DML",comparison="E",output=baseOutputDir)
 
-## DMLs all timepoints
+## DMLs all timepoints (combines into single file)
 files <- list.files(paste0(baseOutputDir,"/dM50_q01"))
 subsetSample <- c("all_d","tp9","tp09","tp80","all_t","C","E")
 for(i in 1:length(subsetSample)){
@@ -666,66 +608,3 @@ for(i in 1:length(subsetSample)){
     }
   }
 }
-
-
-
-
-
-#### DMRs - Tiling (optional) #####
-# This will section will perform a similar differential methylation analysis, 
-# but summarizing CpGs into 100bp windows.
-tiles <- tileMethylCounts(norm.myobj,win.size=100,step.size=100)
-saveRDS(tiles,"methylKitObj_unfiltered_medianNormalized_tiled.RData")
-
-## Unite samples
-# All points
-meth_all_tile <- unite(tiles, destrand=TRUE)
-saveRDS(meth_all_tile,"methylKitObj_unfiltered_medianNormalized_tiled_united.RData")
-
-# Read in data (optional)
-# newDir(inputDir_CytoSummaries,"methylObjFiles")
-# baseOutputDir <- getwd()
-# meth_all_tile <- readRDS("methylKitObj_all_medianNormalizedUnfiltered_united_tiled.RData")
-
-# All points with time rather than OA as treatment
-meth_all_time_tile <- meth_all_tile
-meth_all_time_tile@treatment <- timeVec 
-# TP 9
-meta_9 <- meta_final[meta_final$Time == "09",]
-trt9 <-  ifelse(meta_9$treatment== 400,0,1)
-meth9_tile <- reorganize(meth_all_tile,sample.ids=meta_9$ID,treatment=trt9)
-# TP 80
-meta_80 <- meta_final[meta_final$Time == "80",]
-trt80 <- ifelse(meta_80$treatment==400,0,1)
-meth80_tile <- reorganize(meth_all_tile,sample.ids=meta_80$ID,treatment=trt80)
-# Control Treatment (day 9  vs day 80)
-meta_C <- meta_final[meta_final$treatment == 400,]
-trtC <- ifelse(meta_C$Time=="09",0,1)
-methC_tile <- reorganize(meth_all_time_tile,sample.ids=meta_C$ID,treatment=trtC)
-# Exposure Treatment (day 9  vs day 80)
-meta_E <- meta_final[meta_final$treatment == 2800,]
-trtE <- ifelse(meta_E$Time=="09",0,1)
-methE_tile <- reorganize(meth_all_time_tile,sample.ids=meta_E$ID,treatment=trtE)
-
-#### Differential Methylation Tiles (optional) ####
-# Get all loci that are differentially methylated
-# with a difference of at least 50% and a qvluae=0.01
-
-cov = data.frame(tp=meta_final$timepoint)
-# All trt
-performDiffMethSteps(meth_all_tile,cov=cov,type="DMR",output=baseOutputDir)
-# All tp 9
-performDiffMethSteps(meth9_tile,type="DMR",comparison="tp09",output=baseOutputDir)
-# All tp80
-performDiffMethSteps(meth80_tile,type="DMR",comparison="tp80",output=baseOutputDir)
-# All timepoint
-cov = data.frame(tp=meta_final$treatment)
-performDiffMethSteps(meth_all_time_tile,cov=cov,type="DMR",comparison="all_timepoint",output=baseOutputDir)
-# C
-performDiffMethSteps(methC_tile,type="DMR",comparison="C",output=baseOutputDir)
-# E
-performDiffMethSteps(methE_tile,type="DMR",comparison="E",output=baseOutputDir)
-
-## All Regions 
-meth_all_tile <- readRDS(paste0(baseOutputDir,"/methylKitObj_unfiltered_medianNormalized_tiled_united.RData"))
-bedFileCreate(x=meth_all_tile,type="Region_100BpTile",output=baseOutputDir)

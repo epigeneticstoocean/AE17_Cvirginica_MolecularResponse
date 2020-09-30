@@ -10,29 +10,30 @@ library(dplyr)
 library(matrixStats)
 
 ## Path
-inputDirCounts = "/shared_lab/20180226_RNAseq_2017OAExp/DNAm/processed_samples/03_CytoSummaries/methylKit_outputs"
+## Will need to add specific paths
+inputDirCounts = "~/Github/AE17_Cvirginica_MolecularResponse/"
 inputDirFeature = "/shared_lab/20180226_RNAseq_2017OAExp/DNAm/processed_samples/09_CpG_summary"
 outputFolder = "featureMethylationLevel"
 saveDate="20200202"
 
-# meta data
-meta <- readRDS("/shared_lab/20180226_RNAseq_2017OAExp/DNAm/metadata/metadata_20190811.RData")
-meta <- meta[meta$ID != "17099",]
-# Read in Countsmetadata_20190811.RData
 setwd(inputDirCounts)
-refCoord <- readRDS("methylKitObj_all_cov5Filtered_united.RData")
+# meta data
+meta <- readRDS("data/meta/AE17_RNAmetaData.RData")
+meta <- meta[meta$ID != "17099",]
+# Read in data
+refCoord <- readRDS("data/MBDBS_seq/methylKitObj_cov5Filtered_medianNormalized_united.RData")
 coord <- paste0(refCoord$chr,"_",refCoord$start-1,"_",refCoord$end+1)
-methCount <- read.csv("methylKit_cov5_counts/methylKitObj_all_cov5Filtered_united_MethylCCounts.csv")
-totalCount <- read.csv("methylKit_cov5_counts/methylKitObj_all_cov5Filtered_united_totalCounts.csv")
+methCount <- read.csv("data/MBDBS_seq/countMatrix_cov5Filtered_medianNormalized_methylCCounts.csv")
+totalCount <- read.csv("data/MBDBS_seq/countMatrix_cov5Filtered_medianNormalized_totalCounts.csv")
 methCount <- as.matrix(methCount)
 totalCount <- as.matrix(totalCount)
 class(methCount) <- "numeric"
 class(totalCount) <- "numeric"
 beta <- methCount/totalCount
 
-methCount <- data.frame(as.numeric(methCount))
-totalCount <- data.frame(as.numeric(totalCount))
-beta <- data.frame(beta)
+methCount <- as.data.frame(methCount)
+totalCount <- as.data.frame(totalCount)
+beta <- as.data.frame(beta)
 
 mC <- data.frame(coord,methCount)
 colnames(mC) <- c("coord",meta$ID)
@@ -42,11 +43,10 @@ b <- data.frame(coord,beta)
 colnames(b) <- c("coord",meta$ID)
 
 # Feature bed files
-setwd(inputDirFeature)
-exonF <- read.delim("20200129_CpG_cov5_Exon.txt",sep="\t",header=FALSE)
-geneF <- read.delim("20200129_CpG_cov5_gene.txt",sep="\t",header=FALSE)
-IntronF <- read.delim("20200129_CpG_cov5_Intron.txt",sep="\t",header=FALSE)
-IntergenicF <- read.delim("20200129_CpG_cov5_Intergenic.txt",sep="\t",header=FALSE)
+exonF <- read.delim("data/MBDBS_seq/20200130_IndividualSummaries/20200129_CpG_cov5_Exon.txt",sep="\t",header=FALSE)
+geneF <- read.delim("data/MBDBS_seq/20200130_IndividualSummaries/20200129_CpG_cov5_gene.txt",sep="\t",header=FALSE)
+IntronF <- read.delim("data/MBDBS_seq/20200130_IndividualSummaries/20200129_CpG_cov5_Intron.txt",sep="\t",header=FALSE)
+IntergenicF <- read.delim("data/MBDBS_seq/20200130_IndividualSummaries/20200129_CpG_cov5_Intergenic.txt",sep="\t",header=FALSE)
 
 # Remove redundant CpGs in each feature (this can happen when exons overlap for instance)
 exonF_unique <- exonF[!duplicated(paste0(exonF$V4,"_",exonF$V5,"_",exonF$V6)),4:6]
