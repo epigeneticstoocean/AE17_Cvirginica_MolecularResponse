@@ -215,7 +215,7 @@ y<-calculateDiffMeth(x,
 ```
 
 
-## CpG intersection and summary
+## Step 5 - CpG intersection and and gene feature counts
 
 ### Overview
 In this section we first intersect CpGs identified  in `Step 4 ` with various genomic features (feature tracks generated [previously for Venkataraman et al. 2020](https://github.com/epigeneticstoocean/paper-gonad-meth/tree/master/genome-feature-tracks)) using the the script `05A_CpGIntersectionByFeature.sh`. Next, we Summarize methylation and coverage using the script `05B_CpGCountByFeature.sh`.
@@ -225,11 +225,23 @@ In this section we first intersect CpGs identified  in `Step 4 ` with various ge
 * Files from `step 4`
 
 ### Output
-* []()
-* []()
+* [`/20200130_CpGbyGeneSummary`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/MBDBS_seq/20200130_CpGbyGeneSummary) : Folder with `txt` outputs from `/05B_CpGIntersectionByFeature.sh` script. These included files broken down by feature or DML which contain counts of CpGs covered in individual features (i.e. within a single gene) and summary file summarize methylation within single features by treatment and time.
 
 ### Code
   
 * [`/05A_CpGCountByFeature.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05A_CpGCountByFeature.sh)
 * [`/05B_CpGIntersectionByFeature.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05B_CpGIntersectionByFeature.sh)
 
+## Step 6 - Summary Counts by Feature
+
+### Overview
+Combines files generated in `Step 5` into a single `RData` file called [`/gene_CpGcoverageSummary.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/MBDBS_seq/20200130_CpGbyGeneSummary/gene_CpGcoverageSummary.RData), which is used to generated Figure 2A.
+
+### Input
+* Files from [`/20200130_CpGbyGeneSummary`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/MBDBS_seq/20200130_CpGbyGeneSummary) folder.
+
+### Output
+* [`/gene_CpGcoverageSummary.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/MBDBS_seq/20200130_CpGbyGeneSummary/gene_CpGcoverageSummary.RData)
+
+### Code
+[`/CpGSummaryByGeneTable.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Accessory/CpGSummaryByGeneTable.R)
