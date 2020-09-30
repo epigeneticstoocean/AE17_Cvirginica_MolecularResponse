@@ -208,13 +208,21 @@ performDiffMethSteps(meth,cov=cov,type="DML",output=baseOutputDir)
 ```
 
 
-## Step 5  - Filtering and Summaries <a name = "five"></a>
+## CpG intersection and summary
 
-### Overview  
-Use custom r script to filter complete dataset as well as annotated and summarize by feature.
+### Overview
+In this section we first intersect CpGs identified  in `Step 4 ` with various genomic features (feature tracks generated [previously for Venkataraman et al. 2020](https://github.com/epigeneticstoocean/paper-gonad-meth/tree/master/genome-feature-tracks)) using the the script `05A_CpGIntersectionByFeature.sh`. Next, we Summarize methylation and coverage using the script `05B_CpGCountByFeature.sh`.
+
+### Input
+* [Genome Track Files](https://github.com/epigeneticstoocean/paper-gonad-meth/tree/master/genome-feature-tracks)
+* Files from `step 4`
+
+### Output
+* []()
+* []()
 
 ### Code
   
-* [Script A](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05A_CpGCountByFeature.sh)
-* [Script B](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05B_CpGIntersectionByFeature.sh)
+* [`/05A_CpGCountByFeature.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05A_CpGCountByFeature.sh)
+* [`/05B_CpGIntersectionByFeature.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05B_CpGIntersectionByFeature.sh)
 
