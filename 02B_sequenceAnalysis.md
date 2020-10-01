@@ -87,8 +87,7 @@ Regression was also used to compare mean gene methylation and the CV of mean gen
 
 A weigheted gene co-expression network analysis was performed to identify genes that exhibit similar expression patterns among individual oysters using the R package `WGCNA` (Langfelder and Horvath, 2008). First, a gene dissimilarity matrix was generated based on the log2-cpm gene expression data using first the adjacency function followed by the TOMsimilarity function in `WGCNA`. This step estimates the level of dissimilarity between each gene by considering expression across all individuals. Next, genes were hierarchically clustered based on dissimilarity using the function hclust and the `‘Ward.D2’` method for clustering (Murtagh and Legendre, 2014). Modules were determined using the cutreeDynamic function with a minimum gene membership threshold of 30. An eigenvalue for module expression (i.e., the first principle component value for each individual) was calculated for each module using moduleEigengenes. Lastly, linear regression was used to determine the association between the expression of each module (i.e., the eigenvalue of gene expression) and either mean gene methylation (calculated as the mean methylation of all CpGs among all genes within a module) or EPF response (i.e., ΔpH).
 
-
-* [script]((https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig7_WGCNAmultiComp.R)
+* [script](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig7_WGCNAmultiComp.R)
 
 ![](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/manuscript/figures/Figure7/Figure7.png)
 
