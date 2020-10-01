@@ -15,8 +15,8 @@ This pipeline takes advantage of a genome mapper Bismark, which is capable of al
 4. [Step 3 - Mapping with Bismark and Bowtie2](#three)
 5. [Step 4 - Raw Matrices](#four)
 6. [Step 5 - Filtering and Summaries](#five)
-6. [Step 6 - Filtering and Summaries](#six)
-6. [Step 7 - Filtering and Summaries](#seven)
+6. [Step 6 - Summary Counts by Feature](#six)
+6. [Step 7 - DNA Methylation summarized by feature](#seven)
 
 ---
 
