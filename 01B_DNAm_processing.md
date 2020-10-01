@@ -252,7 +252,12 @@ Combines files generated in `Step 5` into a single `RData` file called [`/gene_C
 Script takes the count (coverage) information for all cpgs with at least 5x coverage starting with the methylKit object, subsets these counts by feature and summarizes (takes the median) methylation for each individual by feature and generates a median methylation by feature summary table with associated meta data for each individuals (i.e. treatment and time).
 
 ### Input
-* []()
+* [`/AE17_RNAmetaData.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/meta/AE17_RNAmetaData.RData) : Sequence meta data file.
+* [`MBDBS_seq/CpGCoordinates.csv`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/MBDBS_seq/CpGCoordinates.csv) : CpG coordinate list for all CpGs with coverage.
+* [`/countMatrix_cov5Filtered_medianNormalized_methylCCounts.csv`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/MBDBS_seq/countMatrix_cov5Filtered_medianNormalized_methylCCounts.csv) : Matrix of unmethylated cytosine counts.
+* [`/countMatrix_cov5Filtered_medianNormalized_totalCounts.csv`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/MBDBS_seq/countMatrix_cov5Filtered_medianNormalized_totalCounts.csv) : Matrix of total cytosine counts.
+* [`/20200130_IndividualSummaries`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/MBDBS_seq/20200130_IndividualSummaries) : CpG counts by feature files.
+
 ### Output
 * []()
 ### Code
