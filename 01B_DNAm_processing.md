@@ -15,6 +15,8 @@ This pipeline takes advantage of a genome mapper Bismark, which is capable of al
 4. [Step 3 - Mapping with Bismark and Bowtie2](#three)
 5. [Step 4 - Raw Matrices](#four)
 6. [Step 5 - Filtering and Summaries](#five)
+6. [Step 6 - Filtering and Summaries](#six)
+6. [Step 7 - Filtering and Summaries](#seven)
 
 ---
 
@@ -215,7 +217,8 @@ y<-calculateDiffMeth(x,
 ```
 
 
-## Step 5 - CpG intersection and and gene feature counts
+## Step 5 - CpG intersection and and gene feature counts <a name = "five"></a>
+
 
 ### Overview
 In this section we first intersect CpGs identified  in `Step 4 ` with various genomic features (feature tracks generated [previously for Venkataraman et al. 2020](https://github.com/epigeneticstoocean/paper-gonad-meth/tree/master/genome-feature-tracks)) using the the script `05A_CpGIntersectionByFeature.sh`. Next, we Summarize methylation and coverage using the script `05B_CpGCountByFeature.sh`.
@@ -232,7 +235,8 @@ In this section we first intersect CpGs identified  in `Step 4 ` with various ge
 * [`/05A_CpGCountByFeature.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05A_CpGCountByFeature.sh)
 * [`/05B_CpGIntersectionByFeature.sh`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/MBDBS_seq/05B_CpGIntersectionByFeature.sh)
 
-## Step 6 - Summary Counts by Feature
+## Step 6 - Summary Counts by Feature <a name = "six"></a>
+
 
 ### Overview
 Combines files generated in `Step 5` into a single `RData` file called [`/gene_CpGcoverageSummary.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/data/MBDBS_seq/20200130_CpGbyGeneSummary/gene_CpGcoverageSummary.RData), which is used to generated Figure 2A.
@@ -246,7 +250,8 @@ Combines files generated in `Step 5` into a single `RData` file called [`/gene_C
 ### Code
 * [`/CpGSummaryByGeneTable.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Accessory/CpGSummaryByGeneTable.R)
 
-## Step 7 - 
+## Step 7 - DNA Methylation summarized by feature <a name = "seven"></a>
+
 
 ### Overview 
 Script takes the count (coverage) information for all cpgs with at least 5x coverage starting with the methylKit object, subsets these counts by feature and summarizes (takes the median) methylation for each individual by feature and generates a median methylation by feature summary table with associated meta data for each individuals (i.e. treatment and time).
@@ -259,7 +264,8 @@ Script takes the count (coverage) information for all cpgs with at least 5x cove
 * [`/20200130_IndividualSummaries`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/master/data/MBDBS_seq/20200130_IndividualSummaries) : CpG counts by feature files.
 
 ### Output
-* []()
+* Creates `20200202_AllCountsList_cov5_byFeature.RData` as output. This was reduced to [`/20200202_geneBeta_cov5_byFeature.RData`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/results/DNAm/20200202_geneBeta_cov5_byFeature.RData) (code is located in [`/Analyses/AE17_fig3_DNAm.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Analyses/AE17_fig3_DNAm.R)).
+
 ### Code
-* [`/geneSummary_MethylationAndExpressionCompleteMatrix.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Accessory/geneSummary_MethylationAndExpressionCompleteMatrix.R)
+* [`/MedianMethylationByFeatureSummary.R`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/src/Accessory/MedianMethylationByFeatureSummary.R)
 
