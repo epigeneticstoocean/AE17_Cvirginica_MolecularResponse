@@ -1,5 +1,7 @@
 ## packages
 library(mgcv)
+library(ggplot2)
+library(cowplot)
 library(dplyr)
 library(car)
 library(lme4)
@@ -7,28 +9,29 @@ library(lmerTest)
 library(factoextra)
 library(multcomp)
 library(multcompView)
-library(cowplot)
 library(grid)
 library(gridExtra)
 library("RColorBrewer")
 pal <- brewer.pal(n = 12, name = 'Paired')
 col_perm <- c(pal[1:2],pal[5:6],pal[12])
 # Located in src Analysis/Phenotype folder, will need to set full working directory or setwd()
-setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/src/Analyses/Phenotype/")
+setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/src/Accessory/")
 source("basicR_functions.R")
 
 #### Data ####
 setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/data/Phenotype/")
-pheno <- readRDS("AE17_summaryPhenotype_exposure.RData") # just exposure timepoints
-pheno2 <- readRDS("AE17_summaryPhenotype_alltimepoints.RData") # acclimation and exposure timepoints
+epf_exp <- read.csv("CompletePhenotype.csv") # just exposure timepoints
+epf_exp$EPF_pH <- epf_exp$EPF_pH_Total
+epf_exp$pCO2_fac <- as.factor(epf_exp$pCO2)
+epf_exp$Timepoint_fac <- as.factor(epf_exp$Timepoint)
+epf_exp$EPF_envAdj <- epf_exp$EPF_pH-epf_exp$pH_Total_2W
+#pheno2 <- readRDS("AE17_summaryPhenotype_alltimepoints.RData") # acclimation and exposure timepoints
 # Remove 81 which we know has wonky EPF values (for consistency these are also ultimately removed from the calcification estimates as well)
-pheno_red <- pheno[pheno$timepoint != 81,]
-
-epf_exp <- pheno_red[!is.na(pheno_red$EPF_pH),]
-epf_exp <-epf_exp[as.numeric(epf_exp$timepoint) > 40,]
+epf_exp <- epf_exp[!duplicated(epf_exp$ID),]
+epf_exp <-epf_exp[as.numeric(epf_exp$Timepoint) > 40,]
 
 ## Full Model
-epfAllTP_full <- lmer(EPF_pH~pCO2_fac*timepoint_fac + (1|PopOrigin) + (1|shelf/tank),data=epf_exp) 
+epfAllTP_full <- lmer(EPF_pH~pCO2_fac*Timepoint_fac + (1|PopOrigin) + (1|shelf/tank),data=epf_exp)
 ## Reduced (final) model 
 epfAllTP_red <- aov(EPF_pH~pCO2_fac,data=epf_exp)
 #epfAllTP_red <- aov(EPF_pH~pCO2_fac*timepoint_fac,data=epf_exp)
@@ -41,9 +44,9 @@ TukeyHSD(epfAllTP_red)
 
 #### Figure ####
 
-c_mean <- mean(epf_exp$Tank_pH[epf_exp$pCO2_fac==400])
-oa_900_mean <- mean(epf_exp$Tank_pH[epf_exp$pCO2_fac==900])
-oa_2800_mean <- mean(epf_exp$Tank_pH[epf_exp$pCO2_fac==2800])
+c_mean <- mean(epf_exp$pH_Total_2W[epf_exp$pCO2_fac==400])
+oa_900_mean <- mean(epf_exp$pH_Total_2W[epf_exp$pCO2_fac==900])
+oa_2800_mean <- mean(epf_exp$pH_Total_2W[epf_exp$pCO2_fac==2800])
 
 
 ## Figures
@@ -61,9 +64,9 @@ treat_SE_ctrl <- treatSeq_SE[treatSeq_SE$pCO2_fac == "400",]
 treat_SE_oa_900 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "900",]
 treat_SE_oa_2800 <- treatSeq_SE[treatSeq_SE$pCO2_fac == "2800",]
 
-c_mean <- mean(epf_exp$Tank_pH[epf_exp$pCO2_fac==400])
-oa_900_mean <- mean(epf_exp$Tank_pH[epf_exp$pCO2_fac==900])
-oa_2800_mean <- mean(epf_exp$Tank_pH[epf_exp$pCO2_fac==2800])
+c_mean <- mean(epf_exp$pH_Total_2W[epf_exp$pCO2_fac==400])
+oa_900_mean <- mean(epf_exp$pH_Total_2W[epf_exp$pCO2_fac==900])
+oa_2800_mean <- mean(epf_exp$pH_Total_2W[epf_exp$pCO2_fac==2800])
 
 bar_measuredpH <- ggplot(treatSeq_means,aes(x=pCO2_fac,
                                             y=EPF_pH,
@@ -81,6 +84,7 @@ bar_measuredpH <- ggplot(treatSeq_means,aes(x=pCO2_fac,
   scale_fill_manual(values=c(col_perm[2],col_perm[5],col_perm[4]))+
   labs(x="",y="EPF pH (NBS)",fill="") +
   theme(legend.position = "NULL")
+
 bar_measuredpH
 
 # Box plot
@@ -140,7 +144,4 @@ x.grob1 <- textGrob("pCO2 (uatm)",
 
 boxes <- plot_grid(box_measuredpH,box_relativepH,labels=c("A","B"))
 grid.arrange(arrangeGrob(boxes,bottom = x.grob1))
-
-bars <- plot_grid(bar_measuredpH,bar_relativepH,labels=c("A","B"))
-grid.arrange(arrangeGrob(bars,bottom = x.grob1))
 

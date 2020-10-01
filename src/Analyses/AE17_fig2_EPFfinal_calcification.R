@@ -19,7 +19,7 @@ setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse")
 source("src/Accessory/basicR_functions.R")
 
 #### Data ####
-bw <- read.delim("data/Phenotype/CompletePhenotype_final2020.csv",sep=",")
+bw <- read.delim("data/Phenotype/CompletePhenotype.csv",sep=",")
 bw <- bw[bw$CompleteRecord==1,] # Trims data to only samples with bouyant weight data
 table(bw$pCO2,bw$Timepoint)
 bw$pCO2_fac <- as.factor(bw$pCO2) # Turn treatment into a factor
@@ -29,7 +29,7 @@ bw$EPF_envAdj <- bw$EPF_pH-bw$pH_NBS_2W # Calculate delta pH
 
 
 #### Water Chemistry Data ####
-wc <- read.delim("data/water_chem/AE17_weeklyExposure_final2020.csv",sep=",",
+wc <- read.delim("data/water_chem/AE17_WaterChemistry_weekly.csv",sep=",",
                  stringsAsFactors = FALSE)
 
 #### Analysis #####

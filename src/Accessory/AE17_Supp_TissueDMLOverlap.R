@@ -5,11 +5,12 @@ setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse/")
 
 ### DML files from Venkataraman et al. (2020)
 # Github repo : https://github.com/epigeneticstoocean/paper-gonad-meth
+#
 # Bed file with 598 DML 
-ym <- read.delim("results/DNAm/2019-04-05-DML-Destrand-5x-Locations.tab",
+#ym <- read.delim("--2019-04-05-DML-Destrand-5x-Locations.tab",
                  sep="\t",header = FALSE)
 # Annotation file
-ym_annot <- read.csv("results/DNAm/2019-06-20-Master-DML-Annotation.csv")
+#ym_annot <- read.csv("--2019-06-20-Master-DML-Annotation.csv")
 
 ## DML from mantle tissue
 dml <- read.csv("results/manuscript/Supp/Supplemental_TableS3.3__DMLlist.csv")

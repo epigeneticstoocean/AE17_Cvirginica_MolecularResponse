@@ -24,8 +24,8 @@ meta <- meta[meta$ID != "17099",]
 head(refCoord)
 # This file remove from repo due to size.
 #refCoord <- readRDS("data/MBDBS_seq/methylKitObj_cov5Filtered_medianNormalized_united.RData")
+#coord <- paste0(refCoord$chr,"_",refCoord$start-1,"_",refCoord$end+1)
 #write.csv(coord,"data/MBDBS_seq/CpGCoordinates.csv",row.names = FALSE)
-coord <- paste0(refCoord$chr,"_",refCoord$start-1,"_",refCoord$end+1)
 coord <- c(read.csv("data/MBDBS_seq/CpGCoordinates.csv",stringsAsFactors = FALSE))
 
 methCount <- read.csv("data/MBDBS_seq/countMatrix_cov5Filtered_medianNormalized_methylCCounts.csv")
