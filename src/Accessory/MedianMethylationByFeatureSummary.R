@@ -21,8 +21,13 @@ setwd(inputDirCounts)
 meta <- readRDS("data/meta/AE17_RNAmetaData.RData")
 meta <- meta[meta$ID != "17099",]
 # Read in data
-refCoord <- readRDS("data/MBDBS_seq/methylKitObj_cov5Filtered_medianNormalized_united.RData")
+head(refCoord)
+# This file remove from repo due to size.
+#refCoord <- readRDS("data/MBDBS_seq/methylKitObj_cov5Filtered_medianNormalized_united.RData")
+#write.csv(coord,"data/MBDBS_seq/CpGCoordinates.csv",row.names = FALSE)
 coord <- paste0(refCoord$chr,"_",refCoord$start-1,"_",refCoord$end+1)
+coord <- c(read.csv("data/MBDBS_seq/CpGCoordinates.csv",stringsAsFactors = FALSE))
+
 methCount <- read.csv("data/MBDBS_seq/countMatrix_cov5Filtered_medianNormalized_methylCCounts.csv")
 totalCount <- read.csv("data/MBDBS_seq/countMatrix_cov5Filtered_medianNormalized_totalCounts.csv")
 methCount <- as.matrix(methCount)
