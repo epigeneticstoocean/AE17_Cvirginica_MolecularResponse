@@ -22,14 +22,19 @@ setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse")
 source("src/Accessory/basicR_functions.R")
 
 #### Sample Data ####
-epf_exp <- read.csv("data/Phenotype/CompletePhenotype.csv",stringsAsFactors = FALSE)
-epf_exp$EPF_pH <- epf_exp$EPF_pH_Total
+epf_exp <- read.csv("data/Phenotype/AE17_EPFpHComplete.csv")
+
+# Rename variables and converting to explanatory variables to factors
+epf_exp$EPF_pH <- epf_exp$pHTotal
 epf_exp$pCO2_fac <- as.factor(epf_exp$pCO2)
 epf_exp$Timepoint_fac <- as.factor(epf_exp$Timepoint)
+epf_exp$PopOrigin<- as.factor(epf_exp$pop)
+epf_exp$TankID<- epf_exp$tankID
+epf_exp$TankID<- as.factor(epf_exp$tankID)
 epf_exp$EPF_envAdj <- epf_exp$EPF_pH-epf_exp$pH_Total_2W
 
 #### Water Chemistry Data ####
-wc <- read.delim("data/water_chem/AE17_WaterChemistry_weekly.csv",sep=",",
+wc <- read.delim("data/water_chem/AE17_WeeklySW_ExperimentalExposureSamples_Simple.csv",sep=",",
                  stringsAsFactors = FALSE)
 
 
@@ -39,7 +44,6 @@ wc <- read.delim("data/water_chem/AE17_WaterChemistry_weekly.csv",sep=",",
 #### Measured pH vs. treatment and time ####
 ## Full Model 
 epfAllTP_full <- lmer(EPF_pH~pCO2_fac*Timepoint_fac + (1|PopOrigin) + (1|TankID),data=epf_exp) 
-
 ## Reduced (final) model 
 epfAllTP_red <- lmer(EPF_pH~pCO2_fac*Timepoint_fac + (1|TankID),data=epf_exp)
 # LRT to check if reduced model is diff. than full model
@@ -49,6 +53,13 @@ anova(epfAllTP_full,epfAllTP_red) # It isnt, so we use the simpler reduced model
 plot(epfAllTP_red)
 
 anova(epfAllTP_red)
+#Type III Analysis of Variance Table with Satterthwaite's method
+#                        Sum Sq Mean Sq NumDF  DenDF F value  Pr(>F)  
+#pCO2_fac               0.81536 0.40768     2 14.783  5.8206 0.01366 *
+#Timepoint_fac          0.17551 0.03510     5 74.016  0.5012 0.77442  
+#pCO2_fac:Timepoint_fac 1.68961 0.16896    10 74.002  2.4123 0.01527 *
+
+### Old numbers generated with duplicates in samples
 #Type III Analysis of Variance Table with Satterthwaite's method
 #                        Sum Sq Mean Sq NumDF  DenDF F value   Pr(>F)   
 #pCO2_fac               0.80996 0.40498     2 15.605  6.4073 0.009302 **
@@ -89,6 +100,13 @@ epfenvAllTP_red <- lmer(EPF_envAdj~pCO2_fac*Timepoint_fac + (1|TankID),data=epf_
 anova(epfenvAllTP_red,epfenvAllTP_full) # It isnt, so we use the simpler reduced model
 # ANOVA 
 anova(epfenvAllTP_red)
+#Type III Analysis of Variance Table with Satterthwaite's method
+#                        Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)    
+#pCO2_fac               2.66763 1.33381     2 14.818 18.9487 8.253e-05 ***
+#Timepoint_fac          0.32895 0.06579     5 74.050  0.9346   0.46370    
+#pCO2_fac:Timepoint_fac 1.41605 0.14160    10 74.036  2.0117   0.04389 *  
+
+### Old results with dataframe that had duplicate samples
 #Type III Analysis of Variance Table with Satterthwaite's method
 #                        Sum Sq Mean Sq NumDF DenDF F value  Pr(>F)  
 #pCO2_fac               0.78091 0.39045     2    12  6.4769 0.01237 *
@@ -139,11 +157,10 @@ ggplot(epf_exp,aes(y=EPF_envAdj,x=Timepoint_fac,colour=pCO2_fac)) +
 c_mean <- mean(wc$pH_Total[wc$PCO2 == 550])
 oa_900_mean <- mean(wc$pH_Total[wc$PCO2 == 1000])
 oa_2800_mean <- mean(wc$pH_Total[wc$PCO2 == 2800])
-#oa_2800_mean <- mean(epf_exp$pH_Complete[epf_exp$pCO2_fac == 2800])
 # Code for setting the plotting space for the two panels (plus middle section for shared legend)
-m <- matrix(c(1,2,3),nrow = 3,ncol = 1,byrow = TRUE)
-layout(mat = m,heights = c(0.5,0.05,0.5),widths = c(.1))
-par(mar = c(5,5,3,2))
+# m <- matrix(c(1,2,3),nrow = 3,ncol = 1,byrow = TRUE)
+# layout(mat = m,heights = c(0.5,0.05,0.5),widths = c(.1))
+# par(mar = c(5,5,3,2))
 
 #### Panel A - measured EPF pH ####
 ### Summarize measured EPF pH for plotting

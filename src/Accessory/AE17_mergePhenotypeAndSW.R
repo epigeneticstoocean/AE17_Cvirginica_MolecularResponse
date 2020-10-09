@@ -4,7 +4,7 @@
 
 # Purpose: Takes raw phenotype and water chemistry files and comebines them for downstream analysis.
 #   Specifically, it:
-#(i)  Summarizes water chemistry in three ways. First, is summarized tank chemistry for each individual
+#(i)  Summarizes water chemistry in three ways. First, is summarized tank chemistry for each individ  ual
 #     over the entire duration of the exposure (net WC). Second, it summarizes the previous 2 weeks WC
 #     for each individual. Third, for the first 33 days of the exposure (for samples collected on day 50 or 80).
 #     The second summary (2 weeks) was used to calculate the delta pH (EPF pH - seawater pH). The third 
@@ -74,7 +74,7 @@ samples <- samples[,c(1,12,2:9,11)]
 
 samplingDates <- unique(as.Date(sample_date))
 samplingDates <- samplingDates[samplingDates > "2017-06-03" & samplingDates < "2017-08-24"] # Include only experiment
-samplingDates[samplingDates >= max(samplingDates)] <- "2017-08-23"
+#samplingDates[samplingDates >= max(samplingDates)] <- "2017-08-23"
 
 ## Table 1 - All Chemistry 
 # WC averaged over the entire experiment for each individual.

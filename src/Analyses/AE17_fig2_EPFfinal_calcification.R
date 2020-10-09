@@ -19,17 +19,21 @@ setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse")
 source("src/Accessory/basicR_functions.R")
 
 #### Data ####
-bw <- read.delim("data/Phenotype/CompletePhenotype.csv",sep=",")
-bw <- bw[bw$CompleteRecord==1,] # Trims data to only samples with bouyant weight data
+bw <- read.delim("data/Phenotype/AE17_CalcificationComplete.csv",sep=",")
+#bw <- read.delim("data/Phenotype/CompletePhenotype.csv",sep=",")
+#bw <- bw[bw$CompleteRecord==1,] # Trims data to only samples with bouyant weight data
 table(bw$pCO2,bw$Timepoint)
 bw$pCO2_fac <- as.factor(bw$pCO2) # Turn treatment into a factor
 bw$Timepoint_fac <- as.factor(bw$Timepoint) # Turn time point into a factor
-bw$EPF_pH <- bw$EPF_pH_Total
-bw$EPF_envAdj <- bw$EPF_pH-bw$pH_NBS_2W # Calculate delta pH
+bw$PopOrigin<- as.factor(bw$pop)
+bw$TankID<- as.factor(bw$tankID)
+bw$EPF_pH <- bw$pHTotal
+#bw$EPF_pH <- bw$EPF_pH_Total
+bw$EPF_envAdj <- bw$EPF_pH-bw$pH_Total_2W # Calculate delta pH
 
 
 #### Water Chemistry Data ####
-wc <- read.delim("data/water_chem/AE17_WaterChemistry_weekly.csv",sep=",",
+wc <- read.delim("data/water_chem/AE17_WeeklySW_ExperimentalExposureSamples_Simple.csv",sep=",",
                  stringsAsFactors = FALSE)
 
 #### Analysis #####
@@ -38,18 +42,22 @@ wc <- read.delim("data/water_chem/AE17_WaterChemistry_weekly.csv",sep=",",
 ## Full model
 EPF_measure <- lmer(EPF_pH ~ pCO2_fac*Timepoint_fac + (1|PopOrigin) + (1|TankID),data=bw)
 # Model is too complicated
-## No random effects
+## No random effects (FINAL MODEL)
 EPF_measure_red <- lm(EPF_pH ~ pCO2_fac*Timepoint_fac,data=bw)
 summary(aov(EPF_measure_red))
-# Dropped time and interaction 
-# Simple (final model)
-EPF_measure_final <- lm(EPF_pH ~ pCO2_fac,data=bw)
-plot(EPF_measure_final)
-EPF_measure_final_aov <- aov(EPF_measure_final)
+#                       Df Sum Sq Mean Sq F value   Pr(>F)    
+#pCO2_fac                2 1.6015  0.8007  22.438 1.29e-06 ***
+#Timepoint_fac           1 0.0213  0.0213   0.597    0.446    
+#pCO2_fac:Timepoint_fac  2 0.0302  0.0151   0.423    0.659    
+#Residuals              29 1.0349  0.0357  
+TukeyHSD(aov(EPF_measure_red))$pCO2_fac
+
+# Alternative dropped time and interaction which only stengthens effect of pCO2 
+# Simple 
+EPF_measure_alt <- lm(EPF_pH ~ pCO2_fac,data=bw)
+EPF_measure_final_aov <- aov(EPF_measure_alt)
 summary(EPF_measure_final_aov)
-# post hoc comparisons
-TukeyHSD(EPF_measure_final_aov)
-plot(TukeyHSD(EPF_measure_final_aov))
+            
 
 #### Long term relative EPF ####
 ## Full model
@@ -58,14 +66,19 @@ EPF_measure <- lmer(EPF_envAdj ~ pCO2_fac*Timepoint_fac + (1|PopOrigin) + (1|Tan
 ## No random effects
 EPF_measure_red <- lm(EPF_envAdj  ~ pCO2_fac*Timepoint_fac,data=bw)
 summary(aov(EPF_measure_red))
-# Dropped time and interaction 
-# Simple (final model)
-EPF_measure_final <- lm(EPF_envAdj  ~ pCO2_fac,data=bw)
-EPF_measure_final_aov <- aov(EPF_measure_final)
-summary(EPF_measure_final_aov)
+#                       Df Sum Sq Mean Sq F value  Pr(>F)   
+#pCO2_fac                2 0.5651 0.28253   7.982 0.00173 **
+#Timepoint_fac           1 0.0189 0.01892   0.534 0.47062   
+#pCO2_fac:Timepoint_fac  2 0.0412 0.02060   0.582 0.56521   
+#Residuals              29 1.0266 0.03540                   
 # post hoc comparisons
-TukeyHSD(EPF_measure_final_aov)
-plot(TukeyHSD(EPF_measure_final_aov))
+TukeyHSD(aov(EPF_measure_red))$pCO2_fac
+
+# Alternative dropped time and interaction which only stengthens effect of pCO2 
+# Simple 
+EPF_measure_alt <- lm(EPF_envAdj  ~ pCO2_fac,data=bw)
+EPF_measure_final_aov <- aov(EPF_measure_alt)
+summary(EPF_measure_final_aov)
 
 
 #### Calcification vs Environment ####
@@ -200,8 +213,8 @@ bw$pCO2_name <- factor(bw$pCO2_name,levels = c("Control", "Mod. OA", "High OA"))
 p <- ggplot(bw,aes(x=EPF_pH,y=PercentChangePerDay_DW2_DW3,colour=pCO2_name)) +
   geom_point(size=4,aes(shape=pCO2_name)) + 
   ylim(-0.06,0.05) +
-  scale_color_manual(values=c(col_perm[2],col_perm[5],col_perm[4])) +
-  scale_shape_manual(values=c(16,15,17)) +
+  scale_color_manual(values=c(col_perm[2],col_perm[4],col_perm[5])) +
+  scale_shape_manual(values=c(16,17,15)) +
   geom_abline(slope = calVspH_simple$coefficients[2],
               intercept = calVspH_simple$coefficients[1]) 
 pD <- p + 
@@ -226,4 +239,3 @@ pD
 plot_grid(pA,pB,pC,pD,
           ncol=2,
           labels=c("A","B","C","D"))
-  
