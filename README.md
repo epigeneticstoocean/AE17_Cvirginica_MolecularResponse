@@ -25,4 +25,5 @@ DOI:[https://doi.org/10.3389/fmars.2020.566419](https://doi.org/10.3389/fmars.20
 ### Update Log
 Updates since initial publication.
 
-* `2021-Jun-22` : Added link to publication in README.
+* `2021-Jun-22` : Added link to publication in README. 
+* `2021-Jun-22` : Made some minor edits to [`/01B_DNAm_processing`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01B_DNAm_processing.md) to correct some small grammatical mistakes and corrects several broken links.
