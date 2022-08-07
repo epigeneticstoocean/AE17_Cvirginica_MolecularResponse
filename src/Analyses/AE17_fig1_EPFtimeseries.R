@@ -18,7 +18,7 @@ yellow <- brewer.pal(n=9,name = 'YlOrRd')[5]
 col_perm <- c(pal[1:2],pal[5:6],yellow)
 #col_perm <- c(pal[1:2],pal[5:6],pal[12])
 # Located in src Analysis/Phenotype folder, will need to set full working directory or setwd()
-setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse")
+setwd("/home/adowneywall/Github/AE17_Cvirginica_MolecularResponse")
 source("src/Accessory/basicR_functions.R")
 
 #### Sample Data ####
@@ -178,30 +178,36 @@ treatSeq_means$error <- treatSeq_SE$EPF_pH
 library(cowplot)
 
 # EPF pH plot
+treatSeq_means <- treatSeq_means[treatSeq_means$Timepoint == 1 | treatSeq_means$Timepoint == 9 | treatSeq_means$Timepoint == 22 | treatSeq_means$Timepoint == 80,]
+treatSeq_means <- treatSeq_means[treatSeq_means$pCO2_fac != "Mod. OA",]
+
 pA <- ggplot(treatSeq_means,aes(x=Timepoint,y=EPF_pH,group=pCO2_fac,shape=pCO2_fac,colour=pCO2_fac)) +
    geom_hline(yintercept=c_mean,colour=col_perm[2],linetype=17,size=.8,show.legend =TRUE) + # control 
-   geom_hline(yintercept=oa_900_mean,colour=col_perm[5],linetype=16,size=.8) +# 900
+   #geom_hline(yintercept=oa_900_mean,colour=col_perm[5],linetype=16,size=.8) +# 900
    geom_hline(yintercept=oa_2800_mean,colour=col_perm[4],linetype=15,size=.8) +# 2800
    geom_line(position=position_dodge(width=0.15)) +
    geom_point(size=5,position=position_dodge(width=0.15)) +
    geom_errorbar(aes(ymin=EPF_pH-error,ymax=EPF_pH+error),width=0.1,position=position_dodge(width=0.15)) +
    scale_y_continuous(breaks=c(6.50,7.00,7.50,8.00),limits=c(6.45,8.15),labels=c(" 6.50"," 7.00"," 7.50"," 8.00")) +
-   scale_x_log10(breaks = c(1,2,9,22,50,80)) +
-   scale_shape_manual(values=c(16,15,17))+
-   scale_colour_manual(values=c(col_perm[2],col_perm[5],col_perm[4])) +
-   labs(x="Time (Days)",y=expression(pH[EPF]~(Total)),fill="") +
+   #scale_x_log10(breaks = c(1,2,9,22,50,80)) +
+   scale_x_log10(breaks = c(1,9,22,80)) +
+   #scale_shape_manual(values=c(16,15,17))+
+   scale_shape_manual(values=c(16,15,17)) +
+   #scale_colour_manual(values=c(col_perm[2],col_perm[5],col_perm[4])) +
+   scale_colour_manual(values=c(col_perm[2],col_perm[4])) +
+   labs(x="Time (Days)",y=expression(pH[EPF]~Total),fill="") +
    theme_cowplot() +
    theme(panel.border = element_blank(),
-      legend.direction = "horizontal",
+      #legend.direction = "horizontal",
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
-      legend.title = element_blank(),
-      legend.spacing.y = unit(10, "mm"),
-      legend.position = c(0.02,.08),
-      legend.background = element_rect(linetype = 1, 
-                                       size = 0.5, 
-                                       colour = 1),
-      legend.margin = margin(6, 6, 6, 6))
+      legend.title = element_blank())
+      #legend.spacing.y = unit(10, "mm"),
+      #legend.position = c(0.02,.08),
+      #legend.background = element_rect(linetype = 1, 
+      #                                 size = 0.5, 
+      #                                 colour = 1),
+      #legend.margin = margin(6, 6, 6, 6))
 pA
 
 # Delta pH plot
@@ -214,16 +220,24 @@ treatSeq_means$pCO2_fac <- as.factor(treatSeq_means$pCO2_fac )
 treatSeq_means$pCO2_fac <- factor(treatSeq_means$pCO2_fac, levels = c("Control", "Mod. OA", "High OA"))
 treatSeq_SE <- aggregate(EPF_envAdj~Timepoint+pCO2_fac,epf_exp,FUN=se)
 treatSeq_means$error <- treatSeq_SE$EPF_envAdj
+
+treatSeq_means <- treatSeq_means[treatSeq_means$Timepoint == 1 | treatSeq_means$Timepoint == 9 | treatSeq_means$Timepoint == 22 | treatSeq_means$Timepoint == 80,]
+treatSeq_means <- treatSeq_means[treatSeq_means$pCO2_fac == "High OA",]
+
 pB <- ggplot(treatSeq_means,aes(x=Timepoint,y=EPF_envAdj,group=pCO2_fac,shape=pCO2_fac,colour=pCO2_fac)) +
-   #geom_hline(yintercept=0,linetype=3,size=0.8) +
+   geom_hline(yintercept=0,linetype=3,size=0.8) +
    geom_line(position=position_dodge(width=0.15)) +
    geom_point(size=5,position=position_dodge(width=0.15)) +
    geom_errorbar(aes(ymin=EPF_envAdj-error,ymax=EPF_envAdj+error),width=0.1,position=position_dodge(width=0.15)) +
    scale_y_continuous(limits=c(-1.1,0.3),breaks=c(-0.9,-0.60,-0.30,0,0.3),labels=c("-0.90","-0.60","-0.30","0.00","0.30")) +
-   scale_x_log10(breaks = c(1,2,9,22,50,80)) +
-   scale_shape_manual(values=c(16,15,17))+
-   scale_colour_manual(values=c(col_perm[2],col_perm[5],col_perm[4])) +
-   labs(x="Time (Days)",y=expression(paste(Delta," pH (Total)")),fill="") +
+   #scale_x_log10(breaks = c(1,2,9,22,50,80)) +
+   scale_x_log10(breaks = c(1,9,22,80)) +
+   #scale_shape_manual(values=c(16,15,17))+
+   scale_shape_manual(values=c(15,17))+
+   #scale_colour_manual(values=c(col_perm[2],col_perm[5],col_perm[4])) +
+   #scale_colour_manual(values=c(col_perm[2],col_perm[4])) +
+   scale_colour_manual(values=c(col_perm[4])) +
+   labs(x="Time (Days)",y=expression(paste(Delta," pH Total (pH EPF - pH Seawater)")),fill="") +
    theme_cowplot() +
    theme(panel.border = element_blank(),
          legend.direction = "horizontal",
@@ -231,10 +245,15 @@ pB <- ggplot(treatSeq_means,aes(x=Timepoint,y=EPF_envAdj,group=pCO2_fac,shape=pC
          panel.grid.minor = element_blank(),
          legend.title = element_blank(),
          #legend.spacing.y = unit(0, "mm"),
-         legend.position = c(0.02,.08),
+         #legend.position = c(0.02,.08),
          legend.background = element_rect(linetype = 1, 
                                           size = 0.5, 
                                           colour = 1),
          legend.margin = margin(6, 6, 6, 6)) 
 
-plot_grid("",pA,"",pB,labels = c("A","","B",""),nrow=4,rel_heights = c(1,5,2,5))
+pB
+plot_grid("",pA,"",pB,labels = c("A","","B",""),nrow=4,rel_heights = c(1,5,2,5)) 
+
+
+ggsave(pA,filename = "~/Desktop/dissertationChapter1_Fig1A.png",width=6,height = 5)
+ggsave(pB,filename = "~/Desktop/dissertationChapter1_Fig1B.png",width=6,height = 5)

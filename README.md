@@ -1,5 +1,7 @@
 # Data, Script, and Analyses Repository
 
+# This repository is outdated! Please clone the `2022_erratum` branch for the most up-to-date data files and results.
+
 ## Paper Title : Ocean acidification induces subtle shifts in gene expression and DNA methylation in mantle tissue of the Eastern oyster (Crassostrea virginica)
 
 [**Link to BioRxiv**](https://www.biorxiv.org/content/10.1101/2020.06.05.136424v1.abstract)
@@ -27,3 +29,4 @@ Updates since initial publication.
 
 * `2021-Jun-22` : Added link to publication in README. 
 * `2021-Jun-22` : Made some minor edits to [`/01B_DNAm_processing`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01B_DNAm_processing.md) to correct some small grammatical mistakes and corrects several broken links.
+* `2022-Aug-07` : Major repository update. Due to a small data entry error, the EPF pH values for several individuals was rearranged. This had little to no effect on results. Updated data files and revised figures were generated and incorporated into a new branch `2022_erratum`. Please clone that repository for the corrected version of the data and results.

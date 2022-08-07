@@ -2,16 +2,16 @@
 
 # Created by: Alan Downey-Wall
 
-# Purpose: Takes raw phenotype and water chemistry files and comebines them for downstream analysis.
+# Purpose: Takes raw phenotype and water chemistry files and combines them for downstream analysis.
 #   Specifically, it:
-#(i)  Summarizes water chemistry in three ways. First, is summarized tank chemistry for each individ  ual
+#(i)  Summarizes water chemistry in three ways. First, is summarized tank chemistry for each individual
 #     over the entire duration of the exposure (net WC). Second, it summarizes the previous 2 weeks WC
 #     for each individual. Third, for the first 33 days of the exposure (for samples collected on day 50 or 80).
 #     The second summary (2 weeks) was used to calculate the delta pH (EPF pH - seawater pH). The third 
 #     summary was used for looking at the relationship between pCO2 and calcification rate (estimated at day 33).
 #(ii) Combines all samples points into `CompletePhenotype_AllSamples_final2020.csv` file. This
 #     file contains individuals from both the AE17 exposure and a separate calcein and EPF recharge exp.
-#     conducted by Louise cameron. Moreover, it also contains individuals that died during the exp.
+#     conducted by Louise Cameron. Moreover, it also contains individuals that died during the exp.
 #(iii)Cleaned data to to create `` file.
 #     This file contains only individuals from the AE17 experiment, specifically those that survived and were
 #     included in the exposure (i.e. we removed dead individuals, individuals from acclimation sampling,
@@ -20,19 +20,13 @@
 
 #### Library and working directory ####
 library(dplyr)
-setwd("/home/downeyam/Github/AE17_Cvirginica_MolecularResponse")
+setwd("/home/adowneywall/Github/AE17_Cvirginica_MolecularResponse")
 #### Calcification Data ###
 # Calcification Rates calculated from Buoyant Wgt data
 cal <- read.delim("data/Phenotype/AE17_CalcificationInfo_ExperimentalExposureSamples_Simple.csv",sep=",")
 #### Extra-pallial fluid pH data ###
 # EPF pH data for all individuals using micro pH probe
-epf <- read.delim("data/Phenotype/AE17_EPFpHData_ExperimentalExposureSamples_Simple.csv",sep=",")
-#### Complete Chemistry Carb. Chemistry of the EPF ###
-# Complete carbonate chemistry for a sub-sample of individuals from experiment
-# Samples should largely correspond with individuals used for molecular work (day 9 and 80)
-# Complete carb chem was calculated by Louise Cameron using measured DIC and pH.
-#
-
+#epf <- read.delim("data/Phenotype/AE17_EPFpHData_ExperimentalExposureSamples_Simple.csv",sep=",")
 #### Sample Data ###
 # Oyster sample data for all individuals (even dead oysters and those from calcein exp.)
 samples <- read.delim("data/Phenotype/AE17_metadata_ExperimentalExposureSamples_Simple.csv",sep=",")
@@ -47,6 +41,9 @@ wc_w <- read.delim("data/water_chem/AE17_WeeklySW_ExperimentalExposureSamples_Si
 wc_c <- read.delim("data/water_chem/AE17_CarbChemSW_ExperimentalExposureSamples_Simple.csv",sep=",",
                    stringsAsFactors = FALSE)
 
+#### CORRECTION - EPF values updated ###
+epf <- read.delim("erratum/revised_data/AE17_EPFpHData_ExperimentalExposureSamples_Simple_revised.csv",sep=",")
+
 #### Pruning DATA ####
 # Removing columns from calcification .csv and epf carb. chemistry that overlap with other files.
 
@@ -59,7 +56,9 @@ cal_sel <- cal[,c(2,9:10)]
 # EPF complete carb chem spreadsheet
 # Columns removed:
 # "shelf" "tank"  "pCO2"
-epf_sel <- epf[,c(1,7:10)]
+# epf_sel <- epf[,c(1,7:10)]
+# Modification required for corrected datasheet
+epf_sel <- epf[,c('ID','pCO2','pHMeasured','pHNBS','pHSW','pHTotal')]
 
 #### Summarizing Water chemistry ####
 
@@ -217,7 +216,9 @@ for(j in unique(wc_c_sub$tankID)){
 
 ### Merging WC data
 wc_sum <- left_join(wc_c_sum,wc_w_sum,by=c("Date","tankID"))
-write.csv(wc_sum,"data/water_chem/AE17_CompleteCarbChem.csv")
+#write.csv(wc_sum,"data/water_chem/AE17_CompleteCarbChem.csv")
+## Corrected file
+write.csv(wc_sum,"erratum/revised_data/AE17_CompleteCarbChem_corrected_revised.csv")
 
 #### Merge phenotype / sample data ####
 ## EPF data
@@ -226,11 +227,14 @@ comb_epf <- inner_join(comb_epf,wc_sum,by=c("Date","tankID"))
 comb_epf$delta_ph_NBS <-comb_epf$pHNBS-comb_epf$pH_NBS_2W
 comb_epf$delta_ph_total <-comb_epf$pHTotal-comb_epf$pH_Total_2W
 comb_epf_reduce <-  comb_epf[,c(1,12:31)]
-write.csv(comb_epf,"data/Phenotype/AE17_EPFpHComplete.csv")
+#write.csv(comb_epf,"data/Phenotype/AE17_EPFpHComplete.csv")
+## Corrected file
+write.csv(comb_epf,"erratum/revised_data/AE17_EPFpHComplete_revised.csv")
 
 ## Calcification Data
 comb_cal <- inner_join(samples,cal_sel,by="ID")
 comb_cal <- inner_join(comb_cal,comb_epf_reduce,by="ID")
 comb_cal <- left_join(comb_cal,wc_cal_sum,by="tankID")
-write.csv(comb_cal,"data/Phenotype/AE17_CalcificationComplete.csv")
-
+#write.csv(comb_cal,"data/Phenotype/AE17_CalcificationComplete.csv")
+## Corrected file
+write.csv(comb_cal,"erratum/revised_data/AE17_CalcificationComplete_revised.csv")

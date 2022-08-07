@@ -6,6 +6,7 @@ library(dplyr)
 library(plyr)
 library(multcompView)
 library(ggplot2)
+options(bitmapType="cairo")
 library(cowplot)
 library(lmerTest)
 library(car)
@@ -20,8 +21,7 @@ source("src/Accessory/basicR_functions.R")
 
 #### Data ####
 bw <- read.delim("data/Phenotype/AE17_CalcificationComplete.csv",sep=",")
-#bw <- read.delim("data/Phenotype/CompletePhenotype.csv",sep=",")
-#bw <- bw[bw$CompleteRecord==1,] # Trims data to only samples with bouyant weight data
+
 table(bw$pCO2,bw$Timepoint)
 bw$pCO2_fac <- as.factor(bw$pCO2) # Turn treatment into a factor
 bw$Timepoint_fac <- as.factor(bw$Timepoint) # Turn time point into a factor
@@ -36,6 +36,8 @@ bw$EPF_envAdj <- bw$EPF_pH-bw$pH_Total_2W # Calculate delta pH
 wc <- read.delim("data/water_chem/AE17_WeeklySW_ExperimentalExposureSamples_Simple.csv",sep=",",
                  stringsAsFactors = FALSE)
 
+
+
 #### Analysis #####
 
 #### Long term EPF ####
@@ -45,6 +47,15 @@ EPF_measure <- lmer(EPF_pH ~ pCO2_fac*Timepoint_fac + (1|PopOrigin) + (1|TankID)
 ## No random effects (FINAL MODEL)
 EPF_measure_red <- lm(EPF_pH ~ pCO2_fac*Timepoint_fac,data=bw)
 summary(aov(EPF_measure_red))
+
+## Corrected 
+#                       Df Sum Sq Mean Sq F value   Pr(>F)    
+#pCO2_fac                2 1.6180  0.8090  22.738 1.15e-06 ***
+#Timepoint_fac           1 0.0227  0.0227   0.638    0.431    
+#pCO2_fac:Timepoint_fac  2 0.0325  0.0163   0.457    0.638    
+#Residuals              29 1.0318  0.0356
+
+## Original Model
 #                       Df Sum Sq Mean Sq F value   Pr(>F)    
 #pCO2_fac                2 1.6015  0.8007  22.438 1.29e-06 ***
 #Timepoint_fac           1 0.0213  0.0213   0.597    0.446    
@@ -66,12 +77,22 @@ EPF_measure <- lmer(EPF_envAdj ~ pCO2_fac*Timepoint_fac + (1|PopOrigin) + (1|Tan
 ## No random effects
 EPF_measure_red <- lm(EPF_envAdj  ~ pCO2_fac*Timepoint_fac,data=bw)
 summary(aov(EPF_measure_red))
+
+## Corrected 
+#                       Df Sum Sq Mean Sq F value  Pr(>F)   
+#pCO2_fac                2 0.5663 0.28314   8.027 0.00168 **
+#Timepoint_fac           1 0.0202 0.02020   0.573 0.45526   
+#pCO2_fac:Timepoint_fac  2 0.0438 0.02189   0.620 0.54467   
+#Residuals              29 1.0229 0.03527
+
+## Original Model
 #                       Df Sum Sq Mean Sq F value  Pr(>F)   
 #pCO2_fac                2 0.5651 0.28253   7.982 0.00173 **
 #Timepoint_fac           1 0.0189 0.01892   0.534 0.47062   
 #pCO2_fac:Timepoint_fac  2 0.0412 0.02060   0.582 0.56521   
-#Residuals              29 1.0266 0.03540                   
-# post hoc comparisons
+#Residuals              29 1.0266 0.03540       
+
+# Post hoc comparisons
 TukeyHSD(aov(EPF_measure_red))$pCO2_fac
 
 # Alternative dropped time and interaction which only stengthens effect of pCO2 
@@ -139,7 +160,7 @@ pA
 
 #Statistical Model
 summary(aov(bw$EPF_envAdj ~ bw$pCO2_fac))
-tHSD_rel <- TukeyHSD(aov(EPF_envAdj~pCO2_fac,data=bw))
+(tHSD_rel <- TukeyHSD(aov(EPF_envAdj~pCO2_fac,data=bw)))
 
 # Creating letters of significance
 # Create letters of significance
@@ -236,6 +257,10 @@ pD <- p +
 pD
 
 #### Final plot ####
-plot_grid(pA,pB,pC,pD,
+pE <- plot_grid(pA,pB,pC,pD,
           ncol=2,
           labels=c("A","B","C","D"))
+ggsave(pE,filename = "erratum/revised_results/Fig2_corrected_600dpi.png",
+       width = 10,height = 10,dpi=600)
+ggsave(pE,filename = "erratum/revised_results/Fig2_corrected_800dpi.png",
+       width = 10,height = 10,dpi=800)
