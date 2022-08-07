@@ -1,8 +1,8 @@
-# Data, Script, and Analyses Repository
-
 # This repository is outdated! Please clone the `2022_erratum` branch for the most up-to-date data files and results.
 
-## Paper Title : Ocean acidification induces subtle shifts in gene expression and DNA methylation in mantle tissue of the Eastern oyster (Crassostrea virginica)
+## Data, Script, and Analyses Repository
+
+### Paper Title : Ocean acidification induces subtle shifts in gene expression and DNA methylation in mantle tissue of the Eastern oyster (Crassostrea virginica)
 
 [**Link to BioRxiv**](https://www.biorxiv.org/content/10.1101/2020.06.05.136424v1.abstract)
 
