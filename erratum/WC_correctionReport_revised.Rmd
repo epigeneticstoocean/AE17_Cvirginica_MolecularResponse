@@ -1,0 +1,180 @@
+---
+title: "Erratum - Summary Analysis"
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+## Overview 
+
+### Error 
+Several EPF pH values were rearranged among individuals between when the raw data was collected and the pH values were scaled for the final publication. This rearrangement only impacted a small number of samples and largely restricted to a single timepoint (Timepoint 1 -  24H). Below is a visualization of this error.
+
+### Impact on results and conclusions
+The overall impact of the EPF pH correction is very mild and only had a slight impact on the visual patterns of EPF pH response through time, particularly at timepoint 1 (24H). After scaling the pH (total scale), we observed a slight increase in the mean EPF pH within the moderate OA treatment (900 uatm) relative to the control treatment, which resulted in some minor changes in the significant planned comparisons, specifically at timepoint 1. In particular, the comparison between the delta EPF pH of the control and moderate OA treatments went from not significant to significant (pvalue<0.05), while the comparison between the delta EPF pH in the moderate OA treatment is no longer significantly lower than zero. Despite some minor shifts in the significance of certain planned comparisons, these new results do not impact our previous conclusions or interpretations.  
+
+Importantly, errors that emerged from this rearrangement were restricted to timepoints and treatments that were not used for any downstream molecular analysis (timepoints 9 and 80 at treatments 400 and 2800 uatm) and did not feature in any analysis regarding the longterm trends between calcification and EPF pH. 
+
+### Resolution
+
+An updated version of the scaled EPF pH datasheet has been produced and is available in the `AE17_Cvirginica_MolecularResponse` Github repo (**URL**) with in a folder titled `/erratum`. In this folder revised versions of any related downstream datasheets using the revised EPF pH data has been generated and stored in the folder `/revised_data` and the revised version of the timeseries analysis (Figure 1) is located in `/revised_figures`. 
+
+\pagebreak
+
+## Visualizing Correction 
+
+### Packages and Data
+
+**Packages**
+```{r warning=F,comment=F}
+library(dplyr,quietly = T,warn.conflicts = F)
+library(reshape2,quietly = T)
+library(ggplot2,quietly = T)
+library(cowplot,quietly = T)
+```
+
+### **Data**  
+```{r}
+# Raw EPF pH values 
+raw_epf <- read.csv("~/Github/AE17_Cvirginica_MolecularResponse/erratum/initial_data/AE17_EPF_raw.csv")
+# Scaled EPF pH (total) from original published dataset
+scaled_epf <- read.csv("~/Github/AE17_Cvirginica_MolecularResponse/data/Phenotype/AE17_EPFpHData_ExperimentalExposureSamples_Simple.csv")
+# Updated EPF pH (total) values
+revised_scaled_epf <- read.csv("~/Github/AE17_Cvirginica_MolecularResponse/erratum/revised_data/AE17_EPFpHData_revised.csv")
+```
+
+```{r echo=F}
+# #### Reformat data for visualization ####
+# ## Format the revised EPF data from Elises datasheet
+# scaled_epf$Oyster <- as.numeric(scaled_epf$Oyster)
+# scaled_epf <- scaled_epf[!is.na(scaled_epf$Oyster),]
+# # The coerced NA here is the seawater row which needs to be removed anyways
+# 
+# # This datasheet does have the typical 17XXX sample IDs. This code below is used to create a standard 17XXX ID for each row. This will be used to match the samples from raw data.
+# place2<-ifelse(scaled_epf$Oyster > 100,"",ifelse(scaled_epf$Oyster >= 10,"0","00"))
+# ID <- NULL
+# for(i in 1:length(place2)){
+#   if(place2[i] == "NA"){ID <- c(ID,paste0("17",scaled_epf$Oyster[i]))
+#   }else{ID <- c(ID,paste0("17",place2[i],scaled_epf$Oyster[i]))}
+# }
+# scaled_epf$ID <- as.numeric(ID)
+# scaled_epf <- scaled_epf[!duplicated(scaled_epf$ID),]
+
+### Subset published dataset ###
+# I am really only interested in comparing the EPF pH values from the revised sheet with from the raw data
+col_select <- c("ID","Timepoint","pHMeasured","pHNBS","pHSW","pHTotal")
+scaled_epf <- subset(scaled_epf,select = col_select)
+# Rename columns so they don't overlap with merged columns
+colnames(scaled_epf) <- c("ID","Timepoint_corr","pHMeasured_corr","pHNBS_corr","pHSW_corr","pHTotal_corr")
+
+scaled_epf$Timepoint_corr <- as.factor(scaled_epf$Timepoint_corr)
+
+### Merge datasets ###
+epf_comb <- left_join(scaled_epf,raw_epf,"ID")
+# Sample in this data with NA that needs to be removed
+epf_comb <- epf_comb[!is.na(epf_comb$pHMeasured_corr),]
+
+# The NA removal here is to remove the one sample that did not have an EPF pH measurement. This is present in both the original version and the revised version.
+```
+
+## Summary of differences between EPF pH in published datasheet compared to original datasheet
+
+Below we highlight how EPF pH (unscaled) differs in our published data compared to the values on the original collection sheet and how our updated datasheet corrects this error.
+
+\pagebreak
+
+### Figure 1: EPF pH (measured EPF pH from published datasheet vs. collection sheet)
+
+Here we can see that several points deviate from the 1:1 line, indicating that several EPF pH measurements were rearranged when the EPF pH data was being processed and scaled. Most points that deviate from this line correspond to Timepoint 1, which corresponds to oysters collected 24H after the start of the experimental exposure. 
+
+*Note* : Minor deviations from this 1:1 line reflect small rounding errors between the raw datasheet and the revised datasheet.
+
+**Datasheets**
+
+*X-axis* - Measured EPF pH (unscaled) from initial collection datasheet
+
+`AE17_Cvirginica_MolecularResponse/erratum/initial_data/AE17_EPF_raw.csv`
+
+*Y-axis* - Measured EPH pH (unscaled) from the processed datasheet used for downstream analysis
+
+`AE17_Cvirginica_MolecularResponse/data/Phenotype/AE17_EPFpHData_ExperimentalExposureSamples_Simple.csv`
+
+```{r echo=F}
+ggplot(epf_comb,aes(x=EPF_pH,
+                    y=pHMeasured_corr,
+                    colour=Timepoint_corr,
+                    shape=as.factor(pCO2))) + 
+  geom_point(size=3) + 
+  labs(y="Measured EPF pH (Published datasheet)",
+       x="Measured EPF pH (Collection datasheet)",
+       colour="Timepoint",
+       shape="Treatment") +
+  theme_bw()
+```
+
+\pagebreak
+
+### Figure 2: EPF pH (measured EPF pH from the revised published datasheet vs. collection sheet)
+
+Here all points fall along 1:1 line indicating the measured pH in the revised EPF pH datasheet matches the measured EPF pH from the original datasheet. 
+
+**Datasheets**
+
+*X-axis* - Measured EPF pH (unscaled) from initial collection datasheet
+
+`AE17_Cvirginica_MolecularResponse/erratum/initial_data/AE17_EPF_raw.csv`
+
+*Y-axis* - Measured EPH pH (unscaled) from the revised, processed datasheet used for downstream analysis
+
+`AE17_Cvirginica_MolecularResponse/erratum/revised_data/AE17_EPFpHData_revised.csv`
+
+```{r echo=F}
+epf_comb2 <- left_join(revised_scaled_epf,raw_epf,"ID")
+# Sample in this data with NA that needs to be removed
+epf_comb2 <- epf_comb2[!is.na(epf_comb2$pHMeasured),]
+epf_comb2 <- epf_comb2[epf_comb2$Seawater != "Ambient",]
+```
+
+```{r echo=F}
+ggplot(epf_comb2,aes(x=EPF_pH,y=pHMeasured)) + 
+  geom_abline(slope=1,intercept=0,colour="blue") +
+  geom_point(size=3) + 
+  labs(y="Measured EPF pH (Revised published datasheet)",
+       x="Measured EPF pH (Collection datasheet)") +
+  theme_bw()
+```
+
+```{r echo=F}
+## Create revised final datasheet
+raw_columns <- c("ID","shelf","tank","pCO2")
+raw_red <- subset(raw_epf,select=raw_columns)
+
+fixed_columns <- c("ID","Date","LongDate","Timepoint","pHMeasured","pHNBS","pHSW","pHTotal")
+fixed_red <- subset(revised_scaled_epf,select=fixed_columns)
+
+fixed_red <- fixed_red[fixed_red$ID %in% scaled_epf[,'ID'],]
+
+# Final check before merge
+# check <- left_join(fixed_red,raw_epf,by="ID")
+# ggplot(check,aes(y=pHTotal,x=EPF_pH)) +
+#   geom_point()
+# Looks good for merge
+
+final_comb <- left_join(fixed_red,raw_red,by="ID")
+write.csv(final_comb,"~/Github/AE17_Cvirginica_MolecularResponse/erratum/revised_data/AE17_EPFpHData_ExperimentalExposureSamples_Simple_revised.csv")
+```
+
+\pagebreak
+
+# Impact of error on the timeseries analysis of EPF pH
+
+In the revised version of the figure slight differences in timepoint 1 can be seen. This had a mild impact of significance tests, and primarily resulted in a slightly larger (and significant) difference between the control and moderate OA treatments at that timepoint.
+
+![Original published figure 1](/home/adowneywall/Github/AE17_Cvirginica_MolecularResponse/results/manuscript/figures/Figure1/figure1_600dpi.jpg){width=35%} 
+
+![Revised figure 1](/home/adowneywall/Github/AE17_Cvirginica_MolecularResponse/erratum/revised_results/Fig1_corrected_final_800dpi.png){width=35%}
+
+
+
