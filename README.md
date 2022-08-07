@@ -27,3 +27,4 @@ Updates since initial publication.
 
 * `2021-Jun-22` : Added link to publication in README. 
 * `2021-Jun-22` : Made some minor edits to [`/01B_DNAm_processing`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/master/01B_DNAm_processing.md) to correct some small grammatical mistakes and corrects several broken links.
+* `2022-Aug-07` : [`/Erratum folder`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/tree/2022_erratum/erratum) added. See the [`WC_correctionReport`](https://github.com/epigeneticstoocean/AE17_Cvirginica_MolecularResponse/blob/2022_erratum/erratum/WC_correctionReport_revised.pdf) for details.
